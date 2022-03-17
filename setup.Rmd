@@ -1,0 +1,30 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE, message = FALSE, 
+                      fig.height = 3.5, fig.width = 4.5, fig.align = "center")
+library(raster)
+library(knitr)
+library(here)
+library(sf)
+library(dplyr)
+library(amt)
+library(lubridate)
+library(tidyverse)
+library(patchwork)
+library(here)
+
+ex_no <- 1
+exs <- tibble(no = NULL, id = NULL)
+exercise <- function(x = "", id = paste0("ex-", ex_no)) {
+    if (id %in% exs$id) {
+        stop("duplicated exercise id")
+    }
+    exs <<- bind_rows(exs, tibble("no" = ex_no, "id" = id))
+    h3 <- paste0("*Aufgabe ", ex_no, ": ", x, "*  {#", id, "}")
+    ex_no <<- ex_no + 1
+    h3
+}
+
+ex_2_no <- function(id) {
+    exs$no[exs$id == id]
+}
+```

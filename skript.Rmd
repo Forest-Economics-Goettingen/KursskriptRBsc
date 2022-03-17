@@ -25,7 +25,7 @@ output:
         toc: true
         toc_depth: 3
         number_sections: true
-        keep_tex: true
+        keep_tex: false
         includes:
           before_body: misc/title.tex
           in_header: misc/header.tex

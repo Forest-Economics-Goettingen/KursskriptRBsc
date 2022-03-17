@@ -1,0 +1,9 @@
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\hRule}{\rule{\linewidth}{0.25mm}}
+\AtBeginDocument{\let\maketitle\relax}
+
+\usepackage{datetime}
+
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH], \THEYEAR}
