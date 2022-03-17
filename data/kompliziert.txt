@@ -1,0 +1,9 @@
+test ---- test 
+
+ Erstellt im September
+"id1" + "id2"
+1 + "a"
+1,75 + "b"
+2,5 + "c"
+3,25 + "d"
+4 + "e"

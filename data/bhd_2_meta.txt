@@ -1,0 +1,5 @@
+"gebiet_kurz" "gebiet_lang" "eigentuemer" "groesse"
+"A" "Ein Revier" "Person A" 10
+"B" "Ein anderes Revier" "Verbund A" 30
+"C" "Noch ein Revier" "Person C" 5
+"D" "Das letzte Revier" "unbekannt" 5
