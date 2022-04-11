@@ -18,7 +18,7 @@ header-includes:
    - \usepackage{titletoc}
    - \usepackage{menukeys}
    - \pagestyle{fancy}
-   - \fancyfoot[C]{Einführung in die Datenanalyse mit R (WiSe 2021/2)}
+   - \fancyfoot[C]{Einführung in die Datenanalyse mit R (SoSe 2022)}
    - \fancyfoot[R]{\thepage}
 output:
     bookdown::pdf_document2:
@@ -2737,7 +2737,7 @@ v1 <- c(
 
 \newpage
 
-# Aufgaben Wiederholen (`for`-Schleifen) {kontrollstrukturen}
+# Aufgaben Wiederholen (`for`-Schleifen) 
 
 Um einfache Programme zu schreiben, müssen Sie den Ablauf der Programmcodes
 kontrollieren können. Kontrollieren bedeutet in diesem Zusammenhang, dass Codeabschnitte
