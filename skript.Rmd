@@ -18,7 +18,7 @@ header-includes:
    - \usepackage{titletoc}
    - \usepackage{menukeys}
    - \pagestyle{fancy}
-   - \fancyfoot[C]{Einführung in die Datenanalyse mit R (SoSe 2022)}
+   - \fancyfoot[C]{Einführung in die Datenanalyse mit R (WS 2023/2024)}
    - \fancyfoot[R]{\thepage}
 output:
     bookdown::pdf_document2:
@@ -58,7 +58,7 @@ RStudio arbeiten ohne R.
 
 Gehen Sie für die Installation von R, auf die Website https://cloud.r-project.org/ und laden Sie die für ihren Computer passende R-Version herunter und folgen Sie den Installationsanweisungen.
 
-Für die Installation von RStudio,  gehen Sie zu der Website (https://rstudio.com/products/rstudio/download/#download) und laden Sie wieder die richtige Version für Ihren Computer herunter und folgen Sie den Installationsanweisungen.
+Für die Installation von RStudio,  gehen Sie zu der Website (https://posit.co/download/rstudio-desktop/#download) und laden Sie wieder die richtige Version für Ihr Betriebssystem herunter und folgen Sie den Installationsanweisungen.
 
 ## Erste Schritte in R
 
@@ -88,7 +88,7 @@ Einfache Rechenoperationen lassen sich in der R-Konsole durchführen.
 
 Weitere häufig verwendete Operationen sind `^` für eine beliebige Potenz, z.B. $2^3$ = `2^3` = `r 2^3`. Analog dazu gibt es die Funktion `sqrt()` zum berechnen von Wurzeln und viele weitere Funktionen.
 
-Meist verwenden wir jedoch Skripte, um den R-Code zu schreiben und ihn dann an die Konsole "zu schicken". Dies hat den Vorteil, dass alle Schritte nachvollziehbar bleiben und Analysen beliebig oft wiederholt werden können. Wenn wir R-Code in einem R-Skript geschrieben haben gibt es mehrere Möglichkeiten diesen Code auszuführen. Wir können entweder auf *Run* drücken (Abbildung \@ref(fig:rstudio-run)) oder mit der Tastenkombination *Strg + Enter* (\keys{Strg +  + \return}) den Code an die Konsole schicken.
+Meist verwenden wir jedoch Skripte, um den R-Code zu schreiben und ihn dann an die Konsole "zu schicken". Dies hat den Vorteil, dass alle Schritte nachvollziehbar bleiben und Analysen beliebig oft wiederholt werden können. Nach der Ausführung bleibt der Code erhalten. Stellen Sie sich den Code im R-Skript wie ein Kochbuch vor. Wenn wir R-Code in einem R-Skript geschrieben haben gibt es mehrere Möglichkeiten diesen Code auszuführen. Wir können entweder auf *Run* drücken (Abbildung \@ref(fig:rstudio-run)) oder den Code mit der Tastenkombination *Strg + Enter* (\keys{Strg +  + \return}) an die Konsole schicken.
 
 ```{r rstudio-run, fig.align='center', fig.cap="Ausführen von Code in RStudio..", echo = FALSE}
 knitr::include_graphics(here("img/rstudio_run.png"))
@@ -97,14 +97,14 @@ knitr::include_graphics(here("img/rstudio_run.png"))
 
 ## Kommentare
 
-Ein wichtiger Bestandteil für das Arbeiten mit Skripten in R sind Kommentare. Ein Kommentar ist Text in einem R-Skript, der der Dokumentation dient und von R ignoriert wird. Sämtliche Zeilen, die mit dem Zeichen `#` beginnen, werden im weiteren ignoriert.
+Ein wichtiger Bestandteil für das Arbeiten mit Skripten in R sind Kommentare. Ein Kommentar ist Text in einem R-Skript, der der Dokumentation dient und von der R Konsole ignoriert wird. Sämtliche Zeilen, die mit dem Zeichen `#` beginnen, werden ignoriert.
 
 ```{r}
 # Berechnen der Quadratwurzel
 sqrt(81)
 ```
 
-Im vorherigen Codeblock wurde der Funktionsaufruf `sqrt(a)` kommentiert. Die Zeile `# Berechnen der Quadratwurzel` wird bei der Ausführung ignoriert. Es empfiehlt sich, komplexere Abläufe zu kommentieren damit andere (z.B. Kommilitonen / Kommilitoninnen) verstehen, wieso etwas gemacht wurde und wie es gemacht wurde. Ganz besonders gilt das jedoch für einen selbst. Oft sind in der Zukunft Zusammenhänge nicht mehr so klar, wie sie beim Schreiben des Codes waren.
+Im vorherigen Codeblock wurde der Funktionsaufruf `sqrt(a)` auskommentiert. Die Zeile `# Berechnen der Quadratwurzel` wird bei der Ausführung ignoriert. Es empfiehlt sich, komplexere Abläufe zu kommentieren damit andere (z.B. Kommilitonen / Kommilitoninnen) verstehen, warum und wie etwas gemacht wurde. Ganz besonders gilt das jedoch für einen selbst. Oft sind in der Zukunft Zusammenhänge nicht mehr so klar, wie sie beim Schreiben des Codes waren.
 
 #### `r exercise("Ausführen von Quellcodes")`
 
