@@ -155,7 +155,7 @@ name <- "Johannes"
 ```
 
 
-Variablennamen dürfen mit keiner Zahl beginnen und müssen aus einem Wort bestehen. 
+Variablennamen dürfen nicht mit einer Zahl beginnen und müssen aus einem Wort bestehen. 
 
 - `a_123 <- 10` ist ok
 - `123_a <- 10` erzeugt einen Fehler
@@ -199,6 +199,14 @@ ergebnis2
 
 Mit der Funktion `rm()` können Variablen, können nicht mehr benötigte Variablen, wieder gelöscht werden. 
 
+```{r}
+var1 <- "irgendwas"
+exists("var1") # TRUE. also ja, eine Variable mit diesem Namen existiert
+rm(var1)  
+exists("var1") # FALSE, also nein, eine Variable mit diesem Namen existiert nicht.
+```
+
+
 ## Datentypen
 
 Es wurde bereits erwähnt, dass Variablen als Objekte gespeichert werden. Objekte sind Datenstrukturen, die Objekte bzw. Messwerte aus der Realität abbilden. Wenn Sie beispielsweise eine Fotofalle in einem Wald ausbringen, dann hat diese Fotofalle einen Namen (z.B. `Kamera1`) und nach einiger Zeit im Wald wurden hoffentlich auch einige Fotos aufgenommen. Wir nehmen einmal an, dass nach drei Wochen 132 Fotos von Rehen gemacht wurden.
@@ -210,7 +218,7 @@ kamera_name <- "Kamera_1"
 anzahl_rehe <- 132
 ```
 
-In den zwei vorherigen Zeilen Code haben wir zwei Objekte (im Sinne von R) erstellt. Das erste Objekt heißt `kamera_name` und das zweite Objekt heißt `anzahl_rehe`. Auffällig ist, dass beide Objekte einen unterschiedlichen Datentyp haben. `kamera_name`  ist vom Typ `character` (also Text). Das zweite Objekt, `anzahl_rehe`, ist vom Typ `numeric` (also eine Zahl, wir unterscheiden hier nicht weiter^[Für Interessierte, man kann natürlich zwischen Ganzzahlen (`int`) und Gleitkommazahlen (`double`) unterscheiden.]). Zusätzlich zu diesen zwei Typen (`character` und `numeric`) gibt es noch einen dritten wichtigen Typ: nämlich das logische Wahr oder Falsch (in R: `TRUE` und `FALSE`). 
+In den zwei vorherigen Zeilen Code haben wir zwei Objekte (im Sinne von R) erstellt. Das erste Objekt heißt `kamera_name` und das zweite Objekt heißt `anzahl_rehe`. Auffällig ist, dass beide Objekte unterschiedliche Datentypen haben. `kamera_name`  ist vom Typ `character` (also Text). Das zweite Objekt, `anzahl_rehe`, ist vom Typ `numeric` (also eine Zahl, wir unterscheiden hier nicht weiter^[Für Interessierte, man kann natürlich zwischen Ganzzahlen (`int`) und Gleitkommazahlen (`double`) unterscheiden.]). Zusätzlich zu diesen zwei Typen (`character` und `numeric`) gibt es noch einen weiteren wichtigen Typ: nämlich das logische Wahr oder Falsch (in R: `TRUE` und `FALSE`). 
 Zurückkommend auf das Beispiel mit den Fotofallen, könnte eine mögliche Fragestellung sein, ob auf einem der Fotos ein Fuchs gesehen wurde oder nicht. Dazu würden wir wieder eine neue Variable `fuchs_gesehen` anlegen und diese auf `TRUE` setzen, da ein Fuchs gesehen wurde.
 
 ```{r}
@@ -253,7 +261,7 @@ Verfolgen wir das Beispiel mit den Fotofallen etwas weiter. Es handelt sich um e
 
 Die Frage, die sich jetzt stellt, ist: Wie kann man diese Daten sinnvoll organisieren? Zusätzlich zur Anzahl der fotografierten Rehe soll jede Fotofalle eine eindeutige ID haben (`Kamera_1`, ..., `Kamera 15`) und wir wissen, dass jeweils 5 Fotofallen in drei unterschiedlichen Revieren aufgestellt waren (Fotofalle 1 bis 5 in Revier A, Fotofalle 6 bis 10 in Revier B und Fotofalle 11 bis 15 in Revier C).
 
-Ein erster, wenn auch nicht wirklich sinvoller, Ansatz könnte sein, dass wir für jede Fotofalle drei Objekte erstellen:
+Ein erster, wenn auch nicht wirklich sinnvoller, Ansatz könnte sein, dass wir für jede Fotofalle drei Objekte erstellen:
 
 ```{r}
 # 1. Kamera
