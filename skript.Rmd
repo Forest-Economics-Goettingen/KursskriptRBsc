@@ -807,7 +807,7 @@ LETTERS[LETTERS %in% c("A", "E", "I", "O", "U")]
 
 # Faktoren (`factors`)
 
-R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von diskreten Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen der Werte gespeichert [siehe dazu auch @mcnamara2018]. 
+R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von kategorialen Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen (engl. look-up table) der Werte gespeichert [siehe dazu auch @mcnamara2018]. 
 
 Mit der Funktion `factor()` kann ein Faktor erstellt werden. Im einfachsten Fall wird nur ein Vektor übergeben. 
 
@@ -816,7 +816,7 @@ a <- c("FI", "BU", "FI", "EI", "EI", "FI", "FI")
 factor(a)
 ```
 
-Ohne weitere Spezifikation werden die Werte *Levels* alphabetisch angeordnet (das kann später z.B. beim Erstellen von Abbildungen wichtig sein), dies kann jedoch durch die Verwendung des Arguments `levels` gesteuert werden. 
+Ohne weitere Spezifikation werden für die *Levels* die Werte alphabetisch übernommen (das kann später z.B. beim Erstellen von Abbildungen wichtig sein). Für eine benutzerdefinierte Anordungs der Leverls, kann das Argument `levels` verwendet werden. 
 
 ```{r}
 factor(a, levels = c("FI", "BU", "EI"))
@@ -829,6 +829,7 @@ af <- factor(a, levels = c("FI", "BU", "EI"),
              labels = c("Fichte", "Buche", "Eiche"))
 af
 ```
+
 Mit der Funktion `levels()` können die unterschiedlichen Levels eines Faktors abgefragt bzw. gesetzt werden. 
 
 ```{r}
@@ -883,6 +884,55 @@ s3
 
 ```
 
+
+## Das Paket `forcats`
+
+Mit dem Paket aus **forcats** werden einige Operationen mit Faktoren erleichtert. Wir schauen uns hier Funktion an, die es erleichtern: 
+
+1. Die Anordnung von Levels anzupassen.
+2. Levels zusammenzufassen oder zu entfernen. 
+3. Labels zu ändern. 
+
+
+### Anpassen der Anordnung von Faktoren
+
+Wir verwenden nochmals den `a` Vektor mit unterschiedichen Baumarten: 
+
+```{r}
+a <- c("FI", "BU", "FI", "EI", "EI", "FI", "FI")
+```
+
+Die Funktion `factor()` ordnet die Levels alphanumerisch, wie wir bereits gesehen haben.
+
+```{r}
+factor(a)
+```
+
+Die Funktion `fct()` aus dem **forcats**-Paket übernimmt die Reihenfolge so, wie sie in den Daten erscheinen. 
+
+```{r}
+f1 <- fct(a)
+f1
+```
+
+**forcats** stellt Funktionen zur Verfügung, um die Reihenfolge umzukeheren, 
+
+```{r}
+fct_rev(f1)
+```
+
+nach der Häufigkeit zu sortieren oder
+
+```{r}
+fct_infreq(f1)
+```
+
+
+eine zufällige Sortierung. 
+
+```{r}
+fct_shuffle(f1)
+```
 
 
 \newpage
