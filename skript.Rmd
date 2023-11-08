@@ -53,12 +53,12 @@ RStudio hingegen ist eine sogenannte Entwicklungsumgebung ^[Oder auch
 IDE (=Integrated Development Environment) genannt.], die das Arbeiten mit 
 R vereinfachen soll.
 
-Wichtig ist, dass man kann mit R arbeiten ohne RStudio, aber man kann nicht mit 
-RStudio arbeiten ohne R.
+Sie können also mit R arbeiten ohne RStudio (was jedoch sehr unkomfortabel ist), aber nicht mit 
+RStudio ohne R.
 
-Gehen Sie für die Installation von R, auf die Website https://cloud.r-project.org/ und laden Sie die für ihren Computer passende R-Version herunter und folgen Sie den Installationsanweisungen.
+Gehen Sie für die Installation von R, auf die Website https://cloud.r-project.org/ und laden Sie die für ihren Computer passende R-Version herunter und folgen Sie den Installationsanweisungen. In Linux können Sie R über die Kommandozeile installieren.
 
-Für die Installation von RStudio,  gehen Sie zu der Website (https://posit.co/download/rstudio-desktop/#download) und laden Sie wieder die richtige Version für Ihr Betriebssystem herunter und folgen Sie den Installationsanweisungen.
+Für die Installation von RStudio  gehen Sie zu der Website https://posit.co/download/rstudio-desktop/#download und laden die richtige Version für Ihr Betriebssystem herunter und folgen Sie den Installationsanweisungen.
 
 ## Erste Schritte in R
 
