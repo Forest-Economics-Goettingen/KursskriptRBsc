@@ -53,7 +53,7 @@ RStudio hingegen ist eine sogenannte Entwicklungsumgebung ^[Oder auch
 IDE (=Integrated Development Environment) genannt.], die das Arbeiten mit 
 R vereinfachen soll.
 
-Sie können also mit R arbeiten ohne RStudio (was jedoch sehr unkomfortabel ist), aber nicht mit 
+Sie können also mit R arbeiten ohne RStudio (was unüblich ist), aber nicht mit 
 RStudio ohne R.
 
 Gehen Sie für die Installation von R, auf die Website https://cloud.r-project.org/ und laden Sie die für ihren Computer passende R-Version herunter und folgen Sie den Installationsanweisungen. In Linux können Sie R über die Kommandozeile installieren.
@@ -70,14 +70,14 @@ knitr::include_graphics(here("img/rstudio.png"))
 ```
 
 
-RStudio besteht nun aus vier sogenannten Panes oder Ausschnitten (siehe auch Abbildung \@ref(fig:rstudio)). Die Ausschnitte sind wie folgt gegliedert: 
+RStudio besteht nun aus vier sogenannten **Panes** oder Ausschnitten (siehe auch Abbildung \@ref(fig:rstudio)). Die Ausschnitte sind wie folgt gegliedert: 
 
-1. Hier werden Skripte anzeigt, d.h., hier wird meist R Code geschrieben und dokumentiert.
+1. Hier werden Skripte anzeigt, d.h., hier wird meist R Code geschrieben und dokumentiert. Der Code wird beim Schreiben noch nicht ausgeführt (siehe Punkt 3), dennoch sollten Sie Code immer so schreiben, dass er Zeile für Zeile abgeschickt werden kann. Sie sollten nie Code schreiben, bei dem Sie zwischen den Zeilen hin und her springen müssen.
 2. Der zweite Ausschnitt erteilt Auskunft über den *Workspace*. Im Workspace werden alle verfügbaren Objekte angezeigt. 
-3. Die eigentliche R-Konsole wird in Ausschnitt 3 dargestellt. Hier wird in der Regel wenig Code eingegeben. Der normale Workflow ist vom Skript Code an die Konsole zu schicken.
+3. Die eigentliche R-Konsole wird in Ausschnitt 3 dargestellt. Hier wird in der Regel wenig Code eingegeben. Der normale Workflow ist vom Skript Code an die Konsole zu schicken. Erst durch das Abschicken in die Konsole wird der Code (bzw. die Teile des Codes, die Sie abschicken) ausgeführt.
 4. Der vierte Ausschnitt enthält mehrere Reiter. Der Reiter *Files* zeigt den Verzeichnisbaum an. Im Reiter *Plots* werden Plots angezeigt, wenn diese im Code aufgerufen werden. Hilfeseiten zu Funktionen werden im Reiter *Help* angezeigt.
 
-Einfache Rechenoperationen lassen sich in der R-Konsole durchführen. 
+Einfache Rechenoperationen können auch direkt in der R-Konsole durchgeführt werden. Prinzipiell könnten Sie alle Operationen direkt in die Konsole tippen. Der Nachteil und der Grund, warum dies keine gute Praxis ist, ist, dass der Code zwar ausgeführt jedoch nicht gespeichert wird. Code der nicht als Skript gespeichert wird, ist also nicht dokumentiert. Tippen Sie die folgenden Operationen in die Konsole.
 
 ```{r}
 10 + 5
@@ -86,25 +86,33 @@ Einfache Rechenoperationen lassen sich in der R-Konsole durchführen.
 100 / 19
 ```
 
-Weitere häufig verwendete Operationen sind `^` für eine beliebige Potenz, z.B. $2^3$ = `2^3` = `r 2^3`. Analog dazu gibt es die Funktion `sqrt()` zum berechnen von Wurzeln und viele weitere Funktionen.
+Sie sehen Ihren Code in rot und das Ergebnis dieser Operation in weiß darunter. Die Zahl in `[]` gibt die Dimension des Ergebnisses an. Hier also `[1]` für eine Angabe. Dieses Skript wurde in R Markdown geschrieben (siehe Vorwort). R Markdown verbindet Text und Code. Die Ergebnisse des Codes werden unter dem grau hinterlegten *Codechunk* dargestellt. Darstellung und Farbe des Codes und der Ergebnisse sind jedoch nicht immer exakt so wie sie es in der R Konsole wären.
 
-Meist verwenden wir jedoch Skripte, um den R-Code zu schreiben und ihn dann an die Konsole "zu schicken". Dies hat den Vorteil, dass alle Schritte nachvollziehbar bleiben und Analysen beliebig oft wiederholt werden können. Nach der Ausführung bleibt der Code erhalten. Stellen Sie sich den Code im R-Skript wie ein Kochbuch vor. Wenn wir R-Code in einem R-Skript geschrieben haben gibt es mehrere Möglichkeiten diesen Code auszuführen. Wir können entweder auf *Run* drücken (Abbildung \@ref(fig:rstudio-run)) oder den Code mit der Tastenkombination *Strg + Enter* (\keys{Strg +  + \return}) an die Konsole schicken.
+Weitere häufig verwendete Operationen sind `^` für eine beliebige Potenz, z.B. $2^3$ = `2^3` = `r 2^3`. Analog dazu gibt es die Funktion `sqrt()` zum berechnen von Wurzeln und viele weitere Funktionen. Wenn Sie einen code abschicken, der nicht funktioniertm bekommen Sie statt des Ergebnisses eine Fehlermeldung, welche bestenfalls einen Hinweis zur Korrektur enthält.
 
-```{r rstudio-run, fig.align='center', fig.cap="Ausführen von Code in RStudio..", echo = FALSE}
+Meist verwenden wir jedoch **Skripte**, um den R-Code zu schreiben und ihn dann an die Konsole "zu schicken". Dies hat den Vorteil, dass alle Schritte nachvollziehbar bleiben und Analysen beliebig oft wiederholt werden können. Nach der Ausführung bleibt der Code erhalten und Sie dokumentieren Ihre Berechnungen automatisch mit. Stellen Sie sich den Code im R-Skript wie ein Kochbuch vor. Wenn wir R-Code in einem R-Skript geschrieben haben gibt es mehrere Möglichkeiten diesen Code abzuschicken/ auszuführen. Wir können eine Zeile abschicken, indem wir entweder auf *Run* klicken (Abbildung \@ref(fig:rstudio-run)) oder die Tastenkombination *Strg + Enter* (\keys{Strg + \return}) tippen. Mehrere Zeilen abzuschicken und nacheinander ausführen zu lassen ist möglich, indem diese Zeilen markiert werden bevor Sie *Run* klicken oder die Tastenkombination tippen. Ein Klick auf *Source* bzw. die Tastenkombination *Strg + Umschalt + Enter* (\keys{Strg + \shift + \return}).
+
+```{r rstudio-run, fig.align='center', fig.cap="Zeilenweises Ausführen von Code in RStudio.", echo = FALSE}
 knitr::include_graphics(here("img/rstudio_run.png"))
 
 ```
 
-## Kommentare
+Wenn Sie die Codezeile abgeschickt haben, sehen Sie diese Zeile in der Konsole und direkt darunter das Ergebnis sowie die Dimensionalität des Ergebnisses, also genauso als hätten Sie den Code direkt in die Konsole getippt. Die Konsole erkennt, wenn Sie einen unvollständigen Code abschicken. In der Konsole sehen Sie in diesem Fall kein Ergebnis, sondern ein `+` unter der abgeschickten Zeile. Sie können nun eine weitere Zeile zur vervollständigung abschicken oder in der Konsole *Escape* (\keys{Esc}) drücken, um abzubrechen.
 
-Ein wichtiger Bestandteil für das Arbeiten mit Skripten in R sind Kommentare. Ein Kommentar ist Text in einem R-Skript, der der Dokumentation dient und von der R Konsole ignoriert wird. Sämtliche Zeilen, die mit dem Zeichen `#` beginnen, werden ignoriert.
+
+## Gute Praxis bei der Programmierung
+
+Es gibt eine gute Praxis, wie der Stil der Codes sein sollte. Die sog. *Style Guides* sind eine Art generelle Vereinbarung wie guter Code aussehen sollte. Style Guides sind selbstverständlich optional und wer viel programmiert, wird mit der Zeit evtl. einen eigenen Stil entwickeln. Dennoch bieten Style Guides gerade am Anfang der Karriere eine gute Orientierungshilfe und erleichtern vor allem das Arbeiten im Team. Der wichtigste und umfangreichste Style Guide ist  https://style.tidyverse.org/index.html. Wir empfehlen, die Kapitel `Welcome`, `Files` und  `Syntax` zu lesen, bevor Sie mit dem Programmieren beginnen.
+
+Vielleicht die wichtigste Praxis beim Programmieren ist das Kommentieren. **Kommentare** sind ein wichtiger Bestandteil der Skripte in R und allen Skript- und Programmiersprachen. Ein Kommentar ist Text in einem R-Skript, der der Dokumentation dient und von der R Konsole ignoriert wird. Sämtliche Zeilen, die mit dem Zeichen `#` beginnen, werden nicht ausgeführt, wenn Sie an die Konsole gesendet werden. Seien Sie nicht sparsam mit Kommentaren, sondern benutzen Sie sie um Ihren Code zu strukturieren, ihre Berechnungen zu für sich selbst und andere zu erläutern und, um Ergebnisse zu beschreiben oder zu interpretieren.
 
 ```{r}
+# sqrt(a)
 # Berechnen der Quadratwurzel
 sqrt(81)
 ```
 
-Im vorherigen Codeblock wurde der Funktionsaufruf `sqrt(a)` auskommentiert. Die Zeile `# Berechnen der Quadratwurzel` wird bei der Ausführung ignoriert. Es empfiehlt sich, komplexere Abläufe zu kommentieren damit andere (z.B. Kommilitonen / Kommilitoninnen) verstehen, warum und wie etwas gemacht wurde. Ganz besonders gilt das jedoch für einen selbst. Oft sind in der Zukunft Zusammenhänge nicht mehr so klar, wie sie beim Schreiben des Codes waren.
+Sie können Kommentare auch verwenden, um Code, den sie später vielleicht wieder aktivieren wollen, auszukommentieren. Im vorherigen Codeblock wurde der Funktionsaufruf `sqrt(a)` auskommentiert. Die Zeile `# Berechnen der Quadratwurzel` wird bei der Ausführung ebenfalls ignoriert. Es empfiehlt sich, komplexere Abläufe zu kommentieren, damit andere im Team verstehen, warum und wie etwas gemacht wurde. Ganz besonders gilt das jedoch für einen selbst. Oft sind in der Zukunft Zusammenhänge nicht mehr so klar, wie sie beim Schreiben des Codes waren.
 
 #### `r exercise("Ausführen von Quellcodes")`
 
@@ -130,10 +138,10 @@ Führen Sie nun alle Zeilen aus.
 
 ## Variablen beim Programmieren
 
-Ergebnisse aus Berechnungen (wie oben angeführt), aber auch aus deutlich komplexeren Operationen, werden in Variablen abgespeichert. Man kann sich eine Variable wie eine Hülle (oder bildlich gesprochen wie eine Schachtel) vorstellen, in die man etwas hinein legen kann und darauf zu einem späteren Zeitpunkt wieder zugreifen kann. Z.B. weist der folgende Ausdruck der Variable `alter` den Wert `102` zu. 
+Ergebnisse aus Berechnungen (wie oben angeführt), aber auch z.B. aus deutlich komplexeren Operationen, werden in Variablen abgespeichert. Man kann sich eine Variable wie eine Hülle (oder bildlich gesprochen wie eine Schachtel) vorstellen, in die man etwas hinein legen kann und darauf zu einem späteren Zeitpunkt wieder zugreifen kann. Z.B. weist der folgende Ausdruck der Variable `alter` den Wert `102` zu.
 
 ```{r}
-alter = 102
+alter <- 102
 ```
 
 Variablen können Objekte in R speichern. Ein Objekt, im einfachsten Fall ein
@@ -145,7 +153,7 @@ a <- 10
 a
 ```
 
-Man kann mit `=` oder `<-` einer Variable einen Wert zuweisen. Der Unterschied ist in den meisten Fällen vernachlässigbar, es wird aber allgemein empfohlen `<-` zu verwenden.
+Man kann mit `=` oder `<-` einer Variable einen Wert zuweisen. Der Unterschied ist in den meisten Fällen vernachlässigbar, es wird aber allgemein empfohlen `<-` (`=` ist schlechter Stil) zu verwenden.
 
 Wir können beliebige Variablen erstellen, z.B.
 
@@ -155,7 +163,7 @@ name <- "Johannes"
 ```
 
 
-Variablennamen dürfen nicht mit einer Zahl beginnen und müssen aus einem Wort bestehen. 
+Variablennamen dürfen nicht mit einer Zahl beginnen und müssen aus einem Wort bestehen. Die Variablen erscheinen nach der Definition im *Environment* in Pane.
 
 - `a_123 <- 10` ist ok
 - `123_a <- 10` erzeugt einen Fehler
@@ -209,7 +217,7 @@ exists("var1") # FALSE, also nein, eine Variable mit diesem Namen existiert nich
 
 ## Datentypen
 
-Es wurde bereits erwähnt, dass Variablen als Objekte gespeichert werden. Objekte sind Datenstrukturen, die Objekte bzw. Messwerte aus der Realität abbilden. Wenn Sie beispielsweise eine Fotofalle in einem Wald ausbringen, dann hat diese Fotofalle einen Namen (z.B. `Kamera1`) und nach einiger Zeit im Wald wurden hoffentlich auch einige Fotos aufgenommen. Wir nehmen einmal an, dass nach drei Wochen 132 Fotos von Rehen gemacht wurden.
+Es wurde bereits erwähnt, dass Variablen als Objekte gespeichert werden. Objekte sind Datenstrukturen, die Objekte wie z. B. Messwerte aus der Realität abbilden. Wenn Sie beispielsweise eine Fotofalle in einem Wald ausbringen, dann hat diese Fotofalle einen Namen (z.B. `Kamera1`) und nach einiger Zeit im Wald wurden hoffentlich auch einige Fotos aufgenommen. Wir nehmen einmal an, dass nach drei Wochen 132 Fotos von Rehen gemacht wurden.
 
 Wir können jetzt sowohl den Namen der Fotofalle, als auch die Anzahl Fotos die aufgenommen wurden, in zwei Variablen abspeichern.
 
@@ -218,16 +226,22 @@ kamera_name <- "Kamera_1"
 anzahl_rehe <- 132
 ```
 
-In den zwei vorherigen Zeilen Code haben wir zwei Objekte (im Sinne von R) erstellt. Das erste Objekt heißt `kamera_name` und das zweite Objekt heißt `anzahl_rehe`. Auffällig ist, dass beide Objekte unterschiedliche Datentypen haben. `kamera_name`  ist vom Typ `character` (also Text). Das zweite Objekt, `anzahl_rehe`, ist vom Typ `numeric` (also eine Zahl, wir unterscheiden hier nicht weiter^[Für Interessierte, man kann natürlich zwischen Ganzzahlen (`int`) und Gleitkommazahlen (`double`) unterscheiden.]). Zusätzlich zu diesen zwei Typen (`character` und `numeric`) gibt es noch einen weiteren wichtigen Typ: nämlich das logische Wahr oder Falsch (in R: `TRUE` und `FALSE`). 
-Zurückkommend auf das Beispiel mit den Fotofallen, könnte eine mögliche Fragestellung sein, ob auf einem der Fotos ein Fuchs gesehen wurde oder nicht. Dazu würden wir wieder eine neue Variable `fuchs_gesehen` anlegen und diese auf `TRUE` setzen, da ein Fuchs gesehen wurde.
+In den zwei vorherigen Zeilen Code haben wir zwei Objekte (im Sinne von R) erstellt. Das erste Objekt heißt `kamera_name` und das zweite Objekt heißt `anzahl_rehe`. Auffällig ist, dass beide Objekte unterschiedliche Datentypen haben. `kamera_name`  ist vom Typ `character` (also Text). Das zweite Objekt, `anzahl_rehe`, ist vom Typ `numeric` (also eine Zahl, wir unterscheiden hier nicht weiter^[Für Interessierte, man unterscheidet weiter zwischen Ganzzahlen (`int`) und Gleitkommazahlen (`double`) unterscheiden.]). Zusätzlich zu diesen zwei Typen (`character` und `numeric`), gibt es noch einen weiteren wichtigen Typ: nämlich das logische Wahr oder Falsch (in R: `TRUE` und `FALSE`). 
+Zurückkommend auf das Beispiel mit den Fotofallen, könnte eine mögliche Fragestellung sein, ob auf einem der Fotos ein Fuchs gesehen wurde oder nicht. Dazu würden wir eine neue Variable `fuchs_gesehen` anlegen und diese auf `TRUE` setzen, da ein Fuchs gesehen wurde.
 
 ```{r}
 fuchs_gesehen <- TRUE
 ```
 
+Wenn Sie sich nicht sicher, um welchen Typen es sich handelt, können sie ihn mit `str` abfragen.
+```{r}
+typeof(fuchs_gesehen)
+```
+
+
 ## Funktionen
 
-Ein zweiter wesentlicher Bestandteil beim Arbeiten mit R sind Funktionen. Während eine Variable etwas *speichert* *tut* eine Funktion etwas. Beispielsweise zieht die Funktion `sqrt()` die Quadratwurzel aus einer Zahl.
+Ein zweiter wesentlicher Bestandteil beim Arbeiten mit R sind Funktionen. Während eine Variable etwas *speichert*, *tut* eine Funktion etwas. Beispielsweise zieht die Funktion `sqrt()` die Quadratwurzel aus einer Zahl.
 
 ```{r}
 sqrt(a)
@@ -3646,5 +3660,5 @@ plot(dat3$dist_fluss, dat3$n)
 
 # Literatur 
 
-Ein guter Überblick über viele der angeschnittenen Themen gibt es in dem [R for data science](https://r4ds.had.co.nz/), das online frei zugänglich ist.
+Ein guter Überblick über viele der angeschnittenen Themen gibt es in dem [R for data science](https://r4ds.had.co.nz/), das online frei zugänglich ist. Das on-line Buch [Hands-On Programming with R]{https://rstudio-education.github.io/hopr/index.html} ist eine nicht-Programmierer freundliche Einführung in R.
 
