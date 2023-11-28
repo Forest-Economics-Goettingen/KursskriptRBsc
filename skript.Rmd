@@ -238,6 +238,13 @@ Wenn Sie sich nicht sicher, um welchen Typen es sich handelt, können sie ihn mi
 typeof(fuchs_gesehen)
 ```
 
+`TRUE` wird intern als `1` gespeichert und `FALSE` als `0`. Es ist möglich mit `TRUE`s und `FALSE`s zu rechnen. 
+
+```{r}
+TRUE + TRUE
+FALSE + FALSE
+TRUE + FALSE
+```
 
 ## Funktionen
 
@@ -257,8 +264,8 @@ sqrt(x = a)
 Um mehr über eine Funktion zu erfahren (z. B. die Bedeutung von Argumenten zu verstehen oder herauszufinden, was eine Funktion zurück gibt), können wir die Hilfeseiten konsultieren. Es gibt unterschiedliche Wege, um zu einer Hilfeseite zu gelangen. 
 
 1. In die Konsole `?<Name der Funktion>` tippen. Also, wenn wir Hilfe für die Funktion `mean()` möchten, könnten wir einfach `?mean` in die Konsole tippen.
-2. Analog zu 1), können wir mit der Funktion `help` die Hilfeseite für eine andere Funktion aufrufen (z.B. wenn wir wieder die Hilfe für die Funktion `mean()` lesen möchten, dann könnten wir auch `help(mean)` in die Konsole tippen).
-3. In RStudio kann man auch auf das `Help`-Panel klicken und dann einfach eine Funktion suchen (siehe Abbildung 1). 
+2. Analog zu 1), können wir mit der Funktion `help` die Hilfeseite für eine Funktion aufrufen (z.B. wenn wir wieder die Hilfe für die Funktion `mean()` lesen möchten, dann könnten wir auch `help(mean)` in die Konsole tippen).
+3. In R Studio kann man auch auf das `Help`-Tab (Pane 4) klicken und dann einfach eine Funktion suchen (siehe Abbildung 1). 
 4. Wenn der Cursor in RStudio auf einer Funktion ist, kann man mit der Taste F1 die dazugehörige Hilfeseite aufrufen.
 
 
@@ -271,9 +278,7 @@ npics <- c(132, round(runif(14, 50, 150)))
 
 Verfolgen wir das Beispiel mit den Fotofallen etwas weiter. Es handelt sich um ein systematisches Monitoring. D. h., es wurde nicht nur eine Fotofalle ausgebracht, sondern insgesamt 15 Stück. Dieser Umstand erfordert komplexere Objekte. Nachfolgend sind die Anzahl Rehfotos für jede der 15 Fotofallen aufgeführt: `r npics`.
 
-Die Frage, die sich jetzt stellt, ist: Wie kann man diese Daten sinnvoll organisieren? Zusätzlich zur Anzahl der fotografierten Rehe soll jede Fotofalle eine eindeutige ID haben (`Kamera_1`, ..., `Kamera 15`) und wir wissen, dass jeweils 5 Fotofallen in drei unterschiedlichen Revieren aufgestellt waren (Fotofalle 1 bis 5 in Revier A, Fotofalle 6 bis 10 in Revier B und Fotofalle 11 bis 15 in Revier C).
-
-Ein erster, wenn auch nicht wirklich sinnvoller, Ansatz könnte sein, dass wir für jede Fotofalle drei Objekte erstellen:
+Die Frage, die sich jetzt stellt, ist: Wie kann man diese Daten sinnvoll organisieren? Zusätzlich zur Anzahl der fotografierten Rehe soll jede Fotofalle eine eindeutige ID haben (`Kamera_1`, ..., `Kamera 15`) und wir wissen, dass jeweils 5 Fotofallen in drei unterschiedlichen Revieren aufgestellt waren (Fotofalle 1 bis 5 in Revier A, Fotofalle 6 bis 10 in Revier B und Fotofalle 11 bis 15 in Revier C). Wir könnten für jede Kamera und jeden Wert ein einzelnes Objekt mit je einem Wert erstellen. Dass das zu Aufwändig wäre, leuchtet unmittelbar ein:
 
 ```{r}
 # 1. Kamera
@@ -289,7 +294,7 @@ revier_2 <- "Revier A"
 # usw.
 ```
 
-Wenn wir so vorgehen würden, hätten wir 45 Objekte. Dieser Ansatz ist nicht sehr effizient und führt schnell zu einem unübersichtlichen *Workspace*^[Als *Workspace* werden alle Objekte bezeichnet, die in einer R-Session zur Verfügung stehen.]. Wir werden im Verlauf unterschiedliche Datenstrukturen kennenlernen.
+Wenn wir so vorgehen würden, hätten wir 45 Objekte mit je einem Eintrag. Dieser Ansatz und führt schnell zu einem unübersichtlichen *Workspace*^[Als *Workspace* werden alle Objekte bezeichnet, die in einer R-Session zur Verfügung stehen. Siehe Liste im *Environment* in Pane 2.]. Wir werden im Verlauf sinnvollere Objekte (Vektoren oder Data Frames) für diesen Zweck kennenlernen.
 
 #### `r exercise("Variabeln")`
 
@@ -318,7 +323,7 @@ a + p
 
 ## Funktionen
 
-Ein zweiter wesentlicher Bestandteil beim Arbeiten mit R sind Funktionen. Während eine Variable etwas *speichert* *tut* eine Funktion etwas. Beispielsweise zieht die Funktion `sqrt()` die Quadratwurzel aus einer Zahl.
+Ein zweiter wesentlicher Bestandteil beim Arbeiten mit R sind Funktionen. Während eine Variable etwas *speichert*, *tut* eine Funktion etwas. Beispielsweise zieht die Funktion `sqrt()` die Quadratwurzel aus einer Zahl.
 
 ```{r}
 sqrt(a)
@@ -341,24 +346,21 @@ Um mehr über eine Funktion zu erfahren (z.B. die Bedeutung von Argumenten zu ve
 4. Wenn der Cursor in RStudio auf einer Funktion ist, kann man mit der Taste F1 die dazugehörige Hilfeseite aufrufen.
 
 
-
-
 \newpage
 
 # Vektoren
 
-Die gute Nachricht zuerst, Sie haben bereits Vektoren erstellt in R (und dies wahrscheinlich nicht bewusst wahrgenommen). Wenn Sie nämlich eine Variable erstellen (z.B., `a <- 10`), wird ein Vektor der Länge eins erstellt, das heißt der Vektor enthält genau ein Element. 
+Die gute Nachricht zuerst. Sie haben bereits Vektoren erstellt in R (und dies wahrscheinlich nicht bewusst wahrgenommen). Wenn Sie nämlich eine Objekt mit einem Element erstellen (z.B., `a <- 10`), wird ein Vektor der Länge eins erstellt. Das heißt, der Vektor enthält genau ein Element (einen Eintrag). Vektoren sind also kein neues Objekt für Sie, sondern Sie lernen jetzt, dass die Ihnen schon bekannten Objekte Vektoren heißen und sie auch mehrere Elemente in eine mObjekt speichern können.
 
 ```{r fig1, out.width = "350px", echo = FALSE, fig.cap="Schematische Darstellung eines Vektors in R.", fig.align="center"}
 include_graphics(here("img/vectors.jpg"))
 ```
 
-
- Sie können sich Vektoren wie einen Schubladenschrank vorstellen (siehe auch Abbildung \@ref(fig:fig1)). Wichtig ist dabei, dass man in jede Schublade immer nur ein Element vom gleichen Typ verstauen kann. Etwas allgemeiner gesprochen heißt das, dass alle Elemente eines Vektors vom gleichen Datentyp sein müssen. 
+Sie können sich Vektoren wie einen Schubladenschrank vorstellen (siehe auch Abbildung \@ref(fig:fig1)). Wichtig ist dabei, dass man in jede Schublade immer nur ein Element verstauen kann und alle Elemente im Schublagenschrank den gleichen Datentyp haben müssen. Etwas allgemeiner gesprochen heißt das, dass alle Elemente eines Vektors vom gleichen Datentyp sein müssen.
  
-Es gibt zahlreiche Funktionen zum Erstellen von Vektoren (einige davon werden wir im weiteren Verlauf des Moduls kennenlernen). Die wohl wichtigste Funktion ist `c()`. Dabei steht `c` für *combine* oder *concatenate*. Die Funktion `c()` fügt einzelne Elemente in einen Vektor zusammen (und zwar genau in der Reihenfolge wie diese Elemente an `c()` übergeben werden). 
+Es gibt zahlreiche Funktionen zum Erstellen von Vektoren (einige davon werden wir im weiteren Verlauf des Moduls kennenlernen). Die wohl wichtigste Funktion ist `c()`. Dabei steht `c` für *combine* oder *concatenate*. Die Funktion `c()` fügt einzelne Elemente in einen Vektor zusammen (und zwar genau in der Reihenfolge wie diese Elemente an `c()` übergeben werden). `c()` ist sozusagen die Funktion, die für Sie mehrere Elemente zu einem Vektor zusammensetzt. `c()` erwartet folglich nur Elemente als Argumente.
  
-Gehen wir nochmals zurück zu Abbildung \@ref(fig:fig1), da wird schematisch dargestellt wie ein Vektor `s` mit 7 Elementen (in diesem Fall Zahlen) erstellt werden kann.
+Gehen wir nochmals zurück zu Abbildung \@ref(fig:fig1), in der schematisch dargestellt wird, wie ein Vektor `s` mit 7 Elementen (in diesem Fall Zahlen) erstellt wird.
 
 ```{r}
 s <- c(37, 1, 15, 2, 7, 19, 22)
@@ -370,7 +372,7 @@ Die Funktion `c()` ordnet jetzt bildlich gesprochen die Zahl 37 der ersten Schub
 s
 ```
 
-In Abbildung \@ref(fig:fig1)b wird der Vektor `s` nochmals systematisch dargestellt. Dabei sieht man, dass `37` an der ersten Position des Vektors gespeichert wird und `22` an der letzten Position des Vektors gespeichert wird.
+In Abbildung \@ref(fig:fig1)b wird der Vektor `s` nochmals systematisch dargestellt. Dabei sieht man z. B., dass `37` an der ersten Position des Vektors gespeichert wird und `22` an der letzten Position des Vektors gespeichert wird.
 
 
 Die Grundrechenarten (`+`, `-`, `/`, `*`) und viele andere Funktionen funktionieren genau gleich mit Vektoren deren Länge > 1 ist. Sie werden elementweise durchgeführt. Wir können beispielsweise zu jedem Element von `s` 10 addieren
@@ -379,16 +381,17 @@ Die Grundrechenarten (`+`, `-`, `/`, `*`) und viele andere Funktionen funktionie
 s + 10
 ```
 
-oder `s` mit sich selbst multiplizieren.
+oder `s` mit sich selbst multiplizieren. Zu beachten ist also, dass es sich bei Vektorberechnungen in R zunächst nicht um Vektorrechnungen handelt, wie Sie sie aus der linearen Algebra kennen. Für die sog. Matrizenoperationen der linearen Algebra werden die Operatoren in R mit `% %` umschlossen, also bspw. `s %*% s`.
 
 ```{r}
 s * s
 ```
 
-Neben der Funktion `c()` gibt es zahlreiche weitere Funktionen, um Vektoren zu erstellen. Sehr häufig braucht man Vektoren von Zahlenfolgen, solche Vektoren können mit der Funktion `seq` erstellt werden. Im einfachsten Fall benötigt `seq()` zwei Argumente: `from` und `to`^[Weil solche Vektoren so häufig vorkommen gibt es hier eine Abkürzung. Man kann `seq(from, to, by = 1)` mit `from:to` abkürzen. Also `1:10` würde auch alle Zahlen von 1 bis 10 zurückgeben.].
+Neben der Funktion `c()` gibt es zahlreiche weitere Funktionen, um Vektoren zu erstellen. Sehr häufig braucht man Vektoren von Zahlenfolgen. Solche Vektoren können mit der Funktion `seq()` erstellt werden. Im einfachsten Fall benötigt `seq()` zwei Argumente: `from` und `to`^[Weil solche Vektoren so häufig vorkommen gibt es hier eine Abkürzung. Man kann `seq(from, to, by = 1)` mit `from:to` abkürzen. Also `1:10` würde auch alle Zahlen von 1 bis 10 zurückgeben.].
 
 ```{r}
 seq(from = 1, to = 10)
+(1 : 10)
 ```
 
 Man kann dann auch noch die Schritte angeben, mit denen erhöht wird. 
@@ -488,12 +491,11 @@ bhd <- c(32, 33, 23, 21, 21, 27, 18, 12)
 
 Diese wurden immer abwechselnd mit zwei unterschiedlichen Messgeräten durchgeführt wurden. 
 
-Erstellen Sie einen Vektor von der Länge 8 mit den Einträgen die immer abwechselnd `G1` und `G2` sind und für die zwei Geräte stehen. 
+Erstellen Sie einen Vektor von der Länge 8 mit den Einträgen, die immer abwechselnd `G1` und `G2` sind und für die zwei Geräte stehen. 
 ```{r, include=params$inc_sol}
 bhd <- c(32, 33, 23, 21, 21, 27, 18, 12)
 rep(c("G1", "G2"), 4)
 ```
-
 
 
 ## Statistische Funktionen
@@ -506,15 +508,13 @@ median(s)
 sd(s)
 ```
 
-Eine weitere sehr häufig verwendete Funktion ist `sample()`. Mit `sample()` werden `size` Elemente zufällig aus einem Vektor, mit oder ohne Zurücklegen (mit Zurücklegen wird gezogen, wenn das Argument `replace = TRUE` gesetzt wird), gezogen.
+Eine weitere, sehr häufig verwendete Funktion ist `sample()`. Mit `sample()` werden `size` Elemente zufällig aus einem Vektor, mit oder ohne Zurücklegen (mit Zurücklegen wird gezogen, wenn das Argument `replace = TRUE` gesetzt wird), gezogen.
 
 ```{r}
 sample(s, size = 1) # 1 Element
 sample(s, size = 3) # 2 Elemente
 ```
-Wenn `size` weg gelassen wird, dann bekommt man gleich viele Elemente zurück (wie der Vektor lang ist), d.h. der Vektor wird nur permutiert. 
-
-
+Wenn `size` weggelassen wird, dann bekommt man gleich viele Elemente zurück (wie der Vektor lang ist), d.h. der Vektor wird nur permutiert. 
 
 ## Beispiel Fotofallen
 
@@ -526,7 +526,6 @@ Als erstes erstellen wir einen Vektor mit den Anzahlen Rehfotos. Das geht einfac
 anzahl_rehe <- c(132, 79, 129, 91, 138, 144, 55, 103, 139, 
                  105, 96, 146, 95, 118, 1007)
 ```
-
 
 Als zweites erstellen wir einen Vektor mit den IDs. Zur Erinnerung, diese sollten die Werte `Kamera_1` bis `Kamera_15` haben. Ein erster Ansatz könnte sein, dass wir einfach 15 Fotofallen schreiben und dann die Zahlen 1 bis 15 dahinter.
 
@@ -557,8 +556,7 @@ ids <- paste(v1, v2, sep = "_")
 ids
 ```
 
-
-Dann fehlt jetzt lediglich der Vektor mit den Revieren. Hier könnten wir erneut auf die Funktion `rep` zurückgreifen.
+Mehr Funktionen zum Umgang mit Zeichenketten folgen in Kapitel "Arbeiten mit Text". Dann fehlt jetzt lediglich der Vektor mit den Revieren. Hier könnten wir erneut auf die Funktion `rep` zurückgreifen.
 
 ```{r}
 rep(c("Revier A", "Revier B", "Revier C"), 5)
@@ -583,7 +581,7 @@ mean(anzahl_rehe)
 median(anzahl_rehe)
 ```
 
-2. Erstellen Sie die folgende Ausgabe: 
+2. Erstellen Sie die folgende Konsolenausgabe: 
 
 ```{r, echo = params$inc_sol}
 paste("Die mittlere Anzahl von Rehfotos beträgt", mean(anzahl_rehe), "Rehe pro Standort.")
@@ -602,13 +600,15 @@ Dabei werden die folgenden Operationen am häufigsten verwendet.
 
 Das Ergebnis von logischen Operatoren ist immer `TRUE` oder `FALSE`. 
 
-Bei Vektoren kommt es immer zu einer elementweisen Anwendung. Wir können beispielsweise abfragen an welchen Fotofallenstandorten mehr als 100 Rehe fotografiert wurden oder
+Bei Vektoren kommt es immer zu einer elementweisen Anwendung. Wir können beispielsweise abfragen, an welchen Fotofallenstandorten mehr als 100 Rehe fotografiert wurden:
 
 ```{r}
 anzahl_rehe > 100
 ```
 
-welche Fotofallenstandorte sich in Revier B befinden.
+Das Ergebnis ist ein Vektor vom Datentyp `logi` in der selben länge wie `anzahl_rehe`. 
+
+Wir können z. B. abfragen, welche Fotofallenstandorte sich in Revier B befinden.
 
 ```{r}
 reviere == "Revier B"
@@ -616,7 +616,7 @@ reviere == "Revier B"
 
 Des Weiteren können logische Ausdrücke miteinander verknüpft werden. Dies geschieht mit einem logischen Und (`&`) oder einem logischen Oder (`|`). Für das logische Und müssen beide Ausdrücke ein `TRUE` zurückgeben um ein `TRUE` zu erhalten. Für ein logisches Oder reicht es, wenn einer der beiden Ausdrücke `TRUE` zurückgibt, um ein `TRUE` zu erhalten. 
 
-Damit können wir nun z.B. die beiden vorherigen Abfragen verbinden. Die erste Abfrage ist: Hat eine Fotofalle mehr als 100 Rehe fotografiert und stand die Fotofalle in Revier B.
+Damit können wir nun z. B. die beiden vorherigen Abfragen verbinden. Die erste Abfrage ist: Hat eine Fotofalle mehr als 100 Rehe fotografiert und stand die Fotofalle in Revier B.
 
 ```{r}
 anzahl_rehe > 100 & reviere == "Revier B"
@@ -631,14 +631,6 @@ anzahl_rehe > 100 | reviere == "Revier B"
 ```
 
 Das Arbeiten mit logischen Werten kann fürs Erste etwas abstrakt erscheinen, aber wir werden im folgenden Abschnitt (Abschnitt \@ref(zugriff)) zahlreiche Anwendungsbeispiele dafür sehen.
-
-`TRUE` wird intern als `1` gespeichert und `FALSE` als `0`. Es ist möglich mit `TRUE`s und `FALSE`s zu rechnen. 
-
-```{r}
-TRUE + TRUE
-FALSE + FALSE
-TRUE + FALSE
-```
 
 #### `r exercise("Arbeiten mit logischen Werten")`
 
@@ -664,27 +656,25 @@ TRUE + 10 == FALSE + 10
 sum(c(TRUE, TRUE, FALSE, FALSE))
 ```
 
-
-
 ## Zugreifen auf Elemente eines Vektors (=Untermengen) {#zugriff}
 
-Sehr oft wollen wir auf bestimmte Werte in einer Datenstruktur zugreifen. Beispielsweise könnte es uns interessieren, wieviele Rehe im Mittel auf allen Fotofallen aus Revier A gesehen wurden. 
+Sehr oft wollen wir auf bestimmte Werte in einer Datenstruktur zugreifen. Beispielsweise könnte es uns interessieren, wie viele Rehe im Mittel auf allen Fotofallen aus Revier A gesehen wurden. Das Zugreifen auf Elemente mit bestimmten Eigenschaften ist die häufigste Anwendung für logische Operationen in R. Aus diesem Grund ist das Unterkapitel "Arbeiten mit logischen Werten" auch Teil des Kapitels "Vektoren".
 
+Bei Vektoren kann auf die einzelnen Elemente mit eckigen Klammern (`[ ]`, diese werden auch Indizierungsklammern genannt) zugegriffen werden. Der Ausdruck `anzahl_rehe[2]` gibt die Anzahl an fotografierten Rehen für die zweite Fotofalle zurück, also die zweite Stelle des Vektors`anzahl_rehe`. Es gibt zwei Möglichkeiten, was in die eckigen Klammern geschrieben werden kann: 1.) die Positionen der Elemente die man zurückhaben möchte, wie eben beschrieben. Ist es mehr als ein Element, dann muss ein Vektor mit den Positionen übergeben werde. Die 2.) Möglichkeit der Indizierung ist also ein logischer Vektor in der gleichen Länge des Vektors, den ich indiozieren möchte. Es werden alle Elemente zurückgegeben, bei denen in dem logischen Vektor `TRUE` eingetragen ist.
 
-Bei Vektoren kann auf die einzelnen Elemente mit eckigen Klammern (`[ ]`, diese werden auch Indizierungsklammern genannt) zugegriffen werden. Der Ausdruck `anzahl_rehe[2]` gibt die Anzahl an fotografierten Rehen für die zweite Fotofalle zurück. Es gibt zwei Möglichkeiten, was in die eckigen Klammern geschrieben werden kann: 1) die Positionen der Elemente die man zurückhaben möchte. Ist es mehr als ein Element, dann muss man einfach einen Vektor mit den Positionen übergeben; 2) ein logischer Vektor von der gleichen Länge, es werden alle Elemente zurückgegeben bei denen ein `TRUE` steht.
-
-Abfragen des zweiten Elements in dem Vektor `anzahl_rehe`: 
+1.) Abfragen des zweiten Elements in dem Vektor `anzahl_rehe`: 
 
 ```{r}
 anzahl_rehe[2]
 ```
 
-Abfragen aller Elemente aus `anzahl_rehe`, die aus dem Revier `A` stammen. 
+2.) Abfragen aller Elemente aus `anzahl_rehe`, die aus dem Revier `A` stammen. 
 
 ```{r}
-anzahl_rehe[c(1, 2, 3, 4, 5)] 
+ist_a <- reviere == "Revier A"
+anzahl_rehe[ist_a] 
 
-# oder schneller
+# oder alternativ mit Methode 1.)
 anzahl_rehe[1:5]  # da `1:5` einen Vektor mit allen Zahlen von 1 bis 5 erstellt.
 ```
 
@@ -790,8 +780,9 @@ messungen_arten[messungen_arten == arten[1] | messungen_arten == arten[2]]
 ```
 
 Diese Herangehensweise wird aber für $>2$ Elemente in `arten` sehr
-mühsam. Eine Alternative bietet der `%in%`-Operator. Dieser testet, ob
-Elemente eines Vektors in einem zweiten Vektors enthalten sind.
+mühsam und fehleranfällig. Eine Alternative bietet der `%in%`-Operator. Dieser testet, ob
+Elemente eines Vektors in einem zweiten Vektors enthalten sind. Der Operator ist also eine 
+verkürzte Schreibweise für hintereinander durchgeführte logische Oder Abfragen.
 
 ```{r}
 messungen_arten %in% arten
@@ -819,7 +810,7 @@ LETTERS[LETTERS %in% c("A", "E", "I", "O", "U")]
 
 # Faktoren (`factors`)
 
-R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von diskreten Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen der Werte gespeichert [siehe dazu auch @mcnamara2018]. 
+R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von diskreten Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen der Werte gespeichert [siehe dazu auch @mcnamara2018]. Faktoren haben im Gegensazu zu Zeichenketten zusätzliche Eigenschaften. Man kann sie z. B. sortieren.
 
 Mit der Funktion `factor()` kann ein Faktor erstellt werden. Im einfachsten Fall wird nur ein Vektor übergeben. 
 
@@ -834,14 +825,14 @@ Ohne weitere Spezifikation werden die Werte *Levels* alphabetisch angeordnet (da
 factor(a, levels = c("FI", "BU", "EI"))
 ```
 
-Es ist auch möglich die Beschriftung (= labels) der unterschiedlichen Levels anzugeben mit dem Argument `labels`.
+Es ist auch möglich, die Beschriftung (= labels) der unterschiedlichen Levels anzugeben mit dem Argument `labels`.
 
 ```{r}
 af <- factor(a, levels = c("FI", "BU", "EI"), 
              labels = c("Fichte", "Buche", "Eiche"))
 af
 ```
-Mit der Funktion `levels()` können die unterschiedlichen Levels eines Faktors abgefragt bzw. gesetzt werden. 
+Mit der Funktion `levels()`, können die unterschiedlichen Levels eines Faktors abgefragt bzw. gesetzt werden. 
 
 ```{r}
 levels(af)
@@ -849,7 +840,7 @@ levels(af) <- c("Fi", "Bu", "Ei")
 af
 ```
 
-Schlussendlich kann man mit der Funktion `relevel()` die Referenzkategorie eines Faktors (der erste Level) angepasst werden. Das ist kann für lineare Modell wichtig sein.
+Schlussendlich kann man mit der Funktion `relevel()` die Referenzkategorie eines Faktors (der erste Level) angepasst werden. Das ist kann für lineare Modelle wichtig sein.
 
 ```{r}
 af
