@@ -97,14 +97,14 @@ knitr::include_graphics(here("img/rstudio_run.png"))
 
 ```
 
-Wenn Sie die Codezeile abgeschickt haben, sehen Sie diese Zeile in der Konsole und direkt darunter das Ergebnis sowie die Dimensionalität des Ergebnisses, also genauso als hätten Sie den Code direkt in die Konsole getippt. Die Konsole erkennt, wenn Sie einen unvollständigen Code abschicken. In der Konsole sehen Sie in diesem Fall kein Ergebnis, sondern ein `+` unter der abgeschickten Zeile. Sie können nun eine weitere Zeile zur vervollständigung abschicken oder in der Konsole *Escape* (\keys{Esc}) drücken, um abzubrechen.
+Wenn Sie die Codezeile abgeschickt haben, sehen Sie diese Zeile in der Konsole und direkt darunter das Ergebnis sowie die Dimension des Ergebnisses, also genauso, als hätten Sie den Code direkt in die Konsole getippt. Die Konsole erkennt, wenn Sie einen unvollständigen Code abschicken. In der Konsole sehen Sie in diesem Fall kein Ergebnis, sondern ein `+` unter der abgeschickten Zeile. Sie können nun eine weitere Zeile zur vervollständigung abschicken oder in der Konsole *Escape* (\keys{Esc}) drücken, um abzubrechen.
 
 
 ## Gute Praxis bei der Programmierung
 
-Es gibt eine gute Praxis, wie der Stil der Codes sein sollte. Die sog. *Style Guides* sind eine Art generelle Vereinbarung wie guter Code aussehen sollte. Style Guides sind selbstverständlich optional und wer viel programmiert, wird mit der Zeit evtl. einen eigenen Stil entwickeln. Dennoch bieten Style Guides gerade am Anfang der Karriere eine gute Orientierungshilfe und erleichtern vor allem das Arbeiten im Team. Der wichtigste und umfangreichste Style Guide ist  https://style.tidyverse.org/index.html. Wir empfehlen, die Kapitel `Welcome`, `Files` und  `Syntax` zu lesen, bevor Sie mit dem Programmieren beginnen.
+Es gibt eine gute Praxis, wie der Stil der Codes sein sollte. Die sog. *Style Guides* sind eine Art generelle Vereinbarung bei der Programmierung. Style Guides sind selbstverständlich optional und wer viel programmiert, wird mit der Zeit evtl. einen eigenen Stil entwickeln. Dennoch bieten Style Guides gerade beim Einstieg in die Programmierung eine gute Orientierungshilfe und erleichtern vor allem das Arbeiten im Team. Der wichtigste und umfangreichste Style Guide für R ist  https://style.tidyverse.org/index.html. Wir empfehlen, die Kapitel `Welcome`, `Files` und  `Syntax` zu lesen, bevor Sie mit dem Programmieren beginnen. Ein weiterer berühmter Syle Guide ist von Google https://google.github.io/styleguide/.
 
-Vielleicht die wichtigste Praxis beim Programmieren ist das Kommentieren. **Kommentare** sind ein wichtiger Bestandteil der Skripte in R und allen Skript- und Programmiersprachen. Ein Kommentar ist Text in einem R-Skript, der der Dokumentation dient und von der R Konsole ignoriert wird. Sämtliche Zeilen, die mit dem Zeichen `#` beginnen, werden nicht ausgeführt, wenn Sie an die Konsole gesendet werden. Seien Sie nicht sparsam mit Kommentaren, sondern benutzen Sie sie um Ihren Code zu strukturieren, ihre Berechnungen zu für sich selbst und andere zu erläutern und, um Ergebnisse zu beschreiben oder zu interpretieren.
+Vielleicht die wichtigste Praxis beim Programmieren ist das Kommentieren. **Kommentare** sind ein wichtiger Bestandteil der Skripte in R und allen anderen Skript- und Programmiersprachen. Sie werden lernen, dass die Kommentarfunktion ein wesentlicher Vorteil gegenüber Klickprogrammen darstellt. Ein Kommentar ist Text in einem (R-)Code, der der Dokumentation dient und von der R Konsole ignoriert wird. Sämtliche Zeilen, die mit dem Zeichen `#` beginnen, werden nicht ausgeführt, wenn Sie an die Konsole gesendet werden. Seien Sie nicht sparsam mit Kommentaren, sondern benutzen Sie sie um Ihren Code zu strukturieren, ihre Berechnungen zu für sich selbst und andere zu erläutern und, um Ergebnisse zu beschreiben oder zu interpretieren.
 
 ```{r}
 # sqrt(a)
@@ -138,7 +138,7 @@ Führen Sie nun alle Zeilen aus.
 
 ## Variablen beim Programmieren
 
-Ergebnisse aus Berechnungen (wie oben angeführt), aber auch z.B. aus deutlich komplexeren Operationen, werden in Variablen abgespeichert. Man kann sich eine Variable wie eine Hülle (oder bildlich gesprochen wie eine Schachtel) vorstellen, in die man etwas hinein legen kann und darauf zu einem späteren Zeitpunkt wieder zugreifen kann. Z.B. weist der folgende Ausdruck der Variable `alter` den Wert `102` zu.
+Ergebnisse aus Berechnungen (wie oben angeführt), aber auch z. B. aus komplexeren Operationen, werden in Variablen abgespeichert. Man kann sich eine Variable wie eine Hülle (oder bildlich gesprochen wie eine Schachtel) vorstellen, in die man etwas hinein legen kann und darauf zu einem späteren Zeitpunkt wieder zugreifen kann. Z. B. weist der folgende Ausdruck der Variable `alter` den Wert `102` zu.
 
 ```{r}
 alter <- 102
@@ -163,12 +163,12 @@ name <- "Johannes"
 ```
 
 
-Variablennamen dürfen nicht mit einer Zahl beginnen und müssen aus einem Wort bestehen. Die Variablen erscheinen nach der Definition im *Environment* in Pane.
+Variablennamen dürfen nicht mit einer Zahl beginnen und müssen aus einem Wort bestehen. Die Variablen erscheinen nach der Definition im *Environment* Zab in Pane 2.
 
 - `a_123 <- 10` ist ok
 - `123_a <- 10` erzeugt einen Fehler
 
-Vorsicht: Groß- und Kleinschreibung muss beachtet werden
+Vorsicht: Groß- und Kleinschreibung muss beachtet werden.
 
 ```{r}
 name <- "Johannes"
@@ -205,7 +205,7 @@ ergebnis2 <- ergebnis * 2
 ergebnis2
 ```
 
-Mit der Funktion `rm()` können Variablen, können nicht mehr benötigte Variablen, wieder gelöscht werden. 
+Mit der Funktion `rm()` können Variablen, können nicht mehr benötigte Variablen, wieder gelöscht werden. Alternativ können Variablen auch überschrieben werden. Es gibt keine Möglichkeit gelöschte oder überschriebene Variablen wiederherzustellen. Sie müssen ggf. neu berechnet werden.
 
 ```{r}
 var1 <- "irgendwas"
@@ -217,7 +217,8 @@ exists("var1") # FALSE, also nein, eine Variable mit diesem Namen existiert nich
 
 ## Datentypen
 
-Es wurde bereits erwähnt, dass Variablen als Objekte gespeichert werden. Objekte sind Datenstrukturen, die Objekte wie z. B. Messwerte aus der Realität abbilden. Wenn Sie beispielsweise eine Fotofalle in einem Wald ausbringen, dann hat diese Fotofalle einen Namen (z.B. `Kamera1`) und nach einiger Zeit im Wald wurden hoffentlich auch einige Fotos aufgenommen. Wir nehmen einmal an, dass nach drei Wochen 132 Fotos von Rehen gemacht wurden.
+<!-- Johannes, ich glaube, in diesem Absatz wurden Variablen und Objekte vertauscht. Kannst du Mal prüfen, ob das stimmt was ich geschrieben hab? -->
+Es wurde bereits erwähnt, dass Daten in Variablen gespeichert werden können. Die Variablen, in denen die Daten (oder auch Berechnungen oder ganze Funktionen) gespreichert werden, heißen in R Objekte. Wenn Sie beispielsweise Messwerte einer Fotofalle speichern möchten, dann hat diese Fotofalle einen Namen (z.B. `Kamera1`) und nach einiger Zeit im Wald wurden hoffentlich auch einige Fotos aufgenommen. Wir nehmen einmal an, dass nach drei Wochen 132 Fotos von Rehen gemacht wurden.
 
 Wir können jetzt sowohl den Namen der Fotofalle, als auch die Anzahl Fotos die aufgenommen wurden, in zwei Variablen abspeichern.
 
@@ -226,8 +227,7 @@ kamera_name <- "Kamera_1"
 anzahl_rehe <- 132
 ```
 
-In den zwei vorherigen Zeilen Code haben wir zwei Objekte (im Sinne von R) erstellt. Das erste Objekt heißt `kamera_name` und das zweite Objekt heißt `anzahl_rehe`. Auffällig ist, dass beide Objekte unterschiedliche Datentypen haben. `kamera_name`  ist vom Typ `character` (also Text). Das zweite Objekt, `anzahl_rehe`, ist vom Typ `numeric` (also eine Zahl, wir unterscheiden hier nicht weiter^[Für Interessierte, man unterscheidet weiter zwischen Ganzzahlen (`int`) und Gleitkommazahlen (`double`) unterscheiden.]). Zusätzlich zu diesen zwei Typen (`character` und `numeric`), gibt es noch einen weiteren wichtigen Typ: nämlich das logische Wahr oder Falsch (in R: `TRUE` und `FALSE`). 
-Zurückkommend auf das Beispiel mit den Fotofallen, könnte eine mögliche Fragestellung sein, ob auf einem der Fotos ein Fuchs gesehen wurde oder nicht. Dazu würden wir eine neue Variable `fuchs_gesehen` anlegen und diese auf `TRUE` setzen, da ein Fuchs gesehen wurde.
+In den zwei vorherigen Zeilen Code haben wir zwei Objekte (im Sinne von R) erstellt. Das erste Objekt heißt `kamera_name` und das zweite Objekt heißt `anzahl_rehe`. In dem Beipiel handelt es sich also um zwei sehr einfache Objekte, in denen jeweils ein Wert gespeichert ist. Auffällig ist, dass beide Objekte unterschiedliche Datentypen haben. `kamera_name`  ist vom Typ `character` (also Text). Das zweite Objekt, `anzahl_rehe`, ist vom Typ `numeric` (also eine Zahl, wir unterscheiden hier nicht weiter^[Für Interessierte, man unterscheidet weiter zwischen Ganzzahlen (`int`) und Gleitkommazahlen (`double`) unterscheiden.]). Zusätzlich zu diesen zwei Typen (`character` und `numeric`), gibt es noch einen weiteren wichtigen Typ: nämlich das logische Wahr oder Falsch (in R: `TRUE` und `FALSE`) und noch weitere Datentypne auf die wir zunächst nicht eingehen (tippen Sie `?typeof` für eine Übersicht aller Datentypen). Zurückkommend auf das Beispiel mit den Fotofallen, könnte eine mögliche Fragestellung sein, ob auf einem der Fotos ein Fuchs gesehen wurde oder nicht. Dazu würden wir eine neue Variable `fuchs_gesehen` anlegen und diese auf `TRUE` setzen, da ein Fuchs gesehen wurde.
 
 ```{r}
 fuchs_gesehen <- TRUE
@@ -238,6 +238,13 @@ Wenn Sie sich nicht sicher, um welchen Typen es sich handelt, können sie ihn mi
 typeof(fuchs_gesehen)
 ```
 
+`TRUE` wird intern als `1` gespeichert und `FALSE` als `0`. Es ist möglich mit `TRUE`s und `FALSE`s zu rechnen. 
+
+```{r}
+TRUE + TRUE
+FALSE + FALSE
+TRUE + FALSE
+```
 
 ## Funktionen
 
@@ -248,19 +255,17 @@ sqrt(a)
 ```
 
 Funktionen sind in R in der Regel daran zu erkennen, dass sie immer mit dem Funktionsnamen, gefolgt von 
-runden Klammern (`()`), aufgerufen werden. Im vorherigen Beispiel wurde die Funkion mit dem Namen `sqrt()` aufgerufen. Das Objekt `a` haben wir bereits vorhin definiert (zur Erinnerung `a <- 10`). Die Funktion `sqrt()` arbeitet jetzt mit dem Objekt `a`, das in diesem Zusammenhang auch **Argument** genannt wird. 
-
-Argumente von Funktionen haben Namen, diese müssen jedoch nicht angegeben werden, wenn die Reihenfolge der Argumente berücksichtigt wird. Im vorherigen Beispiel, haben wir einfach die Funktion `sqrt(a)` aufgerufen und keinen Argumentnamen angegeben. Aus den Hilfeseiten für die Funktion `sqrt()` (siehe auch nachfolgender Abschnitt) ist zu entnehmen, dass die Funktion `sqrt()`  ein Argument mit dem Namen `x` hat. Das heißt, der vollständige Aufruf der Funktion `x` wäre.
+runden Klammern (`()`), aufgerufen werden. Der große Umfang an Funktionen für die statistische Datenanalyse und wissenschaftliche Datenverarbeitung ist der Hauptgrung für den Erfolg von R in der Wissenschaft. Im vorherigen Beispiel wurde die Funkion mit dem Namen `sqrt()` aufgerufen. Das Objekt `a` haben wir bereits vorhin definiert (zur Erinnerung `a <- 10`). Die Funktion `sqrt()` arbeitet jetzt mit dem Objekt `a`, das in diesem Zusammenhang auch **Argument** genannt wird. Argumente sind die Objekte, die eine Funktion als Inpout benötigt. Die Hilfeseite jeder Funktion enthält eine Liste aller Argumente. Argumente von Funktionen haben Namen, diese müssen jedoch nicht angegeben werden, wenn die Reihenfolge der Argumente, wie in der Hilfeseite angegeben, berücksichtigt wird. Im vorherigen Beispiel, haben wir die Funktion `sqrt(a)` aufgerufen und keinen Argumentnamen angegeben. Aus den Hilfeseiten für die Funktion `sqrt()` (siehe auch nachfolgender Abschnitt) ist zu entnehmen, dass die Funktion `sqrt()` nur ein Argument mit dem Namen `x` hat. Das heißt, der vollständige Aufruf der Funktion `x` wäre.
 
 ```{r}
 sqrt(x = a)
 ```
 
-Um mehr über eine Funktion zu erfahren (z.B. die Bedeutung von Argumenten zu verstehen oder herauszufinden, was eine Funktion zurück gibt), können wir die Hilfeseiten konsultieren. Es gibt unterschiedliche Wege, um zu einer Hilfeseite zu gelangen. 
+Um mehr über eine Funktion zu erfahren (z. B. die Bedeutung von Argumenten zu verstehen oder herauszufinden, was eine Funktion zurück gibt), können wir die Hilfeseiten konsultieren. Es gibt unterschiedliche Wege, um zu einer Hilfeseite zu gelangen. 
 
 1. In die Konsole `?<Name der Funktion>` tippen. Also, wenn wir Hilfe für die Funktion `mean()` möchten, könnten wir einfach `?mean` in die Konsole tippen.
-2. Analog zu 1), können wir mit der Funktion `help` die Hilfeseite für eine andere Funktion aufrufen (z.B. wenn wir wieder die Hilfe für die Funktion `mean()` lesen möchten, dann könnten wir auch `help(mean)` in die Konsole tippen).
-3. In RStudio kann man auch auf das `Help`-Panel klicken und dann einfach eine Funktion suchen (siehe Abbildung 1). 
+2. Analog zu 1), können wir mit der Funktion `help` die Hilfeseite für eine Funktion aufrufen (z.B. wenn wir wieder die Hilfe für die Funktion `mean()` lesen möchten, dann könnten wir auch `help(mean)` in die Konsole tippen).
+3. In R Studio kann man auch auf das `Help`-Tab (Pane 4) klicken und dann einfach eine Funktion suchen (siehe Abbildung 1). 
 4. Wenn der Cursor in RStudio auf einer Funktion ist, kann man mit der Taste F1 die dazugehörige Hilfeseite aufrufen.
 
 
@@ -271,11 +276,9 @@ set.seed(123)
 npics <- c(132, round(runif(14, 50, 150)))
 ```
 
-Verfolgen wir das Beispiel mit den Fotofallen etwas weiter. Es handelt sich um ein systematisches Monitoring. D.h. es wurde nicht nur eine Fotofalle ausgebracht, sondern insgesamt 15 Stück. Dieser Umstand erfordert eine komplexere Datenstruktur. Nachfolgend sind die Anzahl Rehfotos für jede der 15 Fotofallen aufgeführt: `r npics`.
+Verfolgen wir das Beispiel mit den Fotofallen etwas weiter. Es handelt sich um ein systematisches Monitoring. D. h., es wurde nicht nur eine Fotofalle ausgebracht, sondern insgesamt 15 Stück. Dieser Umstand erfordert komplexere Objekte. Nachfolgend sind die Anzahl Rehfotos für jede der 15 Fotofallen aufgeführt: `r npics`.
 
-Die Frage, die sich jetzt stellt, ist: Wie kann man diese Daten sinnvoll organisieren? Zusätzlich zur Anzahl der fotografierten Rehe soll jede Fotofalle eine eindeutige ID haben (`Kamera_1`, ..., `Kamera 15`) und wir wissen, dass jeweils 5 Fotofallen in drei unterschiedlichen Revieren aufgestellt waren (Fotofalle 1 bis 5 in Revier A, Fotofalle 6 bis 10 in Revier B und Fotofalle 11 bis 15 in Revier C).
-
-Ein erster, wenn auch nicht wirklich sinnvoller, Ansatz könnte sein, dass wir für jede Fotofalle drei Objekte erstellen:
+Die Frage, die sich jetzt stellt, ist: Wie kann man diese Daten sinnvoll organisieren? Zusätzlich zur Anzahl der fotografierten Rehe soll jede Fotofalle eine eindeutige ID haben (`Kamera_1`, ..., `Kamera 15`) und wir wissen, dass jeweils 5 Fotofallen in drei unterschiedlichen Revieren aufgestellt waren (Fotofalle 1 bis 5 in Revier A, Fotofalle 6 bis 10 in Revier B und Fotofalle 11 bis 15 in Revier C). Wir könnten für jede Kamera und jeden Wert ein einzelnes Objekt mit je einem Wert erstellen. Dass das zu Aufwändig wäre, leuchtet unmittelbar ein:
 
 ```{r}
 # 1. Kamera
@@ -291,7 +294,7 @@ revier_2 <- "Revier A"
 # usw.
 ```
 
-Wenn wir so vorgehen würden, hätten wir 45 Objekte. Dieser Ansatz ist nicht sehr effizient und führt schnell zu einem unübersichtlichen *Workspace*^[Als *Workspace* werden alle Objekte bezeichnet, die in einer R-Session zur Verfügung stehen.]. Wir werden im Verlauf unterschiedliche Datenstrukturen kennenlernen.
+Wenn wir so vorgehen würden, hätten wir 45 Objekte mit je einem Eintrag. Dieser Ansatz und führt schnell zu einem unübersichtlichen *Workspace*^[Als *Workspace* werden alle Objekte bezeichnet, die in einer R-Session zur Verfügung stehen. Siehe Liste im *Environment* in Pane 2.]. Wir werden im Verlauf sinnvollere Objekte (Vektoren oder Data Frames) für diesen Zweck kennenlernen.
 
 #### `r exercise("Variabeln")`
 
@@ -327,15 +330,15 @@ sqrt(a)
 ```
 
 Funktionen sind in R in der Regel daran zu erkennen, dass sie immer mit dem Funktionsnamen, gefolgt von 
-runden Klammern (`()`), aufgerufen werden. Im vorherigen Beispiel wurde die Funktion mit dem Namen `sqrt()` aufgerufen. Das Objekt `a` haben wir bereits vorhin definiert (zur Erinnerung `a <- 10`). Die Funktion `sqrt()` arbeitet jetzt mit dem Objekt `a`, das in diesem Zusammenhang auch **Argument** genannt wird. Grundsätzlich erwarten Funktionen Argumente und geben Ergebnisse zurück. Dadurch vereinfachen Funktionen den Code, da sie mehrere Berechnungen (also Code) durchführen, die sonst im Code stehen müssten. Ursprünglich wurde R von Statistikern und Statistikerinnen entwickelt, die es leid waren, alle statistischen Befehle umständlich selbst definieren zu müssen. Insofern war R von Anfang an eine spezielle Programmiersprache für Statistik. Inzwischen hat R auch sehr viele Funktionen im Bereich der Datenverarbeitung, so dass man R heute für den gesamten Bereich der Data Science einsetzen kann.
+runden Klammern (`()`), aufgerufen werden. Im vorherigen Beispiel wurde die Funkion mit dem Namen `sqrt()` aufgerufen. Das Objekt `a` haben wir bereits vorhin definiert (zur Erinnerung `a <- 10`). Die Funktion `sqrt()` arbeitet jetzt mit dem Objekt `a`, das in diesem Zusammenhang auch **Argument** genannt wird. 
 
 Argumente von Funktionen haben Namen, diese müssen jedoch nicht angegeben werden, wenn die Reihenfolge der Argumente berücksichtigt wird. Im vorherigen Beispiel, haben wir einfach die Funktion `sqrt(a)` aufgerufen und keinen Argumentnamen angegeben. Aus den Hilfeseiten für die Funktion `sqrt()` (siehe auch nachfolgender Abschnitt) ist zu entnehmen, dass die Funktion `sqrt()`  ein Argument mit dem Namen `x` hat. Das heißt, der vollständige Aufruf der Funktion `x` wäre.
 
 ```{r}
-sqrt(x = a) # Ist das selbe wie sqrt(a)
+sqrt(x = a)
 ```
 
-Um mehr über eine Funktion zu erfahren (z.B. die Bedeutung von Argumenten zu verstehen oder herauszufinden, was eine Funktion zurück gibt), können wir die Hilfeseiten konsultieren. In R ist jede Hilfeseite gleich aufgebaut. Es gibt unterschiedliche Wege, um zu einer Hilfeseite zu gelangen. 
+Um mehr über eine Funktion zu erfahren (z.B. die Bedeutung von Argumenten zu verstehen oder herauszufinden, was eine Funktion zurück gibt), können wir die Hilfeseiten konsultieren. Es gibt unterschiedliche Wege, um zu einer Hilfeseite zu gelangen. 
 
 1. In die Konsole `?<Name der Funktion>` tippen. Also, wenn wir Hilfe für die Funktion `mean()` möchten, könnten wir einfach `?mean` in die Konsole tippen.
 2. Analog zu 1), können wir mit der Funktion `help` die Hilfeseite für eine andere Funktion aufrufen (z.B. wenn wir wieder die Hilfe für die Funktion `mean()` lesen möchten, dann könnten wir auch `help(mean)` in die Konsole tippen).
@@ -343,23 +346,21 @@ Um mehr über eine Funktion zu erfahren (z.B. die Bedeutung von Argumenten zu ve
 4. Wenn der Cursor in RStudio auf einer Funktion ist, kann man mit der Taste F1 die dazugehörige Hilfeseite aufrufen.
 
 
-
 \newpage
 
 # Vektoren
 
-Die gute Nachricht zuerst, Sie haben bereits Vektoren erstellt in R (und dies wahrscheinlich nicht bewusst wahrgenommen). Wenn Sie nämlich eine Variable erstellen (z.B., `a <- 10`), wird ein Vektor der Länge eins erstellt, das heißt der Vektor enthält genau ein Element. 
+Die gute Nachricht zuerst. Sie haben bereits Vektoren erstellt in R (und dies wahrscheinlich nicht bewusst wahrgenommen). Wenn Sie nämlich eine Objekt mit einem Element erstellen (z.B., `a <- 10`), wird ein Vektor der Länge eins erstellt. Das heißt, der Vektor enthält genau ein Element (einen Eintrag). Vektoren sind also kein neues Objekt für Sie, sondern Sie lernen jetzt, dass die Ihnen schon bekannten Objekte Vektoren heißen und sie auch mehrere Elemente in eine mObjekt speichern können.
 
 ```{r fig1, out.width = "350px", echo = FALSE, fig.cap="Schematische Darstellung eines Vektors in R.", fig.align="center"}
 include_graphics(here("img/vectors.jpg"))
 ```
 
-
-Sie können sich Vektoren wie einen Schubladenschrank vorstellen (siehe auch Abbildung \@ref(fig:fig1)). Wichtig ist dabei, dass man in jede Schublade immer nur ein Element vom gleichen Typ verstauen kann. Etwas allgemeiner gesprochen heißt das, dass alle Elemente eines Vektors vom gleichen Datentyp sein müssen.
+Sie können sich Vektoren wie einen Schubladenschrank vorstellen (siehe auch Abbildung \@ref(fig:fig1)). Wichtig ist dabei, dass man in jede Schublade immer nur ein Element verstauen kann und alle Elemente im Schublagenschrank den gleichen Datentyp haben müssen. Etwas allgemeiner gesprochen heißt das, dass alle Elemente eines Vektors vom gleichen Datentyp sein müssen.
  
-Es gibt zahlreiche Funktionen zum Erstellen von Vektoren (einige davon werden wir im weiteren Verlauf des Moduls kennenlernen). Die wohl wichtigste Funktion ist `c()`. Dabei steht `c` für *combine* oder *concatenate*. Die Funktion `c()` fügt einzelne Elemente in einen Vektor zusammen (und zwar genau in der Reihenfolge wie diese Elemente an `c()` übergeben werden). 
+Es gibt zahlreiche Funktionen zum Erstellen von Vektoren (einige davon werden wir im weiteren Verlauf des Moduls kennenlernen). Die wohl wichtigste Funktion ist `c()`. Dabei steht `c` für *combine* oder *concatenate*. Die Funktion `c()` fügt einzelne Elemente in einen Vektor zusammen (und zwar genau in der Reihenfolge wie diese Elemente an `c()` übergeben werden). `c()` ist sozusagen die Funktion, die für Sie mehrere Elemente zu einem Vektor zusammensetzt. `c()` erwartet folglich nur Elemente als Argumente.
  
-Gehen wir nochmals zurück zu Abbildung \@ref(fig:fig1), da wird schematisch dargestellt wie ein Vektor `s` mit 7 Elementen (in diesem Fall Zahlen) erstellt werden kann.
+Gehen wir nochmals zurück zu Abbildung \@ref(fig:fig1), in der schematisch dargestellt wird, wie ein Vektor `s` mit 7 Elementen (in diesem Fall Zahlen) erstellt wird.
 
 ```{r}
 s <- c(37, 1, 15, 2, 7, 19, 22)
@@ -371,7 +372,7 @@ Die Funktion `c()` ordnet jetzt bildlich gesprochen die Zahl 37 der ersten Schub
 s
 ```
 
-Und auch im Environment sehen Sie den Vector und die ersten Zahlen. In Abbildung \@ref(fig:fig1)b wird der Vektor `s` nochmals systematisch dargestellt. Dabei sieht man, dass `37` an der ersten Position des Vektors gespeichert wird und `22` an der letzten Position des Vektors gespeichert wird.
+In Abbildung \@ref(fig:fig1)b wird der Vektor `s` nochmals systematisch dargestellt. Dabei sieht man z. B., dass `37` an der ersten Position des Vektors gespeichert wird und `22` an der letzten Position des Vektors gespeichert wird.
 
 
 Die Grundrechenarten (`+`, `-`, `/`, `*`) und viele andere Funktionen funktionieren genau gleich mit Vektoren deren Länge > 1 ist. Sie werden elementweise durchgeführt. Wir können beispielsweise zu jedem Element von `s` 10 addieren
@@ -380,18 +381,17 @@ Die Grundrechenarten (`+`, `-`, `/`, `*`) und viele andere Funktionen funktionie
 s + 10
 ```
 
-oder `s` mit sich selbst multiplizieren.
+oder `s` mit sich selbst multiplizieren. Zu beachten ist also, dass es sich bei Vektorberechnungen in R zunächst nicht um Vektorrechnungen handelt, wie Sie sie aus der linearen Algebra kennen. Für die sog. Matrizenoperationen der linearen Algebra werden die Operatoren in R mit `% %` umschlossen, also bspw. `s %*% s`.
 
 ```{r}
 s * s
 ```
 
-Obwohl die Zahlenfolge in R Vektor genannt wird, führt R keine Vektoroperationen (Matrizenrechnung) durch, die Sie aus der linearen Algebra kennen. In R ergibt `s + 10` also bspw. das selbe wie `10 + s`.
-
-Neben der Funktion `c()` gibt es zahlreiche weitere Funktionen, um Vektoren zu erstellen. Sehr häufig braucht man Vektoren von Zahlenfolgen, solche Vektoren können mit der Funktion `seq` erstellt werden. Im einfachsten Fall benötigt `seq()` zwei Argumente: `from` und `to`^[Weil solche Vektoren so häufig vorkommen gibt es hier eine Abkürzung. Man kann `seq(from, to, by = 1)` mit `from:to` abkürzen. Also `1:10` würde auch alle Zahlen von 1 bis 10 zurückgeben.].
+Neben der Funktion `c()` gibt es zahlreiche weitere Funktionen, um Vektoren zu erstellen. Sehr häufig braucht man Vektoren von Zahlenfolgen. Solche Vektoren können mit der Funktion `seq()` erstellt werden. Im einfachsten Fall benötigt `seq()` zwei Argumente: `from` und `to`^[Weil solche Vektoren so häufig vorkommen gibt es hier eine Abkürzung. Man kann `seq(from, to, by = 1)` mit `from:to` abkürzen. Also `1:10` würde auch alle Zahlen von 1 bis 10 zurückgeben.].
 
 ```{r}
 seq(from = 1, to = 10)
+(1 : 10)
 ```
 
 Man kann dann auch noch die Schritte angeben, mit denen erhöht wird. 
@@ -491,12 +491,11 @@ bhd <- c(32, 33, 23, 21, 21, 27, 18, 12)
 
 Diese wurden immer abwechselnd mit zwei unterschiedlichen Messgeräten durchgeführt wurden. 
 
-Erstellen Sie einen Vektor von der Länge 8 mit den Einträgen die immer abwechselnd `G1` und `G2` sind und für die zwei Geräte stehen. 
+Erstellen Sie einen Vektor von der Länge 8 mit den Einträgen, die immer abwechselnd `G1` und `G2` sind und für die zwei Geräte stehen. 
 ```{r, include=params$inc_sol}
 bhd <- c(32, 33, 23, 21, 21, 27, 18, 12)
 rep(c("G1", "G2"), 4)
 ```
-
 
 
 ## Statistische Funktionen
@@ -509,15 +508,13 @@ median(s)
 sd(s)
 ```
 
-Eine weitere sehr häufig verwendete Funktion ist `sample()`. Mit `sample()` werden `size` Elemente zufällig aus einem Vektor, mit oder ohne Zurücklegen (mit Zurücklegen wird gezogen, wenn das Argument `replace = TRUE` gesetzt wird), gezogen.
+Eine weitere, sehr häufig verwendete Funktion ist `sample()`. Mit `sample()` werden `size` Elemente zufällig aus einem Vektor, mit oder ohne Zurücklegen (mit Zurücklegen wird gezogen, wenn das Argument `replace = TRUE` gesetzt wird), gezogen.
 
 ```{r}
 sample(s, size = 1) # 1 Element
 sample(s, size = 3) # 2 Elemente
 ```
-Wenn `size` weg gelassen wird, dann bekommt man gleich viele Elemente zurück (wie der Vektor lang ist), d.h. der Vektor wird nur permutiert. 
-
-
+Wenn `size` weggelassen wird, dann bekommt man gleich viele Elemente zurück (wie der Vektor lang ist), d.h. der Vektor wird nur permutiert. 
 
 ## Beispiel Fotofallen
 
@@ -529,7 +526,6 @@ Als erstes erstellen wir einen Vektor mit den Anzahlen Rehfotos. Das geht einfac
 anzahl_rehe <- c(132, 79, 129, 91, 138, 144, 55, 103, 139, 
                  105, 96, 146, 95, 118, 1007)
 ```
-
 
 Als zweites erstellen wir einen Vektor mit den IDs. Zur Erinnerung, diese sollten die Werte `Kamera_1` bis `Kamera_15` haben. Ein erster Ansatz könnte sein, dass wir einfach 15 Fotofallen schreiben und dann die Zahlen 1 bis 15 dahinter.
 
@@ -560,8 +556,7 @@ ids <- paste(v1, v2, sep = "_")
 ids
 ```
 
-
-Dann fehlt jetzt lediglich der Vektor mit den Revieren. Hier könnten wir erneut auf die Funktion `rep` zurückgreifen.
+Mehr Funktionen zum Umgang mit Zeichenketten folgen in Kapitel "Arbeiten mit Text". Dann fehlt jetzt lediglich der Vektor mit den Revieren. Hier könnten wir erneut auf die Funktion `rep` zurückgreifen.
 
 ```{r}
 rep(c("Revier A", "Revier B", "Revier C"), 5)
@@ -586,7 +581,7 @@ mean(anzahl_rehe)
 median(anzahl_rehe)
 ```
 
-2. Erstellen Sie die folgende Ausgabe: 
+2. Erstellen Sie die folgende Konsolenausgabe: 
 
 ```{r, echo = params$inc_sol}
 paste("Die mittlere Anzahl von Rehfotos beträgt", mean(anzahl_rehe), "Rehe pro Standort.")
@@ -605,13 +600,15 @@ Dabei werden die folgenden Operationen am häufigsten verwendet.
 
 Das Ergebnis von logischen Operatoren ist immer `TRUE` oder `FALSE`. 
 
-Bei Vektoren kommt es immer zu einer elementweisen Anwendung. Wir können beispielsweise abfragen an welchen Fotofallenstandorten mehr als 100 Rehe fotografiert wurden oder
+Bei Vektoren kommt es immer zu einer elementweisen Anwendung. Wir können beispielsweise abfragen, an welchen Fotofallenstandorten mehr als 100 Rehe fotografiert wurden:
 
 ```{r}
 anzahl_rehe > 100
 ```
 
-welche Fotofallenstandorte sich in Revier B befinden.
+Das Ergebnis ist ein Vektor vom Datentyp `logi` in der selben länge wie `anzahl_rehe`. 
+
+Wir können z. B. abfragen, welche Fotofallenstandorte sich in Revier B befinden.
 
 ```{r}
 reviere == "Revier B"
@@ -619,7 +616,7 @@ reviere == "Revier B"
 
 Des Weiteren können logische Ausdrücke miteinander verknüpft werden. Dies geschieht mit einem logischen Und (`&`) oder einem logischen Oder (`|`). Für das logische Und müssen beide Ausdrücke ein `TRUE` zurückgeben um ein `TRUE` zu erhalten. Für ein logisches Oder reicht es, wenn einer der beiden Ausdrücke `TRUE` zurückgibt, um ein `TRUE` zu erhalten. 
 
-Damit können wir nun z.B. die beiden vorherigen Abfragen verbinden. Die erste Abfrage ist: Hat eine Fotofalle mehr als 100 Rehe fotografiert und stand die Fotofalle in Revier B.
+Damit können wir nun z. B. die beiden vorherigen Abfragen verbinden. Die erste Abfrage ist: Hat eine Fotofalle mehr als 100 Rehe fotografiert und stand die Fotofalle in Revier B.
 
 ```{r}
 anzahl_rehe > 100 & reviere == "Revier B"
@@ -634,14 +631,6 @@ anzahl_rehe > 100 | reviere == "Revier B"
 ```
 
 Das Arbeiten mit logischen Werten kann fürs Erste etwas abstrakt erscheinen, aber wir werden im folgenden Abschnitt (Abschnitt \@ref(zugriff)) zahlreiche Anwendungsbeispiele dafür sehen.
-
-`TRUE` wird intern als `1` gespeichert und `FALSE` als `0`. Es ist möglich mit `TRUE`s und `FALSE`s zu rechnen. 
-
-```{r}
-TRUE + TRUE
-FALSE + FALSE
-TRUE + FALSE
-```
 
 #### `r exercise("Arbeiten mit logischen Werten")`
 
@@ -667,27 +656,25 @@ TRUE + 10 == FALSE + 10
 sum(c(TRUE, TRUE, FALSE, FALSE))
 ```
 
-
-
 ## Zugreifen auf Elemente eines Vektors (=Untermengen) {#zugriff}
 
-Sehr oft wollen wir auf bestimmte Werte in einer Datenstruktur zugreifen. Beispielsweise könnte es uns interessieren, wieviele Rehe im Mittel auf allen Fotofallen aus Revier A gesehen wurden. 
+Sehr oft wollen wir auf bestimmte Werte in einer Datenstruktur zugreifen. Beispielsweise könnte es uns interessieren, wie viele Rehe im Mittel auf allen Fotofallen aus Revier A gesehen wurden. Das Zugreifen auf Elemente mit bestimmten Eigenschaften ist die häufigste Anwendung für logische Operationen in R. Aus diesem Grund ist das Unterkapitel "Arbeiten mit logischen Werten" auch Teil des Kapitels "Vektoren".
 
+Bei Vektoren kann auf die einzelnen Elemente mit eckigen Klammern (`[ ]`, diese werden auch Indizierungsklammern genannt) zugegriffen werden. Der Ausdruck `anzahl_rehe[2]` gibt die Anzahl an fotografierten Rehen für die zweite Fotofalle zurück, also die zweite Stelle des Vektors`anzahl_rehe`. Es gibt zwei Möglichkeiten, was in die eckigen Klammern geschrieben werden kann: 1.) die Positionen der Elemente die man zurückhaben möchte, wie eben beschrieben. Ist es mehr als ein Element, dann muss ein Vektor mit den Positionen übergeben werde. Die 2.) Möglichkeit der Indizierung ist also ein logischer Vektor in der gleichen Länge des Vektors, den ich indiozieren möchte. Es werden alle Elemente zurückgegeben, bei denen in dem logischen Vektor `TRUE` eingetragen ist.
 
-Bei Vektoren kann auf die einzelnen Elemente mit eckigen Klammern (`[ ]`, diese werden auch Indizierungsklammern genannt) zugegriffen werden. Der Ausdruck `anzahl_rehe[2]` gibt die Anzahl an fotografierten Rehen für die zweite Fotofalle zurück. Es gibt zwei Möglichkeiten, was in die eckigen Klammern geschrieben werden kann: 1) die Positionen der Elemente die man zurückhaben möchte. Ist es mehr als ein Element, dann muss man einfach einen Vektor mit den Positionen übergeben; 2) ein logischer Vektor von der gleichen Länge, es werden alle Elemente zurückgegeben bei denen ein `TRUE` steht.
-
-Abfragen des zweiten Elements in dem Vektor `anzahl_rehe`: 
+1.) Abfragen des zweiten Elements in dem Vektor `anzahl_rehe`: 
 
 ```{r}
 anzahl_rehe[2]
 ```
 
-Abfragen aller Elemente aus `anzahl_rehe`, die aus dem Revier `A` stammen. 
+2.) Abfragen aller Elemente aus `anzahl_rehe`, die aus dem Revier `A` stammen. 
 
 ```{r}
-anzahl_rehe[c(1, 2, 3, 4, 5)] 
+ist_a <- reviere == "Revier A"
+anzahl_rehe[ist_a] 
 
-# oder schneller
+# oder alternativ mit Methode 1.)
 anzahl_rehe[1:5]  # da `1:5` einen Vektor mit allen Zahlen von 1 bis 5 erstellt.
 ```
 
@@ -793,8 +780,9 @@ messungen_arten[messungen_arten == arten[1] | messungen_arten == arten[2]]
 ```
 
 Diese Herangehensweise wird aber für $>2$ Elemente in `arten` sehr
-mühsam. Eine Alternative bietet der `%in%`-Operator. Dieser testet, ob
-Elemente eines Vektors in einem zweiten Vektors enthalten sind.
+mühsam und fehleranfällig. Eine Alternative bietet der `%in%`-Operator. Dieser testet, ob
+Elemente eines Vektors in einem zweiten Vektors enthalten sind. Der Operator ist also eine 
+verkürzte Schreibweise für hintereinander durchgeführte logische Oder Abfragen.
 
 ```{r}
 messungen_arten %in% arten
@@ -822,7 +810,7 @@ LETTERS[LETTERS %in% c("A", "E", "I", "O", "U")]
 
 # Faktoren (`factors`)
 
-R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von diskreten Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen der Werte gespeichert [siehe dazu auch @mcnamara2018]. 
+R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von diskreten Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen der Werte gespeichert [siehe dazu auch @mcnamara2018]. Faktoren haben im Gegensazu zu Zeichenketten zusätzliche Eigenschaften. Man kann sie z. B. sortieren.
 
 Mit der Funktion `factor()` kann ein Faktor erstellt werden. Im einfachsten Fall wird nur ein Vektor übergeben. 
 
@@ -837,14 +825,14 @@ Ohne weitere Spezifikation werden die Werte *Levels* alphabetisch angeordnet (da
 factor(a, levels = c("FI", "BU", "EI"))
 ```
 
-Es ist auch möglich die Beschriftung (= labels) der unterschiedlichen Levels anzugeben mit dem Argument `labels`.
+Es ist auch möglich, die Beschriftung (= labels) der unterschiedlichen Levels anzugeben mit dem Argument `labels`.
 
 ```{r}
 af <- factor(a, levels = c("FI", "BU", "EI"), 
              labels = c("Fichte", "Buche", "Eiche"))
 af
 ```
-Mit der Funktion `levels()` können die unterschiedlichen Levels eines Faktors abgefragt bzw. gesetzt werden. 
+Mit der Funktion `levels()`, können die unterschiedlichen Levels eines Faktors abgefragt bzw. gesetzt werden. 
 
 ```{r}
 levels(af)
@@ -852,7 +840,7 @@ levels(af) <- c("Fi", "Bu", "Ei")
 af
 ```
 
-Schlussendlich kann man mit der Funktion `relevel()` die Referenzkategorie eines Faktors (der erste Level) angepasst werden. Das ist kann für lineare Modell wichtig sein.
+Schlussendlich kann man mit der Funktion `relevel()` die Referenzkategorie eines Faktors (der erste Level) angepasst werden. Das ist kann für lineare Modelle wichtig sein.
 
 ```{r}
 af
@@ -3662,4 +3650,3 @@ plot(dat3$dist_fluss, dat3$n)
 # Literatur 
 
 Ein guter Überblick über viele der angeschnittenen Themen gibt es in dem [R for data science](https://r4ds.had.co.nz/), das online frei zugänglich ist. Das on-line Buch [Hands-On Programming with R]{https://rstudio-education.github.io/hopr/index.html} ist eine nicht-Programmierer freundliche Einführung in R.
-
