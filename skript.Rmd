@@ -688,7 +688,6 @@ Erstellen Sie einen neuen Vektor `bhd`
 bhd <- c(12, 32, 39, 41, 12, 30)
 ```
 
-
 - Wählen Sie aus dem Vektor `bhd` nur das 2. und 3. Element aus.
 - Wählen Sie aus dem Vektor `bhd` das letzte Element aus.
 - Wählen Sie aus dem Vektor `bhd` das letzte Element aus, ohne die Zahl 6 zu schreiben.
@@ -819,7 +818,7 @@ a <- c("FI", "BU", "FI", "EI", "EI", "FI", "FI")
 factor(a)
 ```
 
-Ohne weitere Spezifikation werden die Werte *Levels* alphabetisch angeordnet (das kann später z.B. beim Erstellen von Abbildungen wichtig sein), dies kann jedoch durch die Verwendung des Arguments `levels` gesteuert werden. 
+Ohne weitere Spezifikation werden die Werte *Levels* alphabetisch angeordnet (das kann später z. B. beim Erstellen von Abbildungen wichtig sein), dies kann jedoch durch die Verwendung des Arguments `levels` gesteuert werden. 
 
 ```{r}
 factor(a, levels = c("FI", "BU", "EI"))
@@ -832,7 +831,8 @@ af <- factor(a, levels = c("FI", "BU", "EI"),
              labels = c("Fichte", "Buche", "Eiche"))
 af
 ```
-Mit der Funktion `levels()`, können die unterschiedlichen Levels eines Faktors abgefragt bzw. gesetzt werden. 
+
+Mit der Funktion `levels()`, können die unterschiedlichen Levels eines Faktors abgefragt und auch gesetzt werden. 
 
 ```{r}
 levels(af)
@@ -840,7 +840,7 @@ levels(af) <- c("Fi", "Bu", "Ei")
 af
 ```
 
-Schlussendlich kann man mit der Funktion `relevel()` die Referenzkategorie eines Faktors (der erste Level) angepasst werden. Das ist kann für lineare Modelle wichtig sein.
+Schlussendlich kann man mit der Funktion `relevel()` die Referenzkategorie eines Faktors (der erste Level) angepasst werden. Das ist kann z. B. für lineare Modelle wichtig sein.
 
 ```{r}
 af
@@ -883,7 +883,6 @@ s3
 
 levels(s3) <- c("Ulm (BW)", "Berlin (Berlin)", "Aachen (NRW)")
 s3
-
 ```
 
 
@@ -956,7 +955,7 @@ Mit der Funktion `is.null()` kann man überprüfen, ob ein Element in einem Vekt
 ## `Inf`
 
 Die größtmögliche Zahl in R ist `1.7976931 * 10^308`. Größere Zahlen
-werden als unendlich gespeichert.
+werden als unendlich gespeichert und verarbeitet.
 
 ```{r inf1}
 10^309
@@ -1009,9 +1008,9 @@ Berechnen Sie den arithmetischen Mittelwert von `foo`.
 
 # `data.frame`s oder Tabellen
 
-Im vorherigen Teilabschnitt haben wir gesehen, wie mehrere Werte des gleichen Typs in einem Vektor zusammengefasst werden können. Abschließend wurde anhand des Fotofallenbeispiels gezeigt, wie Vektoren eingesetzt werden können. Wir erstellten drei Vektoren, die jeweils die Merkmalsausprägungen eines Merkmals aller Fotofallenstandorte speichern. In statistischer Sprache, sind die Fotofallen die Beobachtungen (oder auch Merkmalsträger genannt) und die Informationen zu den Fotofallen (also ID, Anzahl Rehe und das Revier) die Merkmale. Jeder beobachtete Wert (z.B. die 132 fotografierten Rehe von Kamera 1) ist dann eine Merkmalsausprägung. 
+Im vorherigen Teilabschnitt haben wir gesehen, wie mehrere Elemente des gleichen Datentyps in einem Vektor zusammengefasst werden können. Abschließend wurde anhand des Fotofallenbeispiels gezeigt, wie Vektoren eingesetzt werden können, um andere Vektoren zu indizieren. Wir erstellten drei Vektoren, die jeweils die Merkmalsausprägungen eines Merkmals aller Fotofallenstandorte speichern. In statistischer Sprache, sind die Fotofallen die Beobachtungen (oder auch Merkmalsträger genannt) und die Informationen zu den Fotofallen (also ID, Anzahl Rehe und das Revier) die Merkmale. Jeder beobachtete Wert (z.B. die 132 fotografierten Rehe von Kamera 1) ist dann eine Merkmalsausprägung. 
 
-Sie können sich ein `data.frame` wie eine Tabelle aus einem Tabellenkalkulationsprogramm vorstellen. Es gibt Zeilen in denen die Beobachtungen gespeichert sind und Spalten, die die Merkmale speichern. In unserem Fall gäbe es 15 Zeilen (eine Zeile für jede Fotofalle) und drei Spalten (jeweils eine Spalte für ID, Anzahl Rehe und Revier). Der Befehl zum Erstellen eines `data.frame`s in R  ist `data.frame()`. Für unser Beispiel wäre es:
+Sie können sich ein `data.frame` wie eine Tabelle aus einem Tabellenkalkulationsprogramm vorstellen. Es gibt Zeilen in denen die Beobachtungen gespeichert sind und Spalten, die die Merkmale speichern. In unserem Fall gäbe es 15 Zeilen (eine Zeile für jede Fotofalle) und drei Spalten (jeweils eine Spalte für ID, Anzahl Rehe und Revier). Der Befehl zum Erstellen eines `data.frame`s aus Vektoren in R  ist `data.frame()`. Für unser Beispiel wäre es:
 
 ```{r}
 monitoring <- data.frame(
@@ -1022,8 +1021,8 @@ monitoring <- data.frame(
 monitoring
 ```
 
-Im vorhergehenden Codebeispiel wurde ein `data.frame` erstellt und in die Variable `monitoring` gespeichert.
-Die Funktion `data.frame()` nimmt als Argumente beliebig viele Paare, die immer aus einem Namen und einem Vektor mit dazugehörigen Werten bestehen. D.h., dass immer eine Spalte vom selben Typ sein muss, es aber für jede Beobachtung (=Zeile) Merkmale von unterschiedlichen Typen geben kann.
+Auf der linken Seite der Gleichungen stehen die Spaltenname des Data Frames. Im vorhergehenden Codebeispiel wurde ein `data.frame` erstellt und in die Variable `monitoring` gespeichert.
+Die Funktion `data.frame()` nimmt als Argumente beliebig viele Paare, die immer aus einem Namen und einem Vektor mit dazugehörigen Werten bestehen. D.h., dass (wie bei den Vektoren) immer eine Spalte vom selben Typ sein muss, es aber für jede Beobachtung (=Zeile) Merkmale von unterschiedlichen Typen geben kann. Data Frames sind die Standard-Objekte zum Speichern wissenschaftlicher Daten.
 
 ## Wichtige Funktionen zum Arbeiten mit `data.frame`s
 
@@ -1046,7 +1045,7 @@ nrow(monitoring)
 ncol(monitoring)
 ```
 
-Mit der Funktion `str()` (kurz für *structure*) kann schnell ein Überblick über sämtliche Variablen verschafft werden.
+Mit der Funktion `str()` (kurz für *structure*) kann schnell ein Überblick über sämtliche Variablen und deren Datntypen verschafft werden.
 
 ```{r}
 str(monitoring)
@@ -1055,7 +1054,7 @@ str(monitoring)
 
 #### `r exercise("data.frame", "df1")` 
 
-Stellen Sie sich vor, Sie machen eine kleine Umfrage, in der Sie fünf Menschen nach ihrem Studienfach, Semester und Alter befragen. Erstellen Sie ein `data.frame` mit dem Namen `umfrage1` für diese Informationen und fragen Sie entweder fünf Mitstudierende oder erfinden Sie die Daten einfach. 
+Stellen Sie sich vor, Sie machen eine kleine Umfrage, in der Sie fünf Menschen nach ihrem Studienfach, Semester und Alter befragen. Erstellen Sie einen `data.frame` mit dem Namen `umfrage1` für diese Informationen und fragen Sie entweder fünf Mitstudierende oder erfinden Sie die Daten einfach. 
 
 
 ```{r, include = params$inc_sol}
@@ -1072,15 +1071,15 @@ umfrage1
 
 ## Zugreifen auf Elemente eines `data.frame`
 
-Für `data.frame`s gilt genau das gleiche Prinzip. Nur dass wir jetzt zwei Dimensionen berücksichtigen müssen: nämlich die Zeilen und Spalten. Wir können immer noch mit eckigen Klammern (`[]`) auf Elemente innerhalb eines `data.frame`s zugreifen, müssen aber jetzt die *Zeile(n)* und die *Spalte(n)* angeben, die wir haben möchten. Die Schreibweise ist immer `[Zeile(n), Spalte(n)]`. Für Zeilen und Spalten gelten genau die gleichen Regeln wie für Vektoren. Wir können entweder einen Vektor mit den Positionen für die gewünschten Zeilen und Spalten angeben oder einen logischen Vektor, der besagt welche Zeilen und Spalten wir zurückhaben möchten.
+Für `data.frame`s gilt genau das gleiche Prinzip. Nur dass wir jetzt zwei Dimensionen berücksichtigen müssen: nämlich die Zeilen und die Spalten. Wir können immer noch mit eckigen Klammern (`[]`) auf Elemente innerhalb eines `data.frame`s zugreifen, müssen aber jetzt die *Zeile(n)* und die *Spalte(n)* angeben, die wir haben möchten. Die Schreibweise ist immer `[Zeile(n), Spalte(n)]`. Für Zeilen und Spalten gelten genau die gleichen Regeln wie für Vektoren. Wir können entweder einen Vektor mit den Positionen für die gewünschten Zeilen und Spalten angeben oder einen logischen Vektor, der besagt welche Zeilen und Spalten wir zurückhaben möchten.
 
-Wenn wir z.B. die Anzahl Rehfotos von der vierten Fotofalle abfragen möchten, könnte man das so machen.
+Wenn wir z. B. die Anzahl Rehfotos von der vierten Fotofalle abfragen möchten, könnte man das so machen.
 
 ```{r}
 monitoring[4, 2]
 ```
 
-Alternativ, kann man den Spaltennamen auch einfach Ausschreiben.
+Alternativ, kann man den Spaltennamen auch einfach Ausschreiben. Dies hat beim Programmieren den Vorteil, dass der Code lauffähig bleibt, falls sich die Reihenfolge der Spalten in der Datengrundlage ändert. Nachteil ist entsprechend, dass der Code nicht mehr läuft, falls die Variablennamen sich ändern.
 
 ```{r}
 monitoring[4, "anzahl_rehe"]
@@ -1089,19 +1088,19 @@ monitoring[4, "anzahl_rehe"]
 Wenn wir die Anzahl fotografierter Rehe von den ersten fünf Fotofallen abfragen möchten, dann müssen wir für die Zeilen einen Vektor mit den Zahlen 1 bis 5 übergeben, für die Spalten ändert sich nichts.
 
 ```{r}
-monitoring[1:5, "anzahl_rehe"]
+monitoring[1 : 5, "anzahl_rehe"]
 ```
 
 Wenn wir nun nicht nur die Anzahl fotografierter Rehe zurückhaben möchten, sondern auch noch das Revier für die ersten fünf Fotofallen, dann müssen wir für die Spalten lediglich das Revier hinzufügen.
 
 ```{r}
-monitoring[1:5, c("anzahl_rehe", "revier")]
+monitoring[1 : 5, c("anzahl_rehe", "revier")]
 ```
 
 Wenn wir alle Spalten und/oder Zeilen eines `data.frame`s abfragen möchten, dann kann man diese Position einfach frei lassen. Eine Abfrage für die ersten fünf Spalten aller Fotofallen würde so aussehen.
 
 ```{r}
-monitoring[1:5, ]
+monitoring[1 : 5, ]
 ```
 
 #### `r exercise("Abfragen von Werten", "df2")`
@@ -1133,7 +1132,7 @@ umfrage1[c(1, 3, 4), ]
 
 ----
 
-Mit dem `$`-Zeichen kann bei `data.frame`s direkt auf Spalten zugegriffen werden. Wenn wir z.B. für alle Fotofallen die Anzahl gesehener Rehe abfragen möchten, gibt es jetzt drei Möglichkeiten:
+Mit dem `$`-Zeichen kann bei `data.frame`s direkt auf Spalten zugegriffen werden. Wenn wir z. B. für alle Fotofallen die Anzahl gesehener Rehe abfragen möchten, gibt es jetzt drei Möglichkeiten:
 
 1. über das `$`-Zeichen direkt die Spalten ansprechen.
 
@@ -1142,7 +1141,7 @@ monitoring$anzahl_rehe
 ```
 
 
-2. Einfach die Positionen für die Zeilen leer lassen und die Spalte abfragen.
+2. Die Positionen für die Zeilen leer lassen und die Spalte abfragen.
 
 ```{r}
 monitoring[, "anzahl_rehe"]
@@ -1151,13 +1150,12 @@ monitoring[, "anzahl_rehe"]
 3. Alle Zeilen und die Spalte explizit angeben.
 
 ```{r}
-monitoring[1:nrow(monitoring), "anzahl_rehe"]
+monitoring[1 : nrow(monitoring), "anzahl_rehe"]
 ```
 
 Anmerkung zu 3), der Ausdruck `1:nrow(monitoring)` ergibt einen Vektor mit den Zahlen 1 bis 15, da `nrow(monitoring) = 15` ist. So eine Schreibweise ist zu empfehlen, wenn die Dimension des Vektors variabel ist.
 
-
-Schlussendlich kann man einen `data.frame` auch mit logischen Vektoren abfragen. Ein Beispiel wäre, wenn wir alle Fotofallen abfragen möchten, die mehr als 100 Rehfotos gemacht haben. Der erste Schritt wäre abzufragen, ob eine Fotofalle mehr als 100 Rehfotos gemacht hat.
+Schlussendlich kann man einen `data.frame` gernauso mit logischen Vektoren abfragen, wie mit Vektoren. Ein Beispiel wäre, wenn wir alle Fotofallen abfragen möchten, die mehr als 100 Rehfotos gemacht haben. Der erste Schritt wäre abzufragen, ob eine Fotofalle mehr als 100 Rehfotos gemacht hat.
 
 ```{r}
 monitoring$anzahl_rehe > 100
@@ -1187,18 +1185,17 @@ umfrage1[umfrage1$alter >= 22, c("fach", "semester")]
 ```
 
 
-
 \newpage
 
 # Schreiben und lesen von Daten
 
 ## Textdateien
 
-Bis jetzt haben wir Daten immer in R erstellt, dies ist eine eher unnatürliche Situation. In den meisten Fällen bekommen Sie Daten von Dritten, Sensoren oder sonstigen Quellen. Diese Daten müssen dann in R eingelesen werden. Daten liegen meist in einer tabellarischen Form und als Textdatei vor^[Natürlich gibt es viele weitere Formate wie Daten vorliegen können, diese werden aber an dieser Stelle nicht weiter behandelt. Es sei lediglich auf das Paket `readxl` verwiesen, falls Sie Daten von MS Excel direkt in R einlesen möchten.]. 
+Bis jetzt haben wir Daten immer in R erstellt, dies ist eine eher unnatürliche Situation. In den meisten Fällen bekommen Sie Daten aus Felderhebungen, Sensoren oder sonstigen Quellen. Diese Daten müssen dann in R eingelesen werden. Daten liegen meist in einer tabellarischen Form und als Textdatei vor^[Natürlich gibt es viele weitere Formate wie Daten vorliegen können, diese werden aber an dieser Stelle nicht weiter behandelt. Es sei lediglich auf das Paket `readxl` verwiesen, falls Sie Daten von MS Excel direkt in R einlesen möchten.]. 
 
 Die Funktion `read.table` erlaubt es eine Textdatei in R einzulesen. Dabei sind fürs Erste drei Argumente wichtig: 
 
-- `file`: Der Pfad zur Datei die eingelesen werden soll. Dieser kann *absolut* oder *relativ* sein. Ein absoluter Pfad gibt den Ort der Datei, die gelesen werden soll, komplett an (auf einem Windows Rechner wäre das wahrscheinlich `C:/Users/....`). Im Gegensatz dazu gibt ein relativer Pfad den Ort an, an dem die Datei, die eingelesen werden soll, relativ zum aktuellen Arbeitsverzeichnis (auch working directory) von R an. Man kann das Arbeitsverzeichnis von R mit der Funktion `setwd()` setzen, es hat sich jedoch als sinnvoller erwiesen mit RStudio-Projekten zu arbeiten (mehr dazu im nächsten Abschnitt).
+- `file`: Der Pfad zur Datei die eingelesen werden soll. Dieser kann *absolut* oder *relativ* sein. Ein absoluter Pfad gibt den Ort der Datei, die gelesen werden soll, komplett an (auf einem Windows Rechner wäre das wahrscheinlich `C:/Users/...`). Im Gegensatz dazu gibt ein relativer Pfad den Ort an, an dem die Datei, die eingelesen werden soll, relativ zum aktuellen Arbeitsverzeichnis (working directory) von R an. Man kann das Arbeitsverzeichnis von R mit der Funktion `setwd()` setzen, es hat sich jedoch als sinnvoller erwiesen mit R Studio-Projekten zu arbeiten (mehr dazu im nächsten Abschnitt).
 - `header`: Dieses Argument gibt an, ob die erste Zeile eine Kopfzeile mit den Spaltenüberschriften ist. Meist haben wir eine Kopfzeile, dann wäre `header = TRUE` richtig.
 - `sep`: Das Trennzeichen zwischen verschiedenen Spalten. Es ist meist ein Leerzeichen (` `), Komma (`,`) oder Strichpunkt (`;`).
 
@@ -1207,14 +1204,14 @@ dir.create("data", showWarnings = FALSE)
 write.csv(monitoring, "data/fotofallen.csv", row.names = FALSE)
 ```
 
-Die Datei `fotofallen.csv` finden Sie auf StudIP und kann einfach heruntergeladen werden. Die Datei kann mit dem folgenden Befehl in R eingelesen werden. Hier wurde die Datei in einem RStudio-Projekt in ein Verzeichnis `data` abgelegt.
+Die Datei `fotofallen.csv` finden Sie auf StudIP und kann einfach heruntergeladen werden. Sie können sich die Datei mit jedem Texteditor oder auch mit Excel oder Libre Office ansehen. Die Datei kann mit dem folgenden Befehl in R eingelesen werden. Hier wurde die Datei in einem R Studio-Projekt in ein Unterverzeichnis `data` abgelegt.
 
 ```{r}
 dat <- read.table("data/fotofallen.csv", header = TRUE, sep = ",")
 head(dat)
 ```
 
-Es gibt viele Varianten der Funktion `read.table()`. Beispielsweise hat die Funktion `read.csv()` bereits die Argumente `sep = ','` und `header = TRUE` gesetzt. Die Funktion `read.csv2()` hat das Argument `sep = ';'` gesetzt. Siehe dazu auch die Hilfeseite von `read.table()`. Diese kann entweder mit `?read.table` oder `help("read.table")` aufgerufen werden.
+Es gibt viele Varianten der Funktion `read.table()`. Beispielsweise hat die Funktion `read.csv()` bereits die Argumente `sep = ','` und `header = TRUE` gesetzt. Die Funktion `read.csv2()` hat das Argument `sep = ';'` gesetzt. Sie müssen natürlich darauf achten, dass sie die csv Dateien mit den gleichen Spezifikationen einlesen, mit denen sie gespeichert wurde. Siehe dazu auch die Hilfeseite von `read.table()`.
 
 Mit der Funktion `write.table()` kann ein `data.frame` auf die Festplatte geschrieben werden.
 
@@ -1240,27 +1237,23 @@ read.table("data/kompliziert.txt", sep = "+", dec = ",",
 ```
 
 
-
-
 \newpage
 
 # Erstellen von Abbildungen
 
 Abbildungen sind ein elemantarer Baustein statistischer Analysen und
-deshalb von Beginn an Teil von R. 
-Es gibt unterschiedliche Systeme einen Plot zu erstellen.
-In diesem Krus werden wir kurz *Base Plots* vorstellen und dann das Zusatzpaket `ggplot2` vorstellen.
+deshalb von Beginn an Teil von R. **R is a free software environment for statistical computing and graphics.** Es gibt unterschiedliche Systeme einen Plot zu erstellen. In diesem Kurs werden wir kurz *Base Plots* vorstellen und dann das Zusatzpaket `ggplot2` vorstellen.
 
 ## Base Plot
 
-Die wichtigsten Grafiken für die einfache Datendarstellung sind schnell verfügbar.
-Etwas komplexere oder spezielle Grafiken erfordern mehr Programmieraufwand (folgt teilweise noch).
-Stellen sie sich die einfache Grafik Schnittstelle als zweidimensionale Leinwand vor, auf die Sie durch Code Ebene für Ebene Grafikelemente zeichnen:
+Die wichtigsten Grafiken für die einfache Datendarstellung sind schnell verfügbar. Etwas komplexere oder spezielle Grafiken erfordern mehr Programmieraufwand (folgt teilweise noch). Für viele komplexere Diagramme existieren bereits Codebeispiele oder Pakete. Es lohnt sich z. B. einen Blick in die R Graph Gallery (https://r-graph-gallery.com/index.html) zu werfen, bevor Sie beginnen komplexe Abbildungen zu erstellen. Stellen sie sich die einfache Grafik Schnittstelle (`base plots`) als zweidimensionale Leinwand vor, auf die Sie durch Code Ebene für Ebene Grafikelemente legen:
 
 (ref:baseplots1) Beispiel einer leeren Grafikschnittstelle.
 
 ```{r, echo = FALSE, out.width = "10cm", fig.height=5, fig.width=5,  fig.align="center", fig.cap="(ref:baseplots1)"}
-plot(x = 1, y = 1, xlab = "x Achse", ylab = "y Achse", type = "n", ylim = c(0, 10), xlim = c(0, 10))
+plot(x = 1, y = 1, 
+     xlab = "x Achse", ylab = "y Achse", 
+     type = "n", ylim = c(0, 10), xlim = c(0, 10))
 ```
 
 Hier drei einfache Bespiele für Abbildungen mit nur einer Ebene.
@@ -1301,7 +1294,7 @@ plot(dat$alter, dat$bhd)
 ----
 
 
-Sie können entweder eine Grafik mit einem Befehl erzeugen (High-Level) oder die einzelnen Ebenen nacheinander erzeugen (Low-Level). Sie können jeder Ebenen durch zusätzliche Befehle innerhalb des Funktionsaufrufs Elemente hinzufügen und Einstellungen ändern.  Die wichtigsten sind:
+Sie können entweder eine Grafik mit einem Befehl erzeugen (High-Level) oder die einzelnen Ebenen nacheinander erzeugen (Low-Level). Sie können jeder Ebenen durch zusätzliche Befehle innerhalb des Funktionsaufrufs Elemente hinzufügen. Mit jeder neuen Ebene können Sie die vorigen Ebenen jedoch nicht mehr verändern. Die wichtigsten Argumente der plot Funktion sind:
 
 -   `type` - Diagrammtyp
 -   `col` - Farbe
@@ -1321,7 +1314,16 @@ Befehle. Einige Argumente können als Vektor übergeben werden. Hier z. B.
 die Farben und die Punktsymbole.
 
 ```{r, fig.height = 5, fig.width=5}
-plot(1:20, 1:20, pch = c(1 : 20), col = c(1 : 20), ann = FALSE)
+dat <- data.frame(
+  x = c(0,   1,   2,   2, 3, 5, 6, 7),
+  y = c(0, 0.5, 1.8, 0.3, 4, 4, 2, 2.2),
+  col = rep(c(1, 2), 4)
+)
+
+plot(x = dat$x, y = dat$y, col = dat$col, pch = dat$col, xlab = "x", ylab = "y")
+legend(x = "topleft", inset = 0.05, legend = c("black", "red"),
+       col = c(1, 2), pch = c(1, 2))
+
 ```
 
 #### `r exercise("Anpassen von Plots", "bp2")`
@@ -1357,6 +1359,13 @@ Dabei ist der Aufbau zunächst grundsätzlich wie in Abbildung
 ist, dass die einzelnen Level mehr Funktionen bieten als die High-Level
 Funktion und, dass Sie sich die Reihenfolge der Ebenen definieren
 können.
+
+Legenden können im base plot nur als Low-Level Funktion hinzugefügt werden. Mit der Funktion `legend` werden die Einträge und die entsprechenden Punktsymbole oder Linientypen dargestellt. In der folgenden Abbildung wird eine Legende in der linken oberen Ecke eingefügt.
+
+```{r}
+plot(dat$alter, dat$bhd, ylab = "BHD [cm]", xlab = "Alter [a]", col = as.numeric(dat$art), pch = as.numeric(dat$art))
+```
+
 
 (ref:figmargins) Grafikregionen eines base plots in R.
 
@@ -1436,7 +1445,7 @@ axis(side = 2, line = 1, las = 2)       # Sehen Sie selbst in der Hilfe was las 
 dev.off()                               # Schnittstelle schließen
 ```
 
-*Achtung*, wenn Sie die Funktion `dev.off()` nicht aufrufen, werden alle nachfolgenden Plots in die gleiche Datei geschrieben. Falls Sie nach einem Versuch einen Plot zu speichern plötzlich keine weiteren Plots mehr sehen, führen Sie einige Mal die Funktion `dev.off()` aus. 
+*Achtung*, wenn Sie die Funktion `dev.off()` nicht aufrufen, werden alle nachfolgenden Plots in die gleiche Datei geschrieben. Falls Sie nach einem Versuch einen Plot zu speichern plötzlich keine weiteren Plots mehr sehen, führen Sie einige Mal die Funktion `dev.off()` aus.
 
 ## Histogramme
 
