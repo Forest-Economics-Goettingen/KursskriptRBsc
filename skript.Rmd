@@ -1321,9 +1321,6 @@ dat <- data.frame(
 )
 
 plot(x = dat$x, y = dat$y, col = dat$col, pch = dat$col, xlab = "x", ylab = "y")
-legend(x = "topleft", inset = 0.05, legend = c("black", "red"),
-       col = c(1, 2), pch = c(1, 2))
-
 ```
 
 #### `r exercise("Anpassen von Plots", "bp2")`
@@ -1336,6 +1333,7 @@ Verwenden Sie den Datensatz aus Übung `r ex_2_no("bp1")` und passen Sie die Abb
 - Stellen Sie die Symbole in rot dar.
 
 ```{r, include = params$inc_sol}
+dat <- read.table("data/bhd_1.txt", header = TRUE)
 plot(dat$alter, dat$bhd, xlab = "Alter", ylab = "BHD", pch = 20, col = "red")
 ```
 
@@ -1348,6 +1346,7 @@ Elemente hinzugefügt werden. Die wichtigsten Funktionen sind
 -   `points()` - Fügt Punkte ein
 -   `lines()` - Fügt Linien ein
 -   `text()` - Fügt Text ein
+-   `mtext` - Fügt Text in den Rahmen (`margin`) ein
 -   `legend()` - Fügt eine Legende ein
 -   `abline()` - Fügt eine Gerade ein
 -   `curve()` - Fügt eine mathematische Funktion ein
@@ -1363,7 +1362,16 @@ können.
 Legenden können im base plot nur als Low-Level Funktion hinzugefügt werden. Mit der Funktion `legend` werden die Einträge und die entsprechenden Punktsymbole oder Linientypen dargestellt. In der folgenden Abbildung wird eine Legende in der linken oberen Ecke eingefügt.
 
 ```{r}
-plot(dat$alter, dat$bhd, ylab = "BHD [cm]", xlab = "Alter [a]", col = as.numeric(dat$art), pch = as.numeric(dat$art))
+dat <- data.frame(
+  x = c(0,   1,   2,   2, 3, 5, 6, 7),
+  y = c(0, 0.5, 1.8, 0.3, 4, 4, 2, 2.2),
+  col = rep(c(1, 2), 4)
+)
+
+plot(x = dat$x, y = dat$y, col = dat$col, pch = dat$col, xlab = "x", ylab = "y")
+legend(x = "topleft", inset = 0.05, legend = c("black", "red"),
+       col = c(1, 2), pch = c(1, 2))
+mtext(side = 3, line = 1, "Some text in the margin")
 ```
 
 
@@ -1398,15 +1406,17 @@ par(mfrow = c(1, 3))
 Teilt den Plot in eine Zeile und drei Zeilen (= drei Plots nebeneinander). 
 
 ```{r, fig.show="hold", echo = -1}
+dat <- read.table("data/bhd_1.txt", header = TRUE)
+
 par(mfrow = c(1, 3))
 # Erstes Panel
-plot(bhd ~ alter, xlab = "Alter", ylab = "BHD", pch = 20, col = "red", 
+plot(bhd ~ alter, xlab = "Alter", ylab = "BHD", pch = 20, col = "red",
      data = dat[dat$gebiet == "A", ], main = "Gebiet A")
 # Zweites Panel
-plot(bhd ~ alter, xlab = "Alter", ylab = "BHD", pch = 20, col = "red", 
+plot(bhd ~ alter, xlab = "Alter", ylab = "BHD", pch = 20, col = "red",
      data = dat[dat$gebiet == "B", ], main = "Gebiet B")
 # Drittes Panel
-plot(bhd ~ alter, xlab = "Alter", ylab = "BHD", pch = 20, col = "red", 
+plot(bhd ~ alter, xlab = "Alter", ylab = "BHD", pch = 20, col = "red",
      data = dat[dat$gebiet == "C", ], main = "Gebiet C")
 ```
 
@@ -1416,7 +1426,7 @@ Vergessen Sie nicht am Ende nochmals `par(mfrow = c(1, 1))` zu setzten, damit wi
 ### Speichern von Abbildungen
 
 Wenn nicht anders angegeben, wird die Abbildung zunächst nur in der
-RStudio Grafik Schnittstelle abgebildet (rechts unten). Von dort aus
+RStudio Grafik Schnittstelle abgebildet (Pane 4). Von dort aus
 kann die Abbildung exportiert werden. Es bietet sich jedoch an das
 Speichern der Abbildung direkt im Code zu programmieren. Mögliche
 Formate die Abbildung als Vektorgrafik zu speichern sind
@@ -1454,7 +1464,8 @@ Diagramm) sind *Histogramme* in der angewandten Datananalyse ein
 weiterer wichtiger Abbildungstyp. An Histogrammen wird die Häufigkeit
 von Beobachtungen nach Gruppen dargestellt. Sie sind deshalb so wichtig,
 weil man aus ihnen relevante Informationen über die Verteilung der Daten
-ablesen kann. So werden auf einen Blick der Zusammenhang von
+ablesen kann und somit einiges über die Messungen erfährt, das für die 
+weitere Datenanalyse relevant sein kann. So werden auf einen Blick der Zusammenhang von
 Beobachtungshäufigkeit und Streuung deutlich, sowie auch die Form der
 Verteilung und ihre Schiefe. Die Interpretation werden wir bei den
 Boxlots noch weiter vertiefen.
@@ -1489,9 +1500,9 @@ par(mfrow = c(1, 1)) # Alte Grafikeinstellungen wiederherstellen
 ## Boxplots
 
 Oft möchte man die Verteilung einer stetigen Variablen in Abhängigkeit
-einer diskreten Variable beschreiben oder Visualisieren. Ein Beispiel
-dafür wäre die BHD-Verteilung für unterschiedliche Baumarten. Eine
-häufige Darstellungsform für solche Daten sind *Boxplots*.
+einer diskreten Variable beschreiben oder visualisieren. Ein Beispiel
+dafür wäre die BHD-Verteilung in Abhängigkei der Baumarten. Eine
+häufige Darstellungsform für solche Daten sind *Boxplots*. Sie stellen die durchschnittliche Ausptägung einer stetigen Variable und ihre Schwankung kompakt dar.
 
 Boxplots bestehen aus drei Komponenten:
 
@@ -1501,8 +1512,8 @@ Boxplots bestehen aus drei Komponenten:
     horizontale Linie) unterteilt.
 2.  Einzelne Punkte Ausreißer. Als Ausreißer werden Punkte bezeichnet,
     die $>1.5 IQR$ vom unteren oder oberen Ende der Box entfernt sind.
-3.  Eine senkrechte Linie von jeder Seite der Box bis zum letzen
-    "Nicht-Ausreißer-Punkt". Diese Linie wird auch oft als *Whisker*
+3.  Eine senkrechte Linie von jeder Seite der Box bis zum letzten
+    "Nicht-Ausreißer-Punkt". Also der letzte Punkt, der $>1.5 IQR$ aber nicht $> 0.75$ bzw. $< 0.25$ Percentil ist. Diese Linie wird auch als *Whisker*
     bezeichnet.
 
 (ref:figboxplot) Schematische Darstellung eines Boxplots (Quelle: Von
@@ -1529,7 +1540,7 @@ boxplot(iris$Sepal.Length ~ iris$Species)
 ```
 
 Etwas eleganter ist es wenn wir das Argument `data` verwenden und den
-Plot etwas anpassen.
+Plot etwas anpassen. Diese SChreibweise funktioniert für alle base plots.
 
 ```{r}
 boxplot(
@@ -1566,13 +1577,12 @@ par(mrfow = c(1, 1))
 ## `ggplot2`: Eine Alternative für Abbildungen
 
 `ggplot2` ist ein alternatives Plotting-System in *R*. Sie können mit
-`ggplot2` also grundsätzlich Abbildungen mit dem selben Inhalt erstellen
+`ggplot2` also grundsätzlich Abbildungen mit dem selben Inhalt erstellen,
 wie mit Base Plots.
 Die Syntax und die optische Darstellung unterscheiden sich jedoch grundsätzlich. 
 `ggplot2` basiert auf den *grammar of graphics* von Leland Wilkinson.
 Die Idee ist, alle nötigen Informationen der Abbildung miteinander zu verknüpfen. 
-`ggplot2` ist also diametral zu Base Plots. 
-Mit diesen gebündelten Informationen kann `ggplot2` die Abbildung automatisch verschönern. So werden bspw. die Legenden automatisch erzeugt und auch die Formatierungen automatisch an die Datenlage angepasst. `ggplot2` nimmt der`*`dem Entwickler`*`in also Arbeit ab.
+`ggplot2` ist also diametral zu Base Plots. Während Sie in base plot alle Elemente selbst definieren, ist die Idee von `ggplot2`, dass Sie nur die Daten und den Diagrammtypen übergeben und die Funktion selbst eine schöne Abbildung erstellt. Selbtverständlich können Sie aber auch in `ggplot2` viele Einstellungen vornehmen. Im base plot sehen Abbildungen zunächst sehr karg und etwas unfertig aus. Sie müssen viele Einstellungen vornehmen, um eine publizierfähige Grafik zu produzieren. In `ggplot2` sollen auch die einfachste Abbildungen schon ästhetisch sein. Mit diesen gebündelten Informationen kann `ggplot2` die Abbildung automatisch verschönern. So werden bspw. die Legenden automatisch erzeugt und auch die Formatierungen automatisch an die Datenlage angepasst. `ggplot2` nimmt der`*`dem Entwickler`*`in also Arbeit ab.
 Dadurch sind die Abbildungen schon ohne viel Nacharbeit schick. Nachteil ist, dass der`*`dem Entwickler`*`in weniger Möglichkeiten zur Einstellung zur Verfügung stehen und nuterspezifische Sonderwünsche somit schwerer
 umsetzbar sind.
 Sehen Sie sich das *Cheatsheet* zu `ggplot2` an. Es ist in RStudio unter \menu{Help > Cheatsheets} zu finden.
@@ -1580,14 +1590,13 @@ Sehen Sie sich das *Cheatsheet* zu `ggplot2` an. Es ist in RStudio unter \menu{H
 Bei `ggplot2` sind Anweisungen zu den Daten und Anweisungen zur
 Darstellung voneinander getrennt. Die Daten werden in den Ästhetikbefehl
 übergeben und dort klassifiziert. Dann folgen die
-Darstellungsanweisungen. Ähnlich wie bei Base Plots werden die
+Darstellungsanweisungen. Ähnlich wie bei Base Plots, werden die
 Grafikelemente ebenenweise nacheinander programmiert, jedoch mit einem
 `+` verbunden. Und hier liegt der wesentliche Unterschied zu Base Plots.
 Durch die `+` werden die Ebenen zu einem Befehl verbunden und damit
 gleichzeitig erstellt.
 
-Die Erweiterung wird zunächst geladen^[Wir haben bis jetzt immer nur mit *base* R gearbeitet. D.h. wir haben nur Funktionen verwendet, die R bereits zur Verfügung stellt. Eine der großen Stärken von R sind die Erweiterungen (oder auch Pakete genannt). `ggplot2` ist so eine Erweiterung, die einmal mit `install.packages("ggplot2")` installiert werden muss. Danach muss man das Paket am Anfang jeder Session mit `library(ggplot2)` laden, damit die Funktionen aus dem Paket zur Verfügung stehen.]. Falls nicht schon geschehen, muss
-sie vorher installiert werden. Wir laden außerdem den Datensatz
+Die Erweiterung wird zunächst geladen^[Wir haben bis jetzt immer nur mit *base* R gearbeitet. D.h. wir haben nur Funktionen verwendet, die R bereits zur Verfügung stellt. Eine der großen Stärken von R sind die Erweiterungen (oder auch Pakete genannt). `ggplot2` ist so eine Erweiterung, die einmal mit `install.packages("ggplot2")` installiert werden muss. Danach muss man das Paket am Anfang jeder Session mit `library(ggplot2)` laden (am besten, Sie laden alle Bibiotheken ganz oben in ihrem Code), damit die Funktionen aus dem Paket zur Verfügung stehen.]. Wir laden außerdem den Datensatz
 `iris`. Der Datensatz ist in R fest integriert. Siehe `?iris` für
 mehr Informationen.
 
@@ -1652,7 +1661,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, col = Species)) +
    geom_point()
 ```
 
-Somit bekommt jede Irisart eine eigene Farbe^[Natürlich könnte man auch die Farbe anpassen.]. Gleichermaßen können wir die Punktart (`shape`), die Punktgröße (`size`) etc. anpassen.
+Somit bekommt jede Irisart eine eigene Farbe^[Natürlich könnte man auch die Farbe anpassen.]. Gleichermaßen können wir die Punktart (`shape`), die Punktgröße (`size`) etc. anpassen. Die Legende wird automatisch an diese Farbe und Symbole angepasst.
 
 ```{r}
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, 
@@ -1718,14 +1727,17 @@ Wir können jetzt mit `p1` weiter arbeiten und beispielsweise eine Beschriftung 
 p1 + labs(x = "Kelchblattbreite [mm]", y = "Kelchblattlänge [mm]")
 ```
 
-Oder auch den ganzen Plot anpassen. Dafür gibt es *themes*. Es gibt eine Reihe von vorgefertigten *themes* oder man kann diese auch selber erstellen (das ist aber nicht Teil dieses Kurses). 
+Oder auch den ganzen Plot anpassen. Dafür gibt es *themes*. Es gibt eine Reihe von vorgefertigten *themes* oder man kann diese auch selber erstellen (das ist aber nicht Teil dieses Kurses).
 
 ```{r}
 p1 + theme_light()
 ```
 
-Weitere *themes* sind: `theme_bw()`, `theme_linedraw()` oder `theme_dark()`. Es gibt extra Pakete die viele zusätzliche weitere *themes* an bieten. Dazu gehört z.B. das Paket [`ggthemes`](https://cran.r-project.org/web/packages/ggthemes/index.html).
+Weitere *themes* sind: `theme_bw()`, `theme_linedraw()` oder `theme_dark()`. Es gibt extra Pakete die viele zusätzliche weitere *themes* anbieten. Dazu gehört z.B. das Paket [`ggthemes`](https://cran.r-project.org/web/packages/ggthemes/index.html) oder [`ThemePark`](https://github.com/MatthewBJane/ThemePark). Während `ggthemes` hauptsächlich durchdachte Grafikkonzepte liefert, sind die Themes aus `ThemePark` eher Popkultur und nicht 100 \%ig ernst gemeint.
 
+```{r}
+p1 + ThemePark::theme_gameofthrones()
+```
 
 ### Multipanel Abbildungen
 
@@ -1733,10 +1745,15 @@ Mit `ggplot2` kann man einfach Abbildungen erstellen, die mehre Panels haben. Da
 
 ```{r}
 ggplot(iris, aes(Sepal.Length)) + geom_histogram() +
-   facet_grid(~ Species)
+   facet_grid(~ Species) 
 ```
 
-Die Funktion `facet_grid()` erzeugt einen *Grid*, während `facet_wrap()` für jedes Panel eine eigene Überschrift erzeugt. 
+Die Funktion `facet_grid()` erzeugt einen *Grid* und beschriftet die Grid-Zeilen und -Spalten, während `facet_wrap()` für jedes Panel (Diagramm) eine eigene Überschrift erzeugt. Beim Arrangieren der Diagramme wird der Vorteil von `ggplot2` gegenüber base plot besonders deutlich. Während es im base plot System mühsam ist, die Abbildungen zu arrangieren, über nimmt `ggplot2` das Arrangement automatisch und fügt sogar eine automatisch Legende hinzu. Die Achsenabschnitte werden so angepasst, dass die Daten vergleichbar sind.
+
+```{r, fig.width=6.5}
+ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, color = Species)) + geom_point() +
+   facet_grid(~ Species) + geom_smooth(method = "lm")
+```
 
 #### `r exercise("Multipanel Abbildungen")`
 
@@ -1753,7 +1770,7 @@ p1 + facet_grid(art ~ gebiet)
 
 ### Plots kombinieren
 
-Es gibt Situationen in denen **unterschiedliche** Plots miteinander kombiniert werden müssen. Im vorherigen Abschnitt wurde dies immer anhand einer gruppierenden Kovariate gemacht. Aber es gibt auch Situationen, in denen das nicht möglich ist. Beispielsweise wenn ein Histogramm und ein Scatterplot vom gleichen Datensatz zusammengefasst werden sollen. Dafür bietet sich das Paket `patchwork` an^[Auch dieses Paket müssen Sie einmalig mit `install.packages("patchwork")` installieren.].
+Es gibt Situationen, in denen **unterschiedliche** Plots miteinander kombiniert werden müssen. Im vorherigen Abschnitt wurde dies immer anhand einer gruppierenden Kovariate gemacht. Aber es gibt auch Situationen, in denen das nicht möglich ist. Beispielsweise wenn ein Histogramm und ein Scatterplot vom gleichen Datensatz zusammengefasst werden sollen. Dafür bietet sich das Paket `patchwork` an^[Auch dieses Paket müssen Sie einmalig mit `install.packages("patchwork")` installieren.].
 
 Als erstes können wir zwei (oder natürlich auch mehrere Plots) erstellen. Hier unterscheiden sich die Plots lediglich durch das Aussehen. 
 
@@ -1806,7 +1823,8 @@ library(patchwork)
 Sie können mit `ggsave()` eine zwischen-gespeicherte Abbildung
 exportieren, indem Sie den Variablennamen übergeben. Wenn Sie keine
 Variable übergeben, wird automatisch die letzte Abbildung gespeichert. Das
-Dateiformat wird aus dem Dateinamen übernommen.
+Dateiformat wird aus dem Dateinamen übernommen. Die größe der Inhalte können Sie sehr leicht
+mit den Argumenten `width` und `height` oder `scale` gesteuert werden.
 
 ```{r, eval=FALSE}
 ggsave("letzteAbb.png")
@@ -1820,7 +1838,7 @@ ggsave(p1, "zwischengespeicherteAbb.png")
 
 ## `dplyr` eine Einführung
 
-`dpylr` ist ein eine Erweiterung von R (= Paket), die das Ziel hat den Umgang mit Daten einfacher und schneller zu machen.
+`dpylr` ist ein eine Erweiterung von R (ein Paket), die das Ziel hat, den Umgang mit Daten einfacher und schneller zu machen.
 
 `dplyr` definiert 5 Verben, um mit Daten zu arbeiten. Diese sind:
 
@@ -1839,7 +1857,7 @@ dat <- data.frame(id = 1:5,
 ```
 
 Damit die Funktionen aus `dplyr` verwendet werden können, müssen wir als
-erstes das Paket `dplyr` laden.
+erstes das Paket `dplyr` laden. The online Resource [`R for Data Science`](https://r4ds.hadley.nz/) gibt einen sehr guten, tieferen Eindruck in die Arbeit mit `dplyr` und erklärt auch die `dplyr` Philosophie noch Mal sehr genau für Beginner.
 
 ```{r}
 library(dplyr)
@@ -1996,13 +2014,13 @@ mean(na.omit(a))
 Mit *Pipes*, die durch das Symbol `%>%` dargestellt werden^[In RStudio kann `%>%` mit der Tastenkombination `Strg + Umschalt + m` (\keys{Strg + \shift + m}) eingefügt werden.], können wir das etwas vereinfachen und nacheinander schreiben:
 
 ```{r}
-na.omit(a) %>% mean
+na.omit(a) %>% mean()
 ```
 
 Oder sogar
 
 ```{r}
-a %>% na.omit %>% mean
+a %>% na.omit() %>% mean()
 ```
 
 #### `r exercise("Pipes \u0060%>%\u0060")`
@@ -2108,19 +2126,21 @@ dat %>% group_by(gebiet) %>% summarise(n = n(), bhd = mean(bhd)) %>% head()
 
 ## 'long' and 'wide' Datenformate
 
-@Wickham2014 propagiert das Prinzip von *tidy* Data. Nach
+Unter anderem @Wickham2014 empfielt das Prinzip von *tidy* Data. Nach
 diesem Prinzip sollten Daten wie folgt organisiert sein:
 
--   Jede Zeile ist ein Merkmalsträger/Subjekt/Objekt (z.B. eine Person,
+-   Jede Zeile ist ein Merkmalsträger/Subjekt/Objekt (z. B. eine Person oder
     ein Baum).
--   Jede Spalte ist eine Variable (=Merkmal) die den Merkmalsträger
+-   Jede Spalte ist eine Variable (ein Merkmal), die den Merkmalsträger
     beschreibt.
--   Jede Zelle ist genau ein Wert (=Mermalausprägung), nämlich der Wert,
+-   In jeder Zelle ist genau ein Wert (Mermalausprägung), nämlich der Wert,
     der Variable für den Merkmalsträger.
 
 Zum Beispiel enthalten Spaltennamen oft Informationen, die eigentlich in
 einer Variable gespeichert werden sollten. Folgendes Beispiel gibt die
-BHD Messung von 3 Bäumen in 3 Jahren wieder.
+BHD Messung von 3 Bäumen in 3 Jahren wieder. Der Vorteil von *tidy* Daten ist, dass viele
+Funktionen diese Form der Datenoganisation erwarten. Somit müssen sie Ihre Daten nur ein Mal
+organisieren und können fast alle Analysen durchführen
 
 ```{r}
 dat <- tibble(
@@ -2131,16 +2151,18 @@ dat <- tibble(
 )
 ```
 
-Diese Daten sind jetzt im `wide`-Format gespeichert und nicht optimal, weil Information über die Daten (nämlich das Jahr der Aufnahme in den Spaltennamen gespeichert sind).
+Der `tibble` aus dem Paket `tibble` ist ein moderner Data Frame, der sich in seinen Funktionen in das `tidy` Universum einfügt. Wir können auch einfach das Paket `tidyverse` laden, um alle Pakete, die Teil des `tidy` Universums sind gleichzeitig zu laden. Der `tibble` beinhaltet alle Funktionen, die der Data Frame auch beinhaltet und kann auch für genau die gleichen Zwecke verwendet werden. Der `tibble` hat u. A. eine modernere Darstellung im Konsolenoutput.
+
+Diese Daten sind jetzt im `wide`-Format gespeichert und nicht *tidy*, weil Information über die Daten (nämlich das Jahr der Aufnahme in den Spaltennamen gespeichert sind).
 Besser wäre eine Struktur mit nur drei Spalten: `id`, `jahr` und `bhd`. Um die Daten in so eine Struktur zu bringen, gibt es die Funktion `pivot_longer()` aus dem Paket `tidyr`.
 
 ```{r}
 library(tidyr)
-dat1 <- pivot_longer(dat, cols = bhd2015:bhd2017)
+dat1 <- pivot_longer(dat, cols = bhd2015 : bhd2017)
 dat1
 ```
 
-Wenn wir die Spalten für die Variable und den Wert sinnvoll benennen möchten, können wir das über die Argumente `names_to` und `value_to` machen.
+Wenn wir die Spalten für die Variable und den Wert gleich sinnvoll benennen möchten, können wir das über die Argumente `names_to` und `value_to` machen.
 
 
 ```{r}
