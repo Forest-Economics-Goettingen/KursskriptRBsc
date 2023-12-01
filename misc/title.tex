@@ -57,7 +57,7 @@ Georg-August-Universität Göttingen \\[1.2cm]
 \vspace*{\fill}
 Dieses Werk ist lizenziert unter einer \href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz}. \\[1cm]
 Zitiervorschlag: \\
-Signer, J. und Husmann, K. (2021) Skript zur Vorlesung Einführung in die Datenanalyse mit R, Georg-August-Universität Göttingen.
+Signer, J. und Husmann, K. (\the\year{}) Skript zur Vorlesung Einführung in die Datenanalyse mit R, Georg-August-Universität Göttingen.
 ~\\[1cm]
 Letzte Aktualisierung: \today
 
@@ -66,11 +66,17 @@ Letzte Aktualisierung: \today
 {\bf Vorwort und Danksagung} \\[0.5cm]
 
 Lernziel des Kurses ist die Einführung in die Arbeit, Visualisierung und Analyse von (forstlichen) Datensätzen
-mit dem Statistikprogramm \textit{R}. Der Schwerpunkt liegt dabei auf der Datenanalyse (Data Science). Statistische Methoden werden nur an wenigen Stellen exemplarisch angewendet. Statistische Grundlagen sind nicht Teil des Kurses. Weitere Materialien werden nicht benötigt. Gelöste Übungsaufgaben werden Ihnen über StudIP zugänglich gemacht. Dort werden auch ggf. Ankündigungen bekanntgegeben. Um die Credits für den Kurs zu erhalten, müssen Sie am Ende des Kurses eine mündliche Prüfung ablegen. Für die Prüfung werden Sie eine der 50 Prüfungsfragen aus diesem Skript zufällig ziehen und vorbereiten. Nach der 15-minütigen Vorbereitungszeit beträgt die Prüfungszeit weitere 15 Minuten. In der Prüfungszeit präsentieren Sie zunächst Ihre Lösung und beantworten anschließend vertiefende Fragen zu Ihrer Lösung und zum gesamten Lehrinhalt des Kurses.
+mit dem Statistikprogramm \textit{R}. Der Schwerpunkt liegt dabei auf der Datenverarbeitung. Statistische Methoden werden nur an wenigen Stellen exemplarisch angewendet. Ein typisches Data Science Projekt besteht laut Wickham et al. (https://r4ds.hadley.nz/) aus 4 Stufen.
+
+\includegraphics{img/data_science_steps.png}
+
+Wir werden uns in diesem Kurs insbesondere mit den ersten beiden Stufen \textit{Import} und \textit{Tidy} beschäftigen und uns im Schritt \textit{Understand} nur mit sehr einfachen \textit{Models} befassen.
+
+Weitere Materialien als dieses Kursskript und die Übungsaufgaben (StudIP) werden nicht benötigt. Die gelöste Übungsaufgaben dieses Skriptes werden Ihnen über StudIP zugänglich gemacht. Dort werden auch ggf. Ankündigungen bekanntgegeben. Um die Credits für den Kurs zu erhalten, müssen Sie am Ende des Kurses eine mündliche Prüfung ablegen. Für die Prüfung werden Sie zwei zufällig gezogene Prüfungsfragen aus dem Dokument "Übungen: Einführung in die Datenanalyse mit R" bearbeiten und vortellen.  Nach einer 15-minütigen Vorbereitungszeit beträgt die Prüfungszeit weitere 15 Minuten. In der Prüfungszeit präsentieren Sie zunächst Ihre Lösung und beantworten anschließend vertiefende Fragen zu Ihrer Lösung und daraufhin auch zum gesamten Lehrinhalt des Kurses.
 
 Dieses Vorlesungsskript ist ein R Markdown-Dokument, das mit R und RStudio erstellt wurde. Das Dokument besteht aus Fließtext, R Code und den entsprechenden Code-Ergebnissen. Die grau hinterlegten Codepassagen sind kurze R-Skripte. Falls das Skript eine Konsolenausgabe erzeugt, ist diese direkt mit "\#\#" markiert (diese Begriffe werden in Kapitel 1.2 näher erläutert).
 
 Dank für Anmerkungen gilt Markus Benesch, Sofie Biberacher und Josephine Trisl.
-Teile des Unterkapitels zu Schleifen und Kontrollstrukturen ist an das R Skript des Kurses Computergestützte Datananalyse von Robert Nuske, Nikolas von Lüpke und Joachim Saborowski angelehnt.
+Teile des Unterkapitels zu Schleifen und Kontrollstrukturen sind an das R Skript des Kurses Computergestützte Datananalyse von Robert Nuske, Nikolas von Lüpke und Joachim Saborowski angelehnt. Des Weiteren wurden Beispiele aus dem frei Verfügbaren Dokument \textit{R for Data Science} (https://r4ds.hadley.nz/intro.html) entnommen.
 \end{titlepage}
 

@@ -53,12 +53,12 @@ RStudio hingegen ist eine sogenannte Entwicklungsumgebung ^[Oder auch
 IDE (=Integrated Development Environment) genannt.], die das Arbeiten mit 
 R vereinfachen soll.
 
-Wichtig ist, dass man kann mit R arbeiten ohne RStudio, aber man kann nicht mit 
-RStudio arbeiten ohne R.
+Sie können also mit R arbeiten ohne RStudio (was unüblich ist), aber nicht mit 
+RStudio ohne R.
 
-Gehen Sie für die Installation von R, auf die Website https://cloud.r-project.org/ und laden Sie die für ihren Computer passende R-Version herunter und folgen Sie den Installationsanweisungen.
+Gehen Sie für die Installation von R, auf die Website https://cloud.r-project.org/ und laden Sie die für ihren Computer passende R-Version herunter und folgen Sie den Installationsanweisungen. In Linux können Sie R über die Kommandozeile installieren.
 
-Für die Installation von RStudio,  gehen Sie zu der Website (https://posit.co/download/rstudio-desktop/#download) und laden Sie wieder die richtige Version für Ihr Betriebssystem herunter und folgen Sie den Installationsanweisungen.
+Für die Installation von RStudio  gehen Sie zu der Website https://posit.co/download/rstudio-desktop/#download und laden die richtige Version für Ihr Betriebssystem herunter und folgen Sie den Installationsanweisungen.
 
 ## Erste Schritte in R
 
@@ -70,14 +70,14 @@ knitr::include_graphics(here("img/rstudio.png"))
 ```
 
 
-RStudio besteht nun aus vier sogenannten Panes oder Ausschnitten (siehe auch Abbildung \@ref(fig:rstudio)). Die Ausschnitte sind wie folgt gegliedert: 
+RStudio besteht nun aus vier sogenannten **Panes** oder Ausschnitten (siehe auch Abbildung \@ref(fig:rstudio)). Die Ausschnitte sind wie folgt gegliedert: 
 
-1. Hier werden Skripte anzeigt, d.h., hier wird meist R Code geschrieben und dokumentiert.
+1. Hier werden Skripte anzeigt, d.h., hier wird meist R Code geschrieben und dokumentiert. Der Code wird beim Schreiben noch nicht ausgeführt (siehe Punkt 3), dennoch sollten Sie Code immer so schreiben, dass er Zeile für Zeile abgeschickt werden kann. Sie sollten nie Code schreiben, bei dem Sie zwischen den Zeilen hin und her springen müssen.
 2. Der zweite Ausschnitt erteilt Auskunft über den *Workspace*. Im Workspace werden alle verfügbaren Objekte angezeigt. 
-3. Die eigentliche R-Konsole wird in Ausschnitt 3 dargestellt. Hier wird in der Regel wenig Code eingegeben. Der normale Workflow ist vom Skript Code an die Konsole zu schicken.
+3. Die eigentliche R-Konsole wird in Ausschnitt 3 dargestellt. Hier wird in der Regel wenig Code eingegeben. Der normale Workflow ist vom Skript Code an die Konsole zu schicken. Erst durch das Abschicken in die Konsole wird der Code (bzw. die Teile des Codes, die Sie abschicken) ausgeführt.
 4. Der vierte Ausschnitt enthält mehrere Reiter. Der Reiter *Files* zeigt den Verzeichnisbaum an. Im Reiter *Plots* werden Plots angezeigt, wenn diese im Code aufgerufen werden. Hilfeseiten zu Funktionen werden im Reiter *Help* angezeigt.
 
-Einfache Rechenoperationen lassen sich in der R-Konsole durchführen. 
+Einfache Rechenoperationen können auch direkt in der R-Konsole durchgeführt werden. Prinzipiell könnten Sie alle Operationen direkt in die Konsole tippen. Der Nachteil und der Grund, warum dies keine gute Praxis ist, ist, dass der Code zwar ausgeführt jedoch nicht gespeichert wird. Code der nicht als Skript gespeichert wird, ist also nicht dokumentiert. Tippen Sie die folgenden Operationen in die Konsole.
 
 ```{r}
 10 + 5
@@ -86,25 +86,33 @@ Einfache Rechenoperationen lassen sich in der R-Konsole durchführen.
 100 / 19
 ```
 
-Weitere häufig verwendete Operationen sind `^` für eine beliebige Potenz, z.B. $2^3$ = `2^3` = `r 2^3`. Analog dazu gibt es die Funktion `sqrt()` zum berechnen von Wurzeln und viele weitere Funktionen.
+Sie sehen Ihren Code in rot und das Ergebnis dieser Operation in weiß darunter. Die Zahl in `[]` gibt die Dimension des Ergebnisses an. Hier also `[1]` für eine Angabe. Dieses Skript wurde in R Markdown geschrieben (siehe Vorwort). R Markdown verbindet Text und Code. Die Ergebnisse des Codes werden unter dem grau hinterlegten *Codechunk* dargestellt. Darstellung und Farbe des Codes und der Ergebnisse sind jedoch nicht immer exakt so wie sie es in der R Konsole wären.
 
-Meist verwenden wir jedoch Skripte, um den R-Code zu schreiben und ihn dann an die Konsole "zu schicken". Dies hat den Vorteil, dass alle Schritte nachvollziehbar bleiben und Analysen beliebig oft wiederholt werden können. Nach der Ausführung bleibt der Code erhalten. Stellen Sie sich den Code im R-Skript wie ein Kochbuch vor. Wenn wir R-Code in einem R-Skript geschrieben haben gibt es mehrere Möglichkeiten diesen Code auszuführen. Wir können entweder auf *Run* drücken (Abbildung \@ref(fig:rstudio-run)) oder den Code mit der Tastenkombination *Strg + Enter* (\keys{Strg +  + \return}) an die Konsole schicken.
+Weitere häufig verwendete Operationen sind `^` für eine beliebige Potenz, z.B. $2^3$ = `2^3` = `r 2^3`. Analog dazu gibt es die Funktion `sqrt()` zum berechnen von Wurzeln und viele weitere Funktionen. Wenn Sie einen code abschicken, der nicht funktioniertm bekommen Sie statt des Ergebnisses eine Fehlermeldung, welche bestenfalls einen Hinweis zur Korrektur enthält.
 
-```{r rstudio-run, fig.align='center', fig.cap="Ausführen von Code in RStudio..", echo = FALSE}
+Meist verwenden wir jedoch **Skripte**, um den R-Code zu schreiben und ihn dann an die Konsole "zu schicken". Dies hat den Vorteil, dass alle Schritte nachvollziehbar bleiben und Analysen beliebig oft wiederholt werden können. Nach der Ausführung bleibt der Code erhalten und Sie dokumentieren Ihre Berechnungen automatisch mit. Stellen Sie sich den Code im R-Skript wie ein Kochbuch vor. Wenn wir R-Code in einem R-Skript geschrieben haben gibt es mehrere Möglichkeiten diesen Code abzuschicken/ auszuführen. Wir können eine Zeile abschicken, indem wir entweder auf *Run* klicken (Abbildung \@ref(fig:rstudio-run)) oder die Tastenkombination *Strg + Enter* (\keys{Strg + \return}) tippen. Mehrere Zeilen abzuschicken und nacheinander ausführen zu lassen ist möglich, indem diese Zeilen markiert werden bevor Sie *Run* klicken oder die Tastenkombination tippen. Ein Klick auf *Source* bzw. die Tastenkombination *Strg + Umschalt + Enter* (\keys{Strg + \shift + \return}).
+
+```{r rstudio-run, fig.align='center', fig.cap="Zeilenweises Ausführen von Code in RStudio.", echo = FALSE}
 knitr::include_graphics(here("img/rstudio_run.png"))
 
 ```
 
-## Kommentare
+Wenn Sie die Codezeile abgeschickt haben, sehen Sie diese Zeile in der Konsole und direkt darunter das Ergebnis sowie die Dimension des Ergebnisses, also genauso, als hätten Sie den Code direkt in die Konsole getippt. Die Konsole erkennt, wenn Sie einen unvollständigen Code abschicken. In der Konsole sehen Sie in diesem Fall kein Ergebnis, sondern ein `+` unter der abgeschickten Zeile. Sie können nun eine weitere Zeile zur vervollständigung abschicken oder in der Konsole *Escape* (\keys{Esc}) drücken, um abzubrechen.
 
-Ein wichtiger Bestandteil für das Arbeiten mit Skripten in R sind Kommentare. Ein Kommentar ist Text in einem R-Skript, der der Dokumentation dient und von der R Konsole ignoriert wird. Sämtliche Zeilen, die mit dem Zeichen `#` beginnen, werden ignoriert.
+
+## Gute Praxis bei der Programmierung
+
+Es gibt eine gute Praxis, wie der Stil der Codes sein sollte. Die sog. *Style Guides* sind eine Art generelle Vereinbarung bei der Programmierung. Style Guides sind selbstverständlich optional und wer viel programmiert, wird mit der Zeit evtl. einen eigenen Stil entwickeln. Dennoch bieten Style Guides gerade beim Einstieg in die Programmierung eine gute Orientierungshilfe und erleichtern vor allem das Arbeiten im Team. Der wichtigste und umfangreichste Style Guide für R ist  https://style.tidyverse.org/index.html. Wir empfehlen, die Kapitel `Welcome`, `Files` und  `Syntax` zu lesen, bevor Sie mit dem Programmieren beginnen. Ein weiterer berühmter Syle Guide ist von Google https://google.github.io/styleguide/.
+
+Vielleicht die wichtigste Praxis beim Programmieren ist das Kommentieren. **Kommentare** sind ein wichtiger Bestandteil der Skripte in R und allen anderen Skript- und Programmiersprachen. Sie werden lernen, dass die Kommentarfunktion ein wesentlicher Vorteil gegenüber Klickprogrammen darstellt. Ein Kommentar ist Text in einem (R-)Code, der der Dokumentation dient und von der R Konsole ignoriert wird. Sämtliche Zeilen, die mit dem Zeichen `#` beginnen, werden nicht ausgeführt, wenn Sie an die Konsole gesendet werden. Seien Sie nicht sparsam mit Kommentaren, sondern benutzen Sie sie um Ihren Code zu strukturieren, ihre Berechnungen zu für sich selbst und andere zu erläutern und, um Ergebnisse zu beschreiben oder zu interpretieren.
 
 ```{r}
+# sqrt(a)
 # Berechnen der Quadratwurzel
 sqrt(81)
 ```
 
-Im vorherigen Codeblock wurde der Funktionsaufruf `sqrt(a)` auskommentiert. Die Zeile `# Berechnen der Quadratwurzel` wird bei der Ausführung ignoriert. Es empfiehlt sich, komplexere Abläufe zu kommentieren damit andere (z.B. Kommilitonen / Kommilitoninnen) verstehen, warum und wie etwas gemacht wurde. Ganz besonders gilt das jedoch für einen selbst. Oft sind in der Zukunft Zusammenhänge nicht mehr so klar, wie sie beim Schreiben des Codes waren.
+Sie können Kommentare auch verwenden, um Code, den sie später vielleicht wieder aktivieren wollen, auszukommentieren. Im vorherigen Codeblock wurde der Funktionsaufruf `sqrt(a)` auskommentiert. Die Zeile `# Berechnen der Quadratwurzel` wird bei der Ausführung ebenfalls ignoriert. Es empfiehlt sich, komplexere Abläufe zu kommentieren, damit andere im Team verstehen, warum und wie etwas gemacht wurde. Ganz besonders gilt das jedoch für einen selbst. Oft sind in der Zukunft Zusammenhänge nicht mehr so klar, wie sie beim Schreiben des Codes waren.
 
 #### `r exercise("Ausführen von Quellcodes")`
 
@@ -130,10 +138,10 @@ Führen Sie nun alle Zeilen aus.
 
 ## Variablen beim Programmieren
 
-Ergebnisse aus Berechnungen (wie oben angeführt), aber auch aus deutlich komplexeren Operationen, werden in Variablen abgespeichert. Man kann sich eine Variable wie eine Hülle (oder bildlich gesprochen wie eine Schachtel) vorstellen, in die man etwas hinein legen kann und darauf zu einem späteren Zeitpunkt wieder zugreifen kann. Z.B. weist der folgende Ausdruck der Variable `alter` den Wert `102` zu. 
+Ergebnisse aus Berechnungen (wie oben angeführt), aber auch z. B. aus komplexeren Operationen, werden in Variablen abgespeichert. Man kann sich eine Variable wie eine Hülle (oder bildlich gesprochen wie eine Schachtel) vorstellen, in die man etwas hinein legen kann und darauf zu einem späteren Zeitpunkt wieder zugreifen kann. Z. B. weist der folgende Ausdruck der Variable `alter` den Wert `102` zu.
 
 ```{r}
-alter = 102
+alter <- 102
 ```
 
 Variablen können Objekte in R speichern. Ein Objekt, im einfachsten Fall ein
@@ -145,7 +153,7 @@ a <- 10
 a
 ```
 
-Man kann mit `=` oder `<-` einer Variable einen Wert zuweisen. Der Unterschied ist in den meisten Fällen vernachlässigbar, es wird aber allgemein empfohlen `<-` zu verwenden.
+Man kann mit `=` oder `<-` einer Variable einen Wert zuweisen. Der Unterschied ist in den meisten Fällen vernachlässigbar, es wird aber allgemein empfohlen `<-` (`=` ist schlechter Stil) zu verwenden.
 
 Wir können beliebige Variablen erstellen, z.B.
 
@@ -155,12 +163,12 @@ name <- "Johannes"
 ```
 
 
-Variablennamen dürfen nicht mit einer Zahl beginnen und müssen aus einem Wort bestehen. 
+Variablennamen dürfen nicht mit einer Zahl beginnen und müssen aus einem Wort bestehen. Die Variablen erscheinen nach der Definition im *Environment* Zab in Pane 2.
 
 - `a_123 <- 10` ist ok
 - `123_a <- 10` erzeugt einen Fehler
 
-Vorsicht: Groß- und Kleinschreibung muss beachtet werden
+Vorsicht: Groß- und Kleinschreibung muss beachtet werden.
 
 ```{r}
 name <- "Johannes"
@@ -197,7 +205,7 @@ ergebnis2 <- ergebnis * 2
 ergebnis2
 ```
 
-Mit der Funktion `rm()` können Variablen, können nicht mehr benötigte Variablen, wieder gelöscht werden. 
+Mit der Funktion `rm()` können Variablen, können nicht mehr benötigte Variablen, wieder gelöscht werden. Alternativ können Variablen auch überschrieben werden. Es gibt keine Möglichkeit gelöschte oder überschriebene Variablen wiederherzustellen. Sie müssen ggf. neu berechnet werden.
 
 ```{r}
 var1 <- "irgendwas"
@@ -209,7 +217,8 @@ exists("var1") # FALSE, also nein, eine Variable mit diesem Namen existiert nich
 
 ## Datentypen
 
-Es wurde bereits erwähnt, dass Variablen als Objekte gespeichert werden. Objekte sind Datenstrukturen, die Objekte bzw. Messwerte aus der Realität abbilden. Wenn Sie beispielsweise eine Fotofalle in einem Wald ausbringen, dann hat diese Fotofalle einen Namen (z.B. `Kamera1`) und nach einiger Zeit im Wald wurden hoffentlich auch einige Fotos aufgenommen. Wir nehmen einmal an, dass nach drei Wochen 132 Fotos von Rehen gemacht wurden.
+<!-- Johannes, ich glaube, in diesem Absatz wurden Variablen und Objekte vertauscht. Kannst du Mal prüfen, ob das stimmt was ich geschrieben hab? -->
+Es wurde bereits erwähnt, dass Daten in Variablen gespeichert werden können. Die Variablen, in denen die Daten (oder auch Berechnungen oder ganze Funktionen) gespreichert werden, heißen in R Objekte. Wenn Sie beispielsweise Messwerte einer Fotofalle speichern möchten, dann hat diese Fotofalle einen Namen (z.B. `Kamera1`) und nach einiger Zeit im Wald wurden hoffentlich auch einige Fotos aufgenommen. Wir nehmen einmal an, dass nach drei Wochen 132 Fotos von Rehen gemacht wurden.
 
 Wir können jetzt sowohl den Namen der Fotofalle, als auch die Anzahl Fotos die aufgenommen wurden, in zwei Variablen abspeichern.
 
@@ -218,35 +227,45 @@ kamera_name <- "Kamera_1"
 anzahl_rehe <- 132
 ```
 
-In den zwei vorherigen Zeilen Code haben wir zwei Objekte (im Sinne von R) erstellt. Das erste Objekt heißt `kamera_name` und das zweite Objekt heißt `anzahl_rehe`. Auffällig ist, dass beide Objekte unterschiedliche Datentypen haben. `kamera_name`  ist vom Typ `character` (also Text). Das zweite Objekt, `anzahl_rehe`, ist vom Typ `numeric` (also eine Zahl, wir unterscheiden hier nicht weiter^[Für Interessierte, man kann natürlich zwischen Ganzzahlen (`int`) und Gleitkommazahlen (`double`) unterscheiden.]). Zusätzlich zu diesen zwei Typen (`character` und `numeric`) gibt es noch einen weiteren wichtigen Typ: nämlich das logische Wahr oder Falsch (in R: `TRUE` und `FALSE`). 
-Zurückkommend auf das Beispiel mit den Fotofallen, könnte eine mögliche Fragestellung sein, ob auf einem der Fotos ein Fuchs gesehen wurde oder nicht. Dazu würden wir wieder eine neue Variable `fuchs_gesehen` anlegen und diese auf `TRUE` setzen, da ein Fuchs gesehen wurde.
+In den zwei vorherigen Zeilen Code haben wir zwei Objekte (im Sinne von R) erstellt. Das erste Objekt heißt `kamera_name` und das zweite Objekt heißt `anzahl_rehe`. In dem Beipiel handelt es sich also um zwei sehr einfache Objekte, in denen jeweils ein Wert gespeichert ist. Auffällig ist, dass beide Objekte unterschiedliche Datentypen haben. `kamera_name`  ist vom Typ `character` (also Text). Das zweite Objekt, `anzahl_rehe`, ist vom Typ `numeric` (also eine Zahl, wir unterscheiden hier nicht weiter^[Für Interessierte, man unterscheidet weiter zwischen Ganzzahlen (`int`) und Gleitkommazahlen (`double`) unterscheiden.]). Zusätzlich zu diesen zwei Typen (`character` und `numeric`), gibt es noch einen weiteren wichtigen Typ: nämlich das logische Wahr oder Falsch (in R: `TRUE` und `FALSE`) und noch weitere Datentypne auf die wir zunächst nicht eingehen (tippen Sie `?typeof` für eine Übersicht aller Datentypen). Zurückkommend auf das Beispiel mit den Fotofallen, könnte eine mögliche Fragestellung sein, ob auf einem der Fotos ein Fuchs gesehen wurde oder nicht. Dazu würden wir eine neue Variable `fuchs_gesehen` anlegen und diese auf `TRUE` setzen, da ein Fuchs gesehen wurde.
 
 ```{r}
 fuchs_gesehen <- TRUE
 ```
 
+Wenn Sie sich nicht sicher, um welchen Typen es sich handelt, können sie ihn mit `str` abfragen.
+```{r}
+typeof(fuchs_gesehen)
+```
+
+`TRUE` wird intern als `1` gespeichert und `FALSE` als `0`. Es ist möglich mit `TRUE`s und `FALSE`s zu rechnen. 
+
+```{r}
+TRUE + TRUE
+FALSE + FALSE
+TRUE + FALSE
+```
+
 ## Funktionen
 
-Ein zweiter wesentlicher Bestandteil beim Arbeiten mit R sind Funktionen. Während eine Variable etwas *speichert* *tut* eine Funktion etwas. Beispielsweise zieht die Funktion `sqrt()` die Quadratwurzel aus einer Zahl.
+Ein zweiter wesentlicher Bestandteil beim Arbeiten mit R sind Funktionen. Während eine Variable etwas *speichert*, *tut* eine Funktion etwas. Beispielsweise zieht die Funktion `sqrt()` die Quadratwurzel aus einer Zahl.
 
 ```{r}
 sqrt(a)
 ```
 
 Funktionen sind in R in der Regel daran zu erkennen, dass sie immer mit dem Funktionsnamen, gefolgt von 
-runden Klammern (`()`), aufgerufen werden. Im vorherigen Beispiel wurde die Funkion mit dem Namen `sqrt()` aufgerufen. Das Objekt `a` haben wir bereits vorhin definiert (zur Erinnerung `a <- 10`). Die Funktion `sqrt()` arbeitet jetzt mit dem Objekt `a`, das in diesem Zusammenhang auch **Argument** genannt wird. 
-
-Argumente von Funktionen haben Namen, diese müssen jedoch nicht angegeben werden, wenn die Reihenfolge der Argumente berücksichtigt wird. Im vorherigen Beispiel, haben wir einfach die Funktion `sqrt(a)` aufgerufen und keinen Argumentnamen angegeben. Aus den Hilfeseiten für die Funktion `sqrt()` (siehe auch nachfolgender Abschnitt) ist zu entnehmen, dass die Funktion `sqrt()`  ein Argument mit dem Namen `x` hat. Das heißt, der vollständige Aufruf der Funktion `x` wäre.
+runden Klammern (`()`), aufgerufen werden. Der große Umfang an Funktionen für die statistische Datenanalyse und wissenschaftliche Datenverarbeitung ist der Hauptgrung für den Erfolg von R in der Wissenschaft. Im vorherigen Beispiel wurde die Funkion mit dem Namen `sqrt()` aufgerufen. Das Objekt `a` haben wir bereits vorhin definiert (zur Erinnerung `a <- 10`). Die Funktion `sqrt()` arbeitet jetzt mit dem Objekt `a`, das in diesem Zusammenhang auch **Argument** genannt wird. Argumente sind die Objekte, die eine Funktion als Inpout benötigt. Die Hilfeseite jeder Funktion enthält eine Liste aller Argumente. Argumente von Funktionen haben Namen, diese müssen jedoch nicht angegeben werden, wenn die Reihenfolge der Argumente, wie in der Hilfeseite angegeben, berücksichtigt wird. Im vorherigen Beispiel, haben wir die Funktion `sqrt(a)` aufgerufen und keinen Argumentnamen angegeben. Aus den Hilfeseiten für die Funktion `sqrt()` (siehe auch nachfolgender Abschnitt) ist zu entnehmen, dass die Funktion `sqrt()` nur ein Argument mit dem Namen `x` hat. Das heißt, der vollständige Aufruf der Funktion `x` wäre.
 
 ```{r}
 sqrt(x = a)
 ```
 
-Um mehr über eine Funktion zu erfahren (z.B. die Bedeutung von Argumenten zu verstehen oder herauszufinden, was eine Funktion zurück gibt), können wir die Hilfeseiten konsultieren. Es gibt unterschiedliche Wege, um zu einer Hilfeseite zu gelangen. 
+Um mehr über eine Funktion zu erfahren (z. B. die Bedeutung von Argumenten zu verstehen oder herauszufinden, was eine Funktion zurück gibt), können wir die Hilfeseiten konsultieren. Es gibt unterschiedliche Wege, um zu einer Hilfeseite zu gelangen. 
 
 1. In die Konsole `?<Name der Funktion>` tippen. Also, wenn wir Hilfe für die Funktion `mean()` möchten, könnten wir einfach `?mean` in die Konsole tippen.
-2. Analog zu 1), können wir mit der Funktion `help` die Hilfeseite für eine andere Funktion aufrufen (z.B. wenn wir wieder die Hilfe für die Funktion `mean()` lesen möchten, dann könnten wir auch `help(mean)` in die Konsole tippen).
-3. In RStudio kann man auch auf das `Help`-Panel klicken und dann einfach eine Funktion suchen (siehe Abbildung 1). 
+2. Analog zu 1), können wir mit der Funktion `help` die Hilfeseite für eine Funktion aufrufen (z.B. wenn wir wieder die Hilfe für die Funktion `mean()` lesen möchten, dann könnten wir auch `help(mean)` in die Konsole tippen).
+3. In R Studio kann man auch auf das `Help`-Tab (Pane 4) klicken und dann einfach eine Funktion suchen (siehe Abbildung 1). 
 4. Wenn der Cursor in RStudio auf einer Funktion ist, kann man mit der Taste F1 die dazugehörige Hilfeseite aufrufen.
 
 
@@ -257,11 +276,9 @@ set.seed(123)
 npics <- c(132, round(runif(14, 50, 150)))
 ```
 
-Verfolgen wir das Beispiel mit den Fotofallen etwas weiter. Es handelt sich um ein systematisches Monitoring. D.h. es wurde nicht nur eine Fotofalle ausgebracht, sondern insgesamt 15 Stück. Dieser Umstand erfordert eine komplexere Datenstruktur. Nachfolgend sind die Anzahl Rehfotos für jede der 15 Fotofallen aufgeführt: `r npics`.
+Verfolgen wir das Beispiel mit den Fotofallen etwas weiter. Es handelt sich um ein systematisches Monitoring. D. h., es wurde nicht nur eine Fotofalle ausgebracht, sondern insgesamt 15 Stück. Dieser Umstand erfordert komplexere Objekte. Nachfolgend sind die Anzahl Rehfotos für jede der 15 Fotofallen aufgeführt: `r npics`.
 
-Die Frage, die sich jetzt stellt, ist: Wie kann man diese Daten sinnvoll organisieren? Zusätzlich zur Anzahl der fotografierten Rehe soll jede Fotofalle eine eindeutige ID haben (`Kamera_1`, ..., `Kamera 15`) und wir wissen, dass jeweils 5 Fotofallen in drei unterschiedlichen Revieren aufgestellt waren (Fotofalle 1 bis 5 in Revier A, Fotofalle 6 bis 10 in Revier B und Fotofalle 11 bis 15 in Revier C).
-
-Ein erster, wenn auch nicht wirklich sinnvoller, Ansatz könnte sein, dass wir für jede Fotofalle drei Objekte erstellen:
+Die Frage, die sich jetzt stellt, ist: Wie kann man diese Daten sinnvoll organisieren? Zusätzlich zur Anzahl der fotografierten Rehe soll jede Fotofalle eine eindeutige ID haben (`Kamera_1`, ..., `Kamera 15`) und wir wissen, dass jeweils 5 Fotofallen in drei unterschiedlichen Revieren aufgestellt waren (Fotofalle 1 bis 5 in Revier A, Fotofalle 6 bis 10 in Revier B und Fotofalle 11 bis 15 in Revier C). Wir könnten für jede Kamera und jeden Wert ein einzelnes Objekt mit je einem Wert erstellen. Dass das zu Aufwändig wäre, leuchtet unmittelbar ein:
 
 ```{r}
 # 1. Kamera
@@ -277,7 +294,7 @@ revier_2 <- "Revier A"
 # usw.
 ```
 
-Wenn wir so vorgehen würden, hätten wir 45 Objekte. Dieser Ansatz ist nicht sehr effizient und führt schnell zu einem unübersichtlichen *Workspace*^[Als *Workspace* werden alle Objekte bezeichnet, die in einer R-Session zur Verfügung stehen.]. Wir werden im Verlauf unterschiedliche Datenstrukturen kennenlernen.
+Wenn wir so vorgehen würden, hätten wir 45 Objekte mit je einem Eintrag. Dieser Ansatz und führt schnell zu einem unübersichtlichen *Workspace*^[Als *Workspace* werden alle Objekte bezeichnet, die in einer R-Session zur Verfügung stehen. Siehe Liste im *Environment* in Pane 2.]. Wir werden im Verlauf sinnvollere Objekte (Vektoren oder Data Frames) für diesen Zweck kennenlernen.
 
 #### `r exercise("Variabeln")`
 
@@ -306,7 +323,7 @@ a + p
 
 ## Funktionen
 
-Ein zweiter wesentlicher Bestandteil beim Arbeiten mit R sind Funktionen. Während eine Variable etwas *speichert* *tut* eine Funktion etwas. Beispielsweise zieht die Funktion `sqrt()` die Quadratwurzel aus einer Zahl.
+Ein zweiter wesentlicher Bestandteil beim Arbeiten mit R sind Funktionen. Während eine Variable etwas *speichert*, *tut* eine Funktion etwas. Beispielsweise zieht die Funktion `sqrt()` die Quadratwurzel aus einer Zahl.
 
 ```{r}
 sqrt(a)
@@ -329,24 +346,21 @@ Um mehr über eine Funktion zu erfahren (z.B. die Bedeutung von Argumenten zu ve
 4. Wenn der Cursor in RStudio auf einer Funktion ist, kann man mit der Taste F1 die dazugehörige Hilfeseite aufrufen.
 
 
-
-
 \newpage
 
 # Vektoren
 
-Die gute Nachricht zuerst, Sie haben bereits Vektoren erstellt in R (und dies wahrscheinlich nicht bewusst wahrgenommen). Wenn Sie nämlich eine Variable erstellen (z.B., `a <- 10`), wird ein Vektor der Länge eins erstellt, das heißt der Vektor enthält genau ein Element. 
+Die gute Nachricht zuerst. Sie haben bereits Vektoren erstellt in R (und dies wahrscheinlich nicht bewusst wahrgenommen). Wenn Sie nämlich eine Objekt mit einem Element erstellen (z.B., `a <- 10`), wird ein Vektor der Länge eins erstellt. Das heißt, der Vektor enthält genau ein Element (einen Eintrag). Vektoren sind also kein neues Objekt für Sie, sondern Sie lernen jetzt, dass die Ihnen schon bekannten Objekte Vektoren heißen und sie auch mehrere Elemente in eine mObjekt speichern können.
 
 ```{r fig1, out.width = "350px", echo = FALSE, fig.cap="Schematische Darstellung eines Vektors in R.", fig.align="center"}
 include_graphics(here("img/vectors.jpg"))
 ```
 
-
- Sie können sich Vektoren wie einen Schubladenschrank vorstellen (siehe auch Abbildung \@ref(fig:fig1)). Wichtig ist dabei, dass man in jede Schublade immer nur ein Element vom gleichen Typ verstauen kann. Etwas allgemeiner gesprochen heißt das, dass alle Elemente eines Vektors vom gleichen Datentyp sein müssen. 
+Sie können sich Vektoren wie einen Schubladenschrank vorstellen (siehe auch Abbildung \@ref(fig:fig1)). Wichtig ist dabei, dass man in jede Schublade immer nur ein Element verstauen kann und alle Elemente im Schublagenschrank den gleichen Datentyp haben müssen. Etwas allgemeiner gesprochen heißt das, dass alle Elemente eines Vektors vom gleichen Datentyp sein müssen.
  
-Es gibt zahlreiche Funktionen zum Erstellen von Vektoren (einige davon werden wir im weiteren Verlauf des Moduls kennenlernen). Die wohl wichtigste Funktion ist `c()`. Dabei steht `c` für *combine* oder *concatenate*. Die Funktion `c()` fügt einzelne Elemente in einen Vektor zusammen (und zwar genau in der Reihenfolge wie diese Elemente an `c()` übergeben werden). 
+Es gibt zahlreiche Funktionen zum Erstellen von Vektoren (einige davon werden wir im weiteren Verlauf des Moduls kennenlernen). Die wohl wichtigste Funktion ist `c()`. Dabei steht `c` für *combine* oder *concatenate*. Die Funktion `c()` fügt einzelne Elemente in einen Vektor zusammen (und zwar genau in der Reihenfolge wie diese Elemente an `c()` übergeben werden). `c()` ist sozusagen die Funktion, die für Sie mehrere Elemente zu einem Vektor zusammensetzt. `c()` erwartet folglich nur Elemente als Argumente.
  
-Gehen wir nochmals zurück zu Abbildung \@ref(fig:fig1), da wird schematisch dargestellt wie ein Vektor `s` mit 7 Elementen (in diesem Fall Zahlen) erstellt werden kann.
+Gehen wir nochmals zurück zu Abbildung \@ref(fig:fig1), in der schematisch dargestellt wird, wie ein Vektor `s` mit 7 Elementen (in diesem Fall Zahlen) erstellt wird.
 
 ```{r}
 s <- c(37, 1, 15, 2, 7, 19, 22)
@@ -358,7 +372,7 @@ Die Funktion `c()` ordnet jetzt bildlich gesprochen die Zahl 37 der ersten Schub
 s
 ```
 
-In Abbildung \@ref(fig:fig1)b wird der Vektor `s` nochmals systematisch dargestellt. Dabei sieht man, dass `37` an der ersten Position des Vektors gespeichert wird und `22` an der letzten Position des Vektors gespeichert wird.
+In Abbildung \@ref(fig:fig1)b wird der Vektor `s` nochmals systematisch dargestellt. Dabei sieht man z. B., dass `37` an der ersten Position des Vektors gespeichert wird und `22` an der letzten Position des Vektors gespeichert wird.
 
 
 Die Grundrechenarten (`+`, `-`, `/`, `*`) und viele andere Funktionen funktionieren genau gleich mit Vektoren deren Länge > 1 ist. Sie werden elementweise durchgeführt. Wir können beispielsweise zu jedem Element von `s` 10 addieren
@@ -367,16 +381,17 @@ Die Grundrechenarten (`+`, `-`, `/`, `*`) und viele andere Funktionen funktionie
 s + 10
 ```
 
-oder `s` mit sich selbst multiplizieren.
+oder `s` mit sich selbst multiplizieren. Zu beachten ist also, dass es sich bei Vektorberechnungen in R zunächst nicht um Vektorrechnungen handelt, wie Sie sie aus der linearen Algebra kennen. Für die sog. Matrizenoperationen der linearen Algebra werden die Operatoren in R mit `% %` umschlossen, also bspw. `s %*% s`.
 
 ```{r}
 s * s
 ```
 
-Neben der Funktion `c()` gibt es zahlreiche weitere Funktionen, um Vektoren zu erstellen. Sehr häufig braucht man Vektoren von Zahlenfolgen, solche Vektoren können mit der Funktion `seq` erstellt werden. Im einfachsten Fall benötigt `seq()` zwei Argumente: `from` und `to`^[Weil solche Vektoren so häufig vorkommen gibt es hier eine Abkürzung. Man kann `seq(from, to, by = 1)` mit `from:to` abkürzen. Also `1:10` würde auch alle Zahlen von 1 bis 10 zurückgeben.].
+Neben der Funktion `c()` gibt es zahlreiche weitere Funktionen, um Vektoren zu erstellen. Sehr häufig braucht man Vektoren von Zahlenfolgen. Solche Vektoren können mit der Funktion `seq()` erstellt werden. Im einfachsten Fall benötigt `seq()` zwei Argumente: `from` und `to`^[Weil solche Vektoren so häufig vorkommen gibt es hier eine Abkürzung. Man kann `seq(from, to, by = 1)` mit `from:to` abkürzen. Also `1:10` würde auch alle Zahlen von 1 bis 10 zurückgeben.].
 
 ```{r}
 seq(from = 1, to = 10)
+(1 : 10)
 ```
 
 Man kann dann auch noch die Schritte angeben, mit denen erhöht wird. 
@@ -476,12 +491,11 @@ bhd <- c(32, 33, 23, 21, 21, 27, 18, 12)
 
 Diese wurden immer abwechselnd mit zwei unterschiedlichen Messgeräten durchgeführt wurden. 
 
-Erstellen Sie einen Vektor von der Länge 8 mit den Einträgen die immer abwechselnd `G1` und `G2` sind und für die zwei Geräte stehen. 
+Erstellen Sie einen Vektor von der Länge 8 mit den Einträgen, die immer abwechselnd `G1` und `G2` sind und für die zwei Geräte stehen. 
 ```{r, include=params$inc_sol}
 bhd <- c(32, 33, 23, 21, 21, 27, 18, 12)
 rep(c("G1", "G2"), 4)
 ```
-
 
 
 ## Statistische Funktionen
@@ -494,15 +508,13 @@ median(s)
 sd(s)
 ```
 
-Eine weitere sehr häufig verwendete Funktion ist `sample()`. Mit `sample()` werden `size` Elemente zufällig aus einem Vektor, mit oder ohne Zurücklegen (mit Zurücklegen wird gezogen, wenn das Argument `replace = TRUE` gesetzt wird), gezogen.
+Eine weitere, sehr häufig verwendete Funktion ist `sample()`. Mit `sample()` werden `size` Elemente zufällig aus einem Vektor, mit oder ohne Zurücklegen (mit Zurücklegen wird gezogen, wenn das Argument `replace = TRUE` gesetzt wird), gezogen.
 
 ```{r}
 sample(s, size = 1) # 1 Element
 sample(s, size = 3) # 2 Elemente
 ```
-Wenn `size` weg gelassen wird, dann bekommt man gleich viele Elemente zurück (wie der Vektor lang ist), d.h. der Vektor wird nur permutiert. 
-
-
+Wenn `size` weggelassen wird, dann bekommt man gleich viele Elemente zurück (wie der Vektor lang ist), d.h. der Vektor wird nur permutiert. 
 
 ## Beispiel Fotofallen
 
@@ -514,7 +526,6 @@ Als erstes erstellen wir einen Vektor mit den Anzahlen Rehfotos. Das geht einfac
 anzahl_rehe <- c(132, 79, 129, 91, 138, 144, 55, 103, 139, 
                  105, 96, 146, 95, 118, 1007)
 ```
-
 
 Als zweites erstellen wir einen Vektor mit den IDs. Zur Erinnerung, diese sollten die Werte `Kamera_1` bis `Kamera_15` haben. Ein erster Ansatz könnte sein, dass wir einfach 15 Fotofallen schreiben und dann die Zahlen 1 bis 15 dahinter.
 
@@ -545,8 +556,7 @@ ids <- paste(v1, v2, sep = "_")
 ids
 ```
 
-
-Dann fehlt jetzt lediglich der Vektor mit den Revieren. Hier könnten wir erneut auf die Funktion `rep` zurückgreifen.
+Mehr Funktionen zum Umgang mit Zeichenketten folgen in Kapitel "Arbeiten mit Text". Dann fehlt jetzt lediglich der Vektor mit den Revieren. Hier könnten wir erneut auf die Funktion `rep` zurückgreifen.
 
 ```{r}
 rep(c("Revier A", "Revier B", "Revier C"), 5)
@@ -571,7 +581,7 @@ mean(anzahl_rehe)
 median(anzahl_rehe)
 ```
 
-2. Erstellen Sie die folgende Ausgabe: 
+2. Erstellen Sie die folgende Konsolenausgabe: 
 
 ```{r, echo = params$inc_sol}
 paste("Die mittlere Anzahl von Rehfotos beträgt", mean(anzahl_rehe), "Rehe pro Standort.")
@@ -590,13 +600,15 @@ Dabei werden die folgenden Operationen am häufigsten verwendet.
 
 Das Ergebnis von logischen Operatoren ist immer `TRUE` oder `FALSE`. 
 
-Bei Vektoren kommt es immer zu einer elementweisen Anwendung. Wir können beispielsweise abfragen an welchen Fotofallenstandorten mehr als 100 Rehe fotografiert wurden oder
+Bei Vektoren kommt es immer zu einer elementweisen Anwendung. Wir können beispielsweise abfragen, an welchen Fotofallenstandorten mehr als 100 Rehe fotografiert wurden:
 
 ```{r}
 anzahl_rehe > 100
 ```
 
-welche Fotofallenstandorte sich in Revier B befinden.
+Das Ergebnis ist ein Vektor vom Datentyp `logi` in der selben länge wie `anzahl_rehe`. 
+
+Wir können z. B. abfragen, welche Fotofallenstandorte sich in Revier B befinden.
 
 ```{r}
 reviere == "Revier B"
@@ -604,7 +616,7 @@ reviere == "Revier B"
 
 Des Weiteren können logische Ausdrücke miteinander verknüpft werden. Dies geschieht mit einem logischen Und (`&`) oder einem logischen Oder (`|`). Für das logische Und müssen beide Ausdrücke ein `TRUE` zurückgeben um ein `TRUE` zu erhalten. Für ein logisches Oder reicht es, wenn einer der beiden Ausdrücke `TRUE` zurückgibt, um ein `TRUE` zu erhalten. 
 
-Damit können wir nun z.B. die beiden vorherigen Abfragen verbinden. Die erste Abfrage ist: Hat eine Fotofalle mehr als 100 Rehe fotografiert und stand die Fotofalle in Revier B.
+Damit können wir nun z. B. die beiden vorherigen Abfragen verbinden. Die erste Abfrage ist: Hat eine Fotofalle mehr als 100 Rehe fotografiert und stand die Fotofalle in Revier B.
 
 ```{r}
 anzahl_rehe > 100 & reviere == "Revier B"
@@ -619,14 +631,6 @@ anzahl_rehe > 100 | reviere == "Revier B"
 ```
 
 Das Arbeiten mit logischen Werten kann fürs Erste etwas abstrakt erscheinen, aber wir werden im folgenden Abschnitt (Abschnitt \@ref(zugriff)) zahlreiche Anwendungsbeispiele dafür sehen.
-
-`TRUE` wird intern als `1` gespeichert und `FALSE` als `0`. Es ist möglich mit `TRUE`s und `FALSE`s zu rechnen. 
-
-```{r}
-TRUE + TRUE
-FALSE + FALSE
-TRUE + FALSE
-```
 
 #### `r exercise("Arbeiten mit logischen Werten")`
 
@@ -652,27 +656,25 @@ TRUE + 10 == FALSE + 10
 sum(c(TRUE, TRUE, FALSE, FALSE))
 ```
 
-
-
 ## Zugreifen auf Elemente eines Vektors (=Untermengen) {#zugriff}
 
-Sehr oft wollen wir auf bestimmte Werte in einer Datenstruktur zugreifen. Beispielsweise könnte es uns interessieren, wieviele Rehe im Mittel auf allen Fotofallen aus Revier A gesehen wurden. 
+Sehr oft wollen wir auf bestimmte Werte in einer Datenstruktur zugreifen. Beispielsweise könnte es uns interessieren, wie viele Rehe im Mittel auf allen Fotofallen aus Revier A gesehen wurden. Das Zugreifen auf Elemente mit bestimmten Eigenschaften ist die häufigste Anwendung für logische Operationen in R. Aus diesem Grund ist das Unterkapitel "Arbeiten mit logischen Werten" auch Teil des Kapitels "Vektoren".
 
+Bei Vektoren kann auf die einzelnen Elemente mit eckigen Klammern (`[ ]`, diese werden auch Indizierungsklammern genannt) zugegriffen werden. Der Ausdruck `anzahl_rehe[2]` gibt die Anzahl an fotografierten Rehen für die zweite Fotofalle zurück, also die zweite Stelle des Vektors`anzahl_rehe`. Es gibt zwei Möglichkeiten, was in die eckigen Klammern geschrieben werden kann: 1.) die Positionen der Elemente die man zurückhaben möchte, wie eben beschrieben. Ist es mehr als ein Element, dann muss ein Vektor mit den Positionen übergeben werde. Die 2.) Möglichkeit der Indizierung ist also ein logischer Vektor in der gleichen Länge des Vektors, den ich indiozieren möchte. Es werden alle Elemente zurückgegeben, bei denen in dem logischen Vektor `TRUE` eingetragen ist.
 
-Bei Vektoren kann auf die einzelnen Elemente mit eckigen Klammern (`[ ]`, diese werden auch Indizierungsklammern genannt) zugegriffen werden. Der Ausdruck `anzahl_rehe[2]` gibt die Anzahl an fotografierten Rehen für die zweite Fotofalle zurück. Es gibt zwei Möglichkeiten, was in die eckigen Klammern geschrieben werden kann: 1) die Positionen der Elemente die man zurückhaben möchte. Ist es mehr als ein Element, dann muss man einfach einen Vektor mit den Positionen übergeben; 2) ein logischer Vektor von der gleichen Länge, es werden alle Elemente zurückgegeben bei denen ein `TRUE` steht.
-
-Abfragen des zweiten Elements in dem Vektor `anzahl_rehe`: 
+1.) Abfragen des zweiten Elements in dem Vektor `anzahl_rehe`: 
 
 ```{r}
 anzahl_rehe[2]
 ```
 
-Abfragen aller Elemente aus `anzahl_rehe`, die aus dem Revier `A` stammen. 
+2.) Abfragen aller Elemente aus `anzahl_rehe`, die aus dem Revier `A` stammen. 
 
 ```{r}
-anzahl_rehe[c(1, 2, 3, 4, 5)] 
+ist_a <- reviere == "Revier A"
+anzahl_rehe[ist_a] 
 
-# oder schneller
+# oder alternativ mit Methode 1.)
 anzahl_rehe[1:5]  # da `1:5` einen Vektor mit allen Zahlen von 1 bis 5 erstellt.
 ```
 
@@ -685,7 +687,6 @@ Erstellen Sie einen neuen Vektor `bhd`
 ```{r}
 bhd <- c(12, 32, 39, 41, 12, 30)
 ```
-
 
 - Wählen Sie aus dem Vektor `bhd` nur das 2. und 3. Element aus.
 - Wählen Sie aus dem Vektor `bhd` das letzte Element aus.
@@ -778,8 +779,9 @@ messungen_arten[messungen_arten == arten[1] | messungen_arten == arten[2]]
 ```
 
 Diese Herangehensweise wird aber für $>2$ Elemente in `arten` sehr
-mühsam. Eine Alternative bietet der `%in%`-Operator. Dieser testet, ob
-Elemente eines Vektors in einem zweiten Vektors enthalten sind.
+mühsam und fehleranfällig. Eine Alternative bietet der `%in%`-Operator. Dieser testet, ob
+Elemente eines Vektors in einem zweiten Vektors enthalten sind. Der Operator ist also eine 
+verkürzte Schreibweise für hintereinander durchgeführte logische Oder Abfragen.
 
 ```{r}
 messungen_arten %in% arten
@@ -807,7 +809,11 @@ LETTERS[LETTERS %in% c("A", "E", "I", "O", "U")]
 
 # Faktoren (`factors`)
 
+<<<<<<< HEAD
 R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von kategorialen Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen (engl. look-up table) der Werte gespeichert [siehe dazu auch @mcnamara2018]. 
+=======
+R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von diskreten Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen der Werte gespeichert [siehe dazu auch @mcnamara2018]. Faktoren haben im Gegensazu zu Zeichenketten zusätzliche Eigenschaften. Man kann sie z. B. sortieren.
+>>>>>>> 629c903f27f5c5db526dfd1588596c4a4b00635b
 
 Mit der Funktion `factor()` kann ein Faktor erstellt werden. Im einfachsten Fall wird nur ein Vektor übergeben. 
 
@@ -816,13 +822,17 @@ a <- c("FI", "BU", "FI", "EI", "EI", "FI", "FI")
 factor(a)
 ```
 
+<<<<<<< HEAD
 Ohne weitere Spezifikation werden für die *Levels* die Werte alphabetisch übernommen (das kann später z.B. beim Erstellen von Abbildungen wichtig sein). Für eine benutzerdefinierte Anordungs der Leverls, kann das Argument `levels` verwendet werden. 
+=======
+Ohne weitere Spezifikation werden die Werte *Levels* alphabetisch angeordnet (das kann später z. B. beim Erstellen von Abbildungen wichtig sein), dies kann jedoch durch die Verwendung des Arguments `levels` gesteuert werden. 
+>>>>>>> 629c903f27f5c5db526dfd1588596c4a4b00635b
 
 ```{r}
 factor(a, levels = c("FI", "BU", "EI"))
 ```
 
-Es ist auch möglich die Beschriftung (= labels) der unterschiedlichen Levels anzugeben mit dem Argument `labels`.
+Es ist auch möglich, die Beschriftung (= labels) der unterschiedlichen Levels anzugeben mit dem Argument `labels`.
 
 ```{r}
 af <- factor(a, levels = c("FI", "BU", "EI"), 
@@ -830,7 +840,7 @@ af <- factor(a, levels = c("FI", "BU", "EI"),
 af
 ```
 
-Mit der Funktion `levels()` können die unterschiedlichen Levels eines Faktors abgefragt bzw. gesetzt werden. 
+Mit der Funktion `levels()`, können die unterschiedlichen Levels eines Faktors abgefragt und auch gesetzt werden. 
 
 ```{r}
 levels(af)
@@ -838,7 +848,7 @@ levels(af) <- c("Fi", "Bu", "Ei")
 af
 ```
 
-Schlussendlich kann man mit der Funktion `relevel()` die Referenzkategorie eines Faktors (der erste Level) angepasst werden. Das ist kann für lineare Modell wichtig sein.
+Schlussendlich kann man mit der Funktion `relevel()` die Referenzkategorie eines Faktors (der erste Level) angepasst werden. Das ist kann z. B. für lineare Modelle wichtig sein.
 
 ```{r}
 af
@@ -881,7 +891,6 @@ s3
 
 levels(s3) <- c("Ulm (BW)", "Berlin (Berlin)", "Aachen (NRW)")
 s3
-
 ```
 
 
@@ -1003,7 +1012,7 @@ Mit der Funktion `is.null()` kann man überprüfen, ob ein Element in einem Vekt
 ## `Inf`
 
 Die größtmögliche Zahl in R ist `1.7976931 * 10^308`. Größere Zahlen
-werden als unendlich gespeichert.
+werden als unendlich gespeichert und verarbeitet.
 
 ```{r inf1}
 10^309
@@ -1056,9 +1065,9 @@ Berechnen Sie den arithmetischen Mittelwert von `foo`.
 
 # `data.frame`s oder Tabellen
 
-Im vorherigen Teilabschnitt haben wir gesehen, wie mehrere Werte des gleichen Typs in einem Vektor zusammengefasst werden können. Abschließend wurde anhand des Fotofallenbeispiels gezeigt, wie Vektoren eingesetzt werden können. Wir erstellten drei Vektoren, die jeweils die Merkmalsausprägungen eines Merkmals aller Fotofallenstandorte speichern. In statistischer Sprache, sind die Fotofallen die Beobachtungen (oder auch Merkmalsträger genannt) und die Informationen zu den Fotofallen (also ID, Anzahl Rehe und das Revier) die Merkmale. Jeder beobachtete Wert (z.B. die 132 fotografierten Rehe von Kamera 1) ist dann eine Merkmalsausprägung. 
+Im vorherigen Teilabschnitt haben wir gesehen, wie mehrere Elemente des gleichen Datentyps in einem Vektor zusammengefasst werden können. Abschließend wurde anhand des Fotofallenbeispiels gezeigt, wie Vektoren eingesetzt werden können, um andere Vektoren zu indizieren. Wir erstellten drei Vektoren, die jeweils die Merkmalsausprägungen eines Merkmals aller Fotofallenstandorte speichern. In statistischer Sprache, sind die Fotofallen die Beobachtungen (oder auch Merkmalsträger genannt) und die Informationen zu den Fotofallen (also ID, Anzahl Rehe und das Revier) die Merkmale. Jeder beobachtete Wert (z.B. die 132 fotografierten Rehe von Kamera 1) ist dann eine Merkmalsausprägung. 
 
-Sie können sich ein `data.frame` wie eine Tabelle aus einem Tabellenkalkulationsprogramm vorstellen. Es gibt Zeilen in denen die Beobachtungen gespeichert sind und Spalten, die die Merkmale speichern. In unserem Fall gäbe es 15 Zeilen (eine Zeile für jede Fotofalle) und drei Spalten (jeweils eine Spalte für ID, Anzahl Rehe und Revier). Der Befehl zum Erstellen eines `data.frame`s in R  ist `data.frame()`. Für unser Beispiel wäre es:
+Sie können sich ein `data.frame` wie eine Tabelle aus einem Tabellenkalkulationsprogramm vorstellen. Es gibt Zeilen in denen die Beobachtungen gespeichert sind und Spalten, die die Merkmale speichern. In unserem Fall gäbe es 15 Zeilen (eine Zeile für jede Fotofalle) und drei Spalten (jeweils eine Spalte für ID, Anzahl Rehe und Revier). Der Befehl zum Erstellen eines `data.frame`s aus Vektoren in R  ist `data.frame()`. Für unser Beispiel wäre es:
 
 ```{r}
 monitoring <- data.frame(
@@ -1069,8 +1078,8 @@ monitoring <- data.frame(
 monitoring
 ```
 
-Im vorhergehenden Codebeispiel wurde ein `data.frame` erstellt und in die Variable `monitoring` gespeichert.
-Die Funktion `data.frame()` nimmt als Argumente beliebig viele Paare, die immer aus einem Namen und einem Vektor mit dazugehörigen Werten bestehen. D.h., dass immer eine Spalte vom selben Typ sein muss, es aber für jede Beobachtung (=Zeile) Merkmale von unterschiedlichen Typen geben kann.
+Auf der linken Seite der Gleichungen stehen die Spaltenname des Data Frames. Im vorhergehenden Codebeispiel wurde ein `data.frame` erstellt und in die Variable `monitoring` gespeichert.
+Die Funktion `data.frame()` nimmt als Argumente beliebig viele Paare, die immer aus einem Namen und einem Vektor mit dazugehörigen Werten bestehen. D.h., dass (wie bei den Vektoren) immer eine Spalte vom selben Typ sein muss, es aber für jede Beobachtung (=Zeile) Merkmale von unterschiedlichen Typen geben kann. Data Frames sind die Standard-Objekte zum Speichern wissenschaftlicher Daten.
 
 ## Wichtige Funktionen zum Arbeiten mit `data.frame`s
 
@@ -1093,7 +1102,7 @@ nrow(monitoring)
 ncol(monitoring)
 ```
 
-Mit der Funktion `str()` (kurz für *structure*) kann schnell ein Überblick über sämtliche Variablen verschafft werden.
+Mit der Funktion `str()` (kurz für *structure*) kann schnell ein Überblick über sämtliche Variablen und deren Datntypen verschafft werden.
 
 ```{r}
 str(monitoring)
@@ -1102,7 +1111,7 @@ str(monitoring)
 
 #### `r exercise("data.frame", "df1")` 
 
-Stellen Sie sich vor, Sie machen eine kleine Umfrage, in der Sie fünf Menschen nach ihrem Studienfach, Semester und Alter befragen. Erstellen Sie ein `data.frame` mit dem Namen `umfrage1` für diese Informationen und fragen Sie entweder fünf Mitstudierende oder erfinden Sie die Daten einfach. 
+Stellen Sie sich vor, Sie machen eine kleine Umfrage, in der Sie fünf Menschen nach ihrem Studienfach, Semester und Alter befragen. Erstellen Sie einen `data.frame` mit dem Namen `umfrage1` für diese Informationen und fragen Sie entweder fünf Mitstudierende oder erfinden Sie die Daten einfach. 
 
 
 ```{r, include = params$inc_sol}
@@ -1119,15 +1128,15 @@ umfrage1
 
 ## Zugreifen auf Elemente eines `data.frame`
 
-Für `data.frame`s gilt genau das gleiche Prinzip. Nur dass wir jetzt zwei Dimensionen berücksichtigen müssen: nämlich die Zeilen und Spalten. Wir können immer noch mit eckigen Klammern (`[]`) auf Elemente innerhalb eines `data.frame`s zugreifen, müssen aber jetzt die *Zeile(n)* und die *Spalte(n)* angeben, die wir haben möchten. Die Schreibweise ist immer `[Zeile(n), Spalte(n)]`. Für Zeilen und Spalten gelten genau die gleichen Regeln wie für Vektoren. Wir können entweder einen Vektor mit den Positionen für die gewünschten Zeilen und Spalten angeben oder einen logischen Vektor, der besagt welche Zeilen und Spalten wir zurückhaben möchten.
+Für `data.frame`s gilt genau das gleiche Prinzip. Nur dass wir jetzt zwei Dimensionen berücksichtigen müssen: nämlich die Zeilen und die Spalten. Wir können immer noch mit eckigen Klammern (`[]`) auf Elemente innerhalb eines `data.frame`s zugreifen, müssen aber jetzt die *Zeile(n)* und die *Spalte(n)* angeben, die wir haben möchten. Die Schreibweise ist immer `[Zeile(n), Spalte(n)]`. Für Zeilen und Spalten gelten genau die gleichen Regeln wie für Vektoren. Wir können entweder einen Vektor mit den Positionen für die gewünschten Zeilen und Spalten angeben oder einen logischen Vektor, der besagt welche Zeilen und Spalten wir zurückhaben möchten.
 
-Wenn wir z.B. die Anzahl Rehfotos von der vierten Fotofalle abfragen möchten, könnte man das so machen.
+Wenn wir z. B. die Anzahl Rehfotos von der vierten Fotofalle abfragen möchten, könnte man das so machen.
 
 ```{r}
 monitoring[4, 2]
 ```
 
-Alternativ, kann man den Spaltennamen auch einfach Ausschreiben.
+Alternativ, kann man den Spaltennamen auch einfach Ausschreiben. Dies hat beim Programmieren den Vorteil, dass der Code lauffähig bleibt, falls sich die Reihenfolge der Spalten in der Datengrundlage ändert. Nachteil ist entsprechend, dass der Code nicht mehr läuft, falls die Variablennamen sich ändern.
 
 ```{r}
 monitoring[4, "anzahl_rehe"]
@@ -1136,19 +1145,19 @@ monitoring[4, "anzahl_rehe"]
 Wenn wir die Anzahl fotografierter Rehe von den ersten fünf Fotofallen abfragen möchten, dann müssen wir für die Zeilen einen Vektor mit den Zahlen 1 bis 5 übergeben, für die Spalten ändert sich nichts.
 
 ```{r}
-monitoring[1:5, "anzahl_rehe"]
+monitoring[1 : 5, "anzahl_rehe"]
 ```
 
 Wenn wir nun nicht nur die Anzahl fotografierter Rehe zurückhaben möchten, sondern auch noch das Revier für die ersten fünf Fotofallen, dann müssen wir für die Spalten lediglich das Revier hinzufügen.
 
 ```{r}
-monitoring[1:5, c("anzahl_rehe", "revier")]
+monitoring[1 : 5, c("anzahl_rehe", "revier")]
 ```
 
 Wenn wir alle Spalten und/oder Zeilen eines `data.frame`s abfragen möchten, dann kann man diese Position einfach frei lassen. Eine Abfrage für die ersten fünf Spalten aller Fotofallen würde so aussehen.
 
 ```{r}
-monitoring[1:5, ]
+monitoring[1 : 5, ]
 ```
 
 #### `r exercise("Abfragen von Werten", "df2")`
@@ -1180,7 +1189,7 @@ umfrage1[c(1, 3, 4), ]
 
 ----
 
-Mit dem `$`-Zeichen kann bei `data.frame`s direkt auf Spalten zugegriffen werden. Wenn wir z.B. für alle Fotofallen die Anzahl gesehener Rehe abfragen möchten, gibt es jetzt drei Möglichkeiten:
+Mit dem `$`-Zeichen kann bei `data.frame`s direkt auf Spalten zugegriffen werden. Wenn wir z. B. für alle Fotofallen die Anzahl gesehener Rehe abfragen möchten, gibt es jetzt drei Möglichkeiten:
 
 1. über das `$`-Zeichen direkt die Spalten ansprechen.
 
@@ -1189,7 +1198,7 @@ monitoring$anzahl_rehe
 ```
 
 
-2. Einfach die Positionen für die Zeilen leer lassen und die Spalte abfragen.
+2. Die Positionen für die Zeilen leer lassen und die Spalte abfragen.
 
 ```{r}
 monitoring[, "anzahl_rehe"]
@@ -1198,13 +1207,12 @@ monitoring[, "anzahl_rehe"]
 3. Alle Zeilen und die Spalte explizit angeben.
 
 ```{r}
-monitoring[1:nrow(monitoring), "anzahl_rehe"]
+monitoring[1 : nrow(monitoring), "anzahl_rehe"]
 ```
 
 Anmerkung zu 3), der Ausdruck `1:nrow(monitoring)` ergibt einen Vektor mit den Zahlen 1 bis 15, da `nrow(monitoring) = 15` ist. So eine Schreibweise ist zu empfehlen, wenn die Dimension des Vektors variabel ist.
 
-
-Schlussendlich kann man einen `data.frame` auch mit logischen Vektoren abfragen. Ein Beispiel wäre, wenn wir alle Fotofallen abfragen möchten, die mehr als 100 Rehfotos gemacht haben. Der erste Schritt wäre abzufragen, ob eine Fotofalle mehr als 100 Rehfotos gemacht hat.
+Schlussendlich kann man einen `data.frame` gernauso mit logischen Vektoren abfragen, wie mit Vektoren. Ein Beispiel wäre, wenn wir alle Fotofallen abfragen möchten, die mehr als 100 Rehfotos gemacht haben. Der erste Schritt wäre abzufragen, ob eine Fotofalle mehr als 100 Rehfotos gemacht hat.
 
 ```{r}
 monitoring$anzahl_rehe > 100
@@ -1234,18 +1242,17 @@ umfrage1[umfrage1$alter >= 22, c("fach", "semester")]
 ```
 
 
-
 \newpage
 
 # Schreiben und lesen von Daten
 
 ## Textdateien
 
-Bis jetzt haben wir Daten immer in R erstellt, dies ist eine eher unnatürliche Situation. In den meisten Fällen bekommen Sie Daten von Dritten, Sensoren oder sonstigen Quellen. Diese Daten müssen dann in R eingelesen werden. Daten liegen meist in einer tabellarischen Form und als Textdatei vor^[Natürlich gibt es viele weitere Formate wie Daten vorliegen können, diese werden aber an dieser Stelle nicht weiter behandelt. Es sei lediglich auf das Paket `readxl` verwiesen, falls Sie Daten von MS Excel direkt in R einlesen möchten.]. 
+Bis jetzt haben wir Daten immer in R erstellt, dies ist eine eher unnatürliche Situation. In den meisten Fällen bekommen Sie Daten aus Felderhebungen, Sensoren oder sonstigen Quellen. Diese Daten müssen dann in R eingelesen werden. Daten liegen meist in einer tabellarischen Form und als Textdatei vor^[Natürlich gibt es viele weitere Formate wie Daten vorliegen können, diese werden aber an dieser Stelle nicht weiter behandelt. Es sei lediglich auf das Paket `readxl` verwiesen, falls Sie Daten von MS Excel direkt in R einlesen möchten.]. 
 
 Die Funktion `read.table` erlaubt es eine Textdatei in R einzulesen. Dabei sind fürs Erste drei Argumente wichtig: 
 
-- `file`: Der Pfad zur Datei die eingelesen werden soll. Dieser kann *absolut* oder *relativ* sein. Ein absoluter Pfad gibt den Ort der Datei, die gelesen werden soll, komplett an (auf einem Windows Rechner wäre das wahrscheinlich `C:/Users/....`). Im Gegensatz dazu gibt ein relativer Pfad den Ort an, an dem die Datei, die eingelesen werden soll, relativ zum aktuellen Arbeitsverzeichnis (auch working directory) von R an. Man kann das Arbeitsverzeichnis von R mit der Funktion `setwd()` setzen, es hat sich jedoch als sinnvoller erwiesen mit RStudio-Projekten zu arbeiten (mehr dazu im nächsten Abschnitt).
+- `file`: Der Pfad zur Datei die eingelesen werden soll. Dieser kann *absolut* oder *relativ* sein. Ein absoluter Pfad gibt den Ort der Datei, die gelesen werden soll, komplett an (auf einem Windows Rechner wäre das wahrscheinlich `C:/Users/...`). Im Gegensatz dazu gibt ein relativer Pfad den Ort an, an dem die Datei, die eingelesen werden soll, relativ zum aktuellen Arbeitsverzeichnis (working directory) von R an. Man kann das Arbeitsverzeichnis von R mit der Funktion `setwd()` setzen, es hat sich jedoch als sinnvoller erwiesen mit R Studio-Projekten zu arbeiten (mehr dazu im nächsten Abschnitt).
 - `header`: Dieses Argument gibt an, ob die erste Zeile eine Kopfzeile mit den Spaltenüberschriften ist. Meist haben wir eine Kopfzeile, dann wäre `header = TRUE` richtig.
 - `sep`: Das Trennzeichen zwischen verschiedenen Spalten. Es ist meist ein Leerzeichen (` `), Komma (`,`) oder Strichpunkt (`;`).
 
@@ -1254,14 +1261,14 @@ dir.create("data", showWarnings = FALSE)
 write.csv(monitoring, "data/fotofallen.csv", row.names = FALSE)
 ```
 
-Die Datei `fotofallen.csv` finden Sie auf StudIP und kann einfach heruntergeladen werden. Die Datei kann mit dem folgenden Befehl in R eingelesen werden. Hier wurde die Datei in einem RStudio-Projekt in ein Verzeichnis `data` abgelegt.
+Die Datei `fotofallen.csv` finden Sie auf StudIP und kann einfach heruntergeladen werden. Sie können sich die Datei mit jedem Texteditor oder auch mit Excel oder Libre Office ansehen. Die Datei kann mit dem folgenden Befehl in R eingelesen werden. Hier wurde die Datei in einem R Studio-Projekt in ein Unterverzeichnis `data` abgelegt.
 
 ```{r}
 dat <- read.table("data/fotofallen.csv", header = TRUE, sep = ",")
 head(dat)
 ```
 
-Es gibt viele Varianten der Funktion `read.table()`. Beispielsweise hat die Funktion `read.csv()` bereits die Argumente `sep = ','` und `header = TRUE` gesetzt. Die Funktion `read.csv2()` hat das Argument `sep = ';'` gesetzt. Siehe dazu auch die Hilfeseite von `read.table()`. Diese kann entweder mit `?read.table` oder `help("read.table")` aufgerufen werden.
+Es gibt viele Varianten der Funktion `read.table()`. Beispielsweise hat die Funktion `read.csv()` bereits die Argumente `sep = ','` und `header = TRUE` gesetzt. Die Funktion `read.csv2()` hat das Argument `sep = ';'` gesetzt. Sie müssen natürlich darauf achten, dass sie die csv Dateien mit den gleichen Spezifikationen einlesen, mit denen sie gespeichert wurde. Siehe dazu auch die Hilfeseite von `read.table()`.
 
 Mit der Funktion `write.table()` kann ein `data.frame` auf die Festplatte geschrieben werden.
 
@@ -1287,27 +1294,23 @@ read.table("data/kompliziert.txt", sep = "+", dec = ",",
 ```
 
 
-
-
 \newpage
 
 # Erstellen von Abbildungen
 
 Abbildungen sind ein elemantarer Baustein statistischer Analysen und
-deshalb von Beginn an Teil von R. 
-Es gibt unterschiedliche Systeme einen Plot zu erstellen.
-In diesem Krus werden wir kurz *Base Plots* vorstellen und dann das Zusatzpaket `ggplot2` vorstellen.
+deshalb von Beginn an Teil von R. **R is a free software environment for statistical computing and graphics.** Es gibt unterschiedliche Systeme einen Plot zu erstellen. In diesem Kurs werden wir kurz *Base Plots* vorstellen und dann das Zusatzpaket `ggplot2` vorstellen.
 
 ## Base Plot
 
-Die wichtigsten Grafiken für die einfache Datendarstellung sind schnell verfügbar.
-Etwas komplexere oder spezielle Grafiken erfordern mehr Programmieraufwand (folgt teilweise noch).
-Stellen sie sich die einfache Grafik Schnittstelle als zweidimensionale Leinwand vor, auf die Sie durch Code Ebene für Ebene Grafikelemente zeichnen:
+Die wichtigsten Grafiken für die einfache Datendarstellung sind schnell verfügbar. Etwas komplexere oder spezielle Grafiken erfordern mehr Programmieraufwand (folgt teilweise noch). Für viele komplexere Diagramme existieren bereits Codebeispiele oder Pakete. Es lohnt sich z. B. einen Blick in die R Graph Gallery (https://r-graph-gallery.com/index.html) zu werfen, bevor Sie beginnen komplexe Abbildungen zu erstellen. Stellen sie sich die einfache Grafik Schnittstelle (`base plots`) als zweidimensionale Leinwand vor, auf die Sie durch Code Ebene für Ebene Grafikelemente legen:
 
 (ref:baseplots1) Beispiel einer leeren Grafikschnittstelle.
 
 ```{r, echo = FALSE, out.width = "10cm", fig.height=5, fig.width=5,  fig.align="center", fig.cap="(ref:baseplots1)"}
-plot(x = 1, y = 1, xlab = "x Achse", ylab = "y Achse", type = "n", ylim = c(0, 10), xlim = c(0, 10))
+plot(x = 1, y = 1, 
+     xlab = "x Achse", ylab = "y Achse", 
+     type = "n", ylim = c(0, 10), xlim = c(0, 10))
 ```
 
 Hier drei einfache Bespiele für Abbildungen mit nur einer Ebene.
@@ -1348,7 +1351,7 @@ plot(dat$alter, dat$bhd)
 ----
 
 
-Sie können entweder eine Grafik mit einem Befehl erzeugen (High-Level) oder die einzelnen Ebenen nacheinander erzeugen (Low-Level). Sie können jeder Ebenen durch zusätzliche Befehle innerhalb des Funktionsaufrufs Elemente hinzufügen und Einstellungen ändern.  Die wichtigsten sind:
+Sie können entweder eine Grafik mit einem Befehl erzeugen (High-Level) oder die einzelnen Ebenen nacheinander erzeugen (Low-Level). Sie können jeder Ebenen durch zusätzliche Befehle innerhalb des Funktionsaufrufs Elemente hinzufügen. Mit jeder neuen Ebene können Sie die vorigen Ebenen jedoch nicht mehr verändern. Die wichtigsten Argumente der plot Funktion sind:
 
 -   `type` - Diagrammtyp
 -   `col` - Farbe
@@ -1368,7 +1371,13 @@ Befehle. Einige Argumente können als Vektor übergeben werden. Hier z. B.
 die Farben und die Punktsymbole.
 
 ```{r, fig.height = 5, fig.width=5}
-plot(1:20, 1:20, pch = c(1 : 20), col = c(1 : 20), ann = FALSE)
+dat <- data.frame(
+  x = c(0,   1,   2,   2, 3, 5, 6, 7),
+  y = c(0, 0.5, 1.8, 0.3, 4, 4, 2, 2.2),
+  col = rep(c(1, 2), 4)
+)
+
+plot(x = dat$x, y = dat$y, col = dat$col, pch = dat$col, xlab = "x", ylab = "y")
 ```
 
 #### `r exercise("Anpassen von Plots", "bp2")`
@@ -1381,6 +1390,7 @@ Verwenden Sie den Datensatz aus Übung `r ex_2_no("bp1")` und passen Sie die Abb
 - Stellen Sie die Symbole in rot dar.
 
 ```{r, include = params$inc_sol}
+dat <- read.table("data/bhd_1.txt", header = TRUE)
 plot(dat$alter, dat$bhd, xlab = "Alter", ylab = "BHD", pch = 20, col = "red")
 ```
 
@@ -1393,6 +1403,7 @@ Elemente hinzugefügt werden. Die wichtigsten Funktionen sind
 -   `points()` - Fügt Punkte ein
 -   `lines()` - Fügt Linien ein
 -   `text()` - Fügt Text ein
+-   `mtext` - Fügt Text in den Rahmen (`margin`) ein
 -   `legend()` - Fügt eine Legende ein
 -   `abline()` - Fügt eine Gerade ein
 -   `curve()` - Fügt eine mathematische Funktion ein
@@ -1404,6 +1415,22 @@ Dabei ist der Aufbau zunächst grundsätzlich wie in Abbildung
 ist, dass die einzelnen Level mehr Funktionen bieten als die High-Level
 Funktion und, dass Sie sich die Reihenfolge der Ebenen definieren
 können.
+
+Legenden können im base plot nur als Low-Level Funktion hinzugefügt werden. Mit der Funktion `legend` werden die Einträge und die entsprechenden Punktsymbole oder Linientypen dargestellt. In der folgenden Abbildung wird eine Legende in der linken oberen Ecke eingefügt.
+
+```{r}
+dat <- data.frame(
+  x = c(0,   1,   2,   2, 3, 5, 6, 7),
+  y = c(0, 0.5, 1.8, 0.3, 4, 4, 2, 2.2),
+  col = rep(c(1, 2), 4)
+)
+
+plot(x = dat$x, y = dat$y, col = dat$col, pch = dat$col, xlab = "x", ylab = "y")
+legend(x = "topleft", inset = 0.05, legend = c("black", "red"),
+       col = c(1, 2), pch = c(1, 2))
+mtext(side = 3, line = 1, "Some text in the margin")
+```
+
 
 (ref:figmargins) Grafikregionen eines base plots in R.
 
@@ -1436,15 +1463,17 @@ par(mfrow = c(1, 3))
 Teilt den Plot in eine Zeile und drei Zeilen (= drei Plots nebeneinander). 
 
 ```{r, fig.show="hold", echo = -1}
+dat <- read.table("data/bhd_1.txt", header = TRUE)
+
 par(mfrow = c(1, 3))
 # Erstes Panel
-plot(bhd ~ alter, xlab = "Alter", ylab = "BHD", pch = 20, col = "red", 
+plot(bhd ~ alter, xlab = "Alter", ylab = "BHD", pch = 20, col = "red",
      data = dat[dat$gebiet == "A", ], main = "Gebiet A")
 # Zweites Panel
-plot(bhd ~ alter, xlab = "Alter", ylab = "BHD", pch = 20, col = "red", 
+plot(bhd ~ alter, xlab = "Alter", ylab = "BHD", pch = 20, col = "red",
      data = dat[dat$gebiet == "B", ], main = "Gebiet B")
 # Drittes Panel
-plot(bhd ~ alter, xlab = "Alter", ylab = "BHD", pch = 20, col = "red", 
+plot(bhd ~ alter, xlab = "Alter", ylab = "BHD", pch = 20, col = "red",
      data = dat[dat$gebiet == "C", ], main = "Gebiet C")
 ```
 
@@ -1454,7 +1483,7 @@ Vergessen Sie nicht am Ende nochmals `par(mfrow = c(1, 1))` zu setzten, damit wi
 ### Speichern von Abbildungen
 
 Wenn nicht anders angegeben, wird die Abbildung zunächst nur in der
-RStudio Grafik Schnittstelle abgebildet (rechts unten). Von dort aus
+RStudio Grafik Schnittstelle abgebildet (Pane 4). Von dort aus
 kann die Abbildung exportiert werden. Es bietet sich jedoch an das
 Speichern der Abbildung direkt im Code zu programmieren. Mögliche
 Formate die Abbildung als Vektorgrafik zu speichern sind
@@ -1483,7 +1512,7 @@ axis(side = 2, line = 1, las = 2)       # Sehen Sie selbst in der Hilfe was las 
 dev.off()                               # Schnittstelle schließen
 ```
 
-*Achtung*, wenn Sie die Funktion `dev.off()` nicht aufrufen, werden alle nachfolgenden Plots in die gleiche Datei geschrieben. Falls Sie nach einem Versuch einen Plot zu speichern plötzlich keine weiteren Plots mehr sehen, führen Sie einige Mal die Funktion `dev.off()` aus. 
+*Achtung*, wenn Sie die Funktion `dev.off()` nicht aufrufen, werden alle nachfolgenden Plots in die gleiche Datei geschrieben. Falls Sie nach einem Versuch einen Plot zu speichern plötzlich keine weiteren Plots mehr sehen, führen Sie einige Mal die Funktion `dev.off()` aus.
 
 ## Histogramme
 
@@ -1492,7 +1521,8 @@ Diagramm) sind *Histogramme* in der angewandten Datananalyse ein
 weiterer wichtiger Abbildungstyp. An Histogrammen wird die Häufigkeit
 von Beobachtungen nach Gruppen dargestellt. Sie sind deshalb so wichtig,
 weil man aus ihnen relevante Informationen über die Verteilung der Daten
-ablesen kann. So werden auf einen Blick der Zusammenhang von
+ablesen kann und somit einiges über die Messungen erfährt, das für die 
+weitere Datenanalyse relevant sein kann. So werden auf einen Blick der Zusammenhang von
 Beobachtungshäufigkeit und Streuung deutlich, sowie auch die Form der
 Verteilung und ihre Schiefe. Die Interpretation werden wir bei den
 Boxlots noch weiter vertiefen.
@@ -1527,9 +1557,9 @@ par(mfrow = c(1, 1)) # Alte Grafikeinstellungen wiederherstellen
 ## Boxplots
 
 Oft möchte man die Verteilung einer stetigen Variablen in Abhängigkeit
-einer diskreten Variable beschreiben oder Visualisieren. Ein Beispiel
-dafür wäre die BHD-Verteilung für unterschiedliche Baumarten. Eine
-häufige Darstellungsform für solche Daten sind *Boxplots*.
+einer diskreten Variable beschreiben oder visualisieren. Ein Beispiel
+dafür wäre die BHD-Verteilung in Abhängigkei der Baumarten. Eine
+häufige Darstellungsform für solche Daten sind *Boxplots*. Sie stellen die durchschnittliche Ausptägung einer stetigen Variable und ihre Schwankung kompakt dar.
 
 Boxplots bestehen aus drei Komponenten:
 
@@ -1539,8 +1569,8 @@ Boxplots bestehen aus drei Komponenten:
     horizontale Linie) unterteilt.
 2.  Einzelne Punkte Ausreißer. Als Ausreißer werden Punkte bezeichnet,
     die $>1.5 IQR$ vom unteren oder oberen Ende der Box entfernt sind.
-3.  Eine senkrechte Linie von jeder Seite der Box bis zum letzen
-    "Nicht-Ausreißer-Punkt". Diese Linie wird auch oft als *Whisker*
+3.  Eine senkrechte Linie von jeder Seite der Box bis zum letzten
+    "Nicht-Ausreißer-Punkt". Also der letzte Punkt, der $>1.5 IQR$ aber nicht $> 0.75$ bzw. $< 0.25$ Percentil ist. Diese Linie wird auch als *Whisker*
     bezeichnet.
 
 (ref:figboxplot) Schematische Darstellung eines Boxplots (Quelle: Von
@@ -1567,7 +1597,7 @@ boxplot(iris$Sepal.Length ~ iris$Species)
 ```
 
 Etwas eleganter ist es wenn wir das Argument `data` verwenden und den
-Plot etwas anpassen.
+Plot etwas anpassen. Diese SChreibweise funktioniert für alle base plots.
 
 ```{r}
 boxplot(
@@ -1604,13 +1634,12 @@ par(mrfow = c(1, 1))
 ## `ggplot2`: Eine Alternative für Abbildungen
 
 `ggplot2` ist ein alternatives Plotting-System in *R*. Sie können mit
-`ggplot2` also grundsätzlich Abbildungen mit dem selben Inhalt erstellen
+`ggplot2` also grundsätzlich Abbildungen mit dem selben Inhalt erstellen,
 wie mit Base Plots.
 Die Syntax und die optische Darstellung unterscheiden sich jedoch grundsätzlich. 
 `ggplot2` basiert auf den *grammar of graphics* von Leland Wilkinson.
 Die Idee ist, alle nötigen Informationen der Abbildung miteinander zu verknüpfen. 
-`ggplot2` ist also diametral zu Base Plots. 
-Mit diesen gebündelten Informationen kann `ggplot2` die Abbildung automatisch verschönern. So werden bspw. die Legenden automatisch erzeugt und auch die Formatierungen automatisch an die Datenlage angepasst. `ggplot2` nimmt der`*`dem Entwickler`*`in also Arbeit ab.
+`ggplot2` ist also diametral zu Base Plots. Während Sie in base plot alle Elemente selbst definieren, ist die Idee von `ggplot2`, dass Sie nur die Daten und den Diagrammtypen übergeben und die Funktion selbst eine schöne Abbildung erstellt. Selbtverständlich können Sie aber auch in `ggplot2` viele Einstellungen vornehmen. Im base plot sehen Abbildungen zunächst sehr karg und etwas unfertig aus. Sie müssen viele Einstellungen vornehmen, um eine publizierfähige Grafik zu produzieren. In `ggplot2` sollen auch die einfachste Abbildungen schon ästhetisch sein. Mit diesen gebündelten Informationen kann `ggplot2` die Abbildung automatisch verschönern. So werden bspw. die Legenden automatisch erzeugt und auch die Formatierungen automatisch an die Datenlage angepasst. `ggplot2` nimmt der`*`dem Entwickler`*`in also Arbeit ab.
 Dadurch sind die Abbildungen schon ohne viel Nacharbeit schick. Nachteil ist, dass der`*`dem Entwickler`*`in weniger Möglichkeiten zur Einstellung zur Verfügung stehen und nuterspezifische Sonderwünsche somit schwerer
 umsetzbar sind.
 Sehen Sie sich das *Cheatsheet* zu `ggplot2` an. Es ist in RStudio unter \menu{Help > Cheatsheets} zu finden.
@@ -1618,14 +1647,13 @@ Sehen Sie sich das *Cheatsheet* zu `ggplot2` an. Es ist in RStudio unter \menu{H
 Bei `ggplot2` sind Anweisungen zu den Daten und Anweisungen zur
 Darstellung voneinander getrennt. Die Daten werden in den Ästhetikbefehl
 übergeben und dort klassifiziert. Dann folgen die
-Darstellungsanweisungen. Ähnlich wie bei Base Plots werden die
+Darstellungsanweisungen. Ähnlich wie bei Base Plots, werden die
 Grafikelemente ebenenweise nacheinander programmiert, jedoch mit einem
 `+` verbunden. Und hier liegt der wesentliche Unterschied zu Base Plots.
 Durch die `+` werden die Ebenen zu einem Befehl verbunden und damit
 gleichzeitig erstellt.
 
-Die Erweiterung wird zunächst geladen^[Wir haben bis jetzt immer nur mit *base* R gearbeitet. D.h. wir haben nur Funktionen verwendet, die R bereits zur Verfügung stellt. Eine der großen Stärken von R sind die Erweiterungen (oder auch Pakete genannt). `ggplot2` ist so eine Erweiterung, die einmal mit `install.packages("ggplot2")` installiert werden muss. Danach muss man das Paket am Anfang jeder Session mit `library(ggplot2)` laden, damit die Funktionen aus dem Paket zur Verfügung stehen.]. Falls nicht schon geschehen, muss
-sie vorher installiert werden. Wir laden außerdem den Datensatz
+Die Erweiterung wird zunächst geladen^[Wir haben bis jetzt immer nur mit *base* R gearbeitet. D.h. wir haben nur Funktionen verwendet, die R bereits zur Verfügung stellt. Eine der großen Stärken von R sind die Erweiterungen (oder auch Pakete genannt). `ggplot2` ist so eine Erweiterung, die einmal mit `install.packages("ggplot2")` installiert werden muss. Danach muss man das Paket am Anfang jeder Session mit `library(ggplot2)` laden (am besten, Sie laden alle Bibiotheken ganz oben in ihrem Code), damit die Funktionen aus dem Paket zur Verfügung stehen.]. Wir laden außerdem den Datensatz
 `iris`. Der Datensatz ist in R fest integriert. Siehe `?iris` für
 mehr Informationen.
 
@@ -1690,7 +1718,7 @@ ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, col = Species)) +
    geom_point()
 ```
 
-Somit bekommt jede Irisart eine eigene Farbe^[Natürlich könnte man auch die Farbe anpassen.]. Gleichermaßen können wir die Punktart (`shape`), die Punktgröße (`size`) etc. anpassen.
+Somit bekommt jede Irisart eine eigene Farbe^[Natürlich könnte man auch die Farbe anpassen.]. Gleichermaßen können wir die Punktart (`shape`), die Punktgröße (`size`) etc. anpassen. Die Legende wird automatisch an diese Farbe und Symbole angepasst.
 
 ```{r}
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, 
@@ -1756,14 +1784,17 @@ Wir können jetzt mit `p1` weiter arbeiten und beispielsweise eine Beschriftung 
 p1 + labs(x = "Kelchblattbreite [mm]", y = "Kelchblattlänge [mm]")
 ```
 
-Oder auch den ganzen Plot anpassen. Dafür gibt es *themes*. Es gibt eine Reihe von vorgefertigten *themes* oder man kann diese auch selber erstellen (das ist aber nicht Teil dieses Kurses). 
+Oder auch den ganzen Plot anpassen. Dafür gibt es *themes*. Es gibt eine Reihe von vorgefertigten *themes* oder man kann diese auch selber erstellen (das ist aber nicht Teil dieses Kurses).
 
 ```{r}
 p1 + theme_light()
 ```
 
-Weitere *themes* sind: `theme_bw()`, `theme_linedraw()` oder `theme_dark()`. Es gibt extra Pakete die viele zusätzliche weitere *themes* an bieten. Dazu gehört z.B. das Paket [`ggthemes`](https://cran.r-project.org/web/packages/ggthemes/index.html).
+Weitere *themes* sind: `theme_bw()`, `theme_linedraw()` oder `theme_dark()`. Es gibt extra Pakete die viele zusätzliche weitere *themes* anbieten. Dazu gehört z.B. das Paket [`ggthemes`](https://cran.r-project.org/web/packages/ggthemes/index.html) oder [`ThemePark`](https://github.com/MatthewBJane/ThemePark). Während `ggthemes` hauptsächlich durchdachte Grafikkonzepte liefert, sind die Themes aus `ThemePark` eher Popkultur und nicht 100 \%ig ernst gemeint.
 
+```{r}
+p1 + ThemePark::theme_gameofthrones()
+```
 
 ### Multipanel Abbildungen
 
@@ -1771,10 +1802,15 @@ Mit `ggplot2` kann man einfach Abbildungen erstellen, die mehre Panels haben. Da
 
 ```{r}
 ggplot(iris, aes(Sepal.Length)) + geom_histogram() +
-   facet_grid(~ Species)
+   facet_grid(~ Species) 
 ```
 
-Die Funktion `facet_grid()` erzeugt einen *Grid*, während `facet_wrap()` für jedes Panel eine eigene Überschrift erzeugt. 
+Die Funktion `facet_grid()` erzeugt einen *Grid* und beschriftet die Grid-Zeilen und -Spalten, während `facet_wrap()` für jedes Panel (Diagramm) eine eigene Überschrift erzeugt. Beim Arrangieren der Diagramme wird der Vorteil von `ggplot2` gegenüber base plot besonders deutlich. Während es im base plot System mühsam ist, die Abbildungen zu arrangieren, über nimmt `ggplot2` das Arrangement automatisch und fügt sogar eine automatisch Legende hinzu. Die Achsenabschnitte werden so angepasst, dass die Daten vergleichbar sind.
+
+```{r, fig.width=6.5}
+ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, color = Species)) + geom_point() +
+   facet_grid(~ Species) + geom_smooth(method = "lm")
+```
 
 #### `r exercise("Multipanel Abbildungen")`
 
@@ -1791,7 +1827,7 @@ p1 + facet_grid(art ~ gebiet)
 
 ### Plots kombinieren
 
-Es gibt Situationen in denen **unterschiedliche** Plots miteinander kombiniert werden müssen. Im vorherigen Abschnitt wurde dies immer anhand einer gruppierenden Kovariate gemacht. Aber es gibt auch Situationen, in denen das nicht möglich ist. Beispielsweise wenn ein Histogramm und ein Scatterplot vom gleichen Datensatz zusammengefasst werden sollen. Dafür bietet sich das Paket `patchwork` an^[Auch dieses Paket müssen Sie einmalig mit `install.packages("patchwork")` installieren.].
+Es gibt Situationen, in denen **unterschiedliche** Plots miteinander kombiniert werden müssen. Im vorherigen Abschnitt wurde dies immer anhand einer gruppierenden Kovariate gemacht. Aber es gibt auch Situationen, in denen das nicht möglich ist. Beispielsweise wenn ein Histogramm und ein Scatterplot vom gleichen Datensatz zusammengefasst werden sollen. Dafür bietet sich das Paket `patchwork` an^[Auch dieses Paket müssen Sie einmalig mit `install.packages("patchwork")` installieren.].
 
 Als erstes können wir zwei (oder natürlich auch mehrere Plots) erstellen. Hier unterscheiden sich die Plots lediglich durch das Aussehen. 
 
@@ -1844,7 +1880,8 @@ library(patchwork)
 Sie können mit `ggsave()` eine zwischen-gespeicherte Abbildung
 exportieren, indem Sie den Variablennamen übergeben. Wenn Sie keine
 Variable übergeben, wird automatisch die letzte Abbildung gespeichert. Das
-Dateiformat wird aus dem Dateinamen übernommen.
+Dateiformat wird aus dem Dateinamen übernommen. Die größe der Inhalte können Sie sehr leicht
+mit den Argumenten `width` und `height` oder `scale` gesteuert werden.
 
 ```{r, eval=FALSE}
 ggsave("letzteAbb.png")
@@ -1858,7 +1895,7 @@ ggsave(p1, "zwischengespeicherteAbb.png")
 
 ## `dplyr` eine Einführung
 
-`dpylr` ist ein eine Erweiterung von R (= Paket), die das Ziel hat den Umgang mit Daten einfacher und schneller zu machen.
+`dpylr` ist ein eine Erweiterung von R (ein Paket), die das Ziel hat, den Umgang mit Daten einfacher und schneller zu machen.
 
 `dplyr` definiert 5 Verben, um mit Daten zu arbeiten. Diese sind:
 
@@ -1877,7 +1914,7 @@ dat <- data.frame(id = 1:5,
 ```
 
 Damit die Funktionen aus `dplyr` verwendet werden können, müssen wir als
-erstes das Paket `dplyr` laden.
+erstes das Paket `dplyr` laden. The online Resource [`R for Data Science`](https://r4ds.hadley.nz/) gibt einen sehr guten, tieferen Eindruck in die Arbeit mit `dplyr` und erklärt auch die `dplyr` Philosophie noch Mal sehr genau für Beginner.
 
 ```{r}
 library(dplyr)
@@ -2034,13 +2071,13 @@ mean(na.omit(a))
 Mit *Pipes*, die durch das Symbol `%>%` dargestellt werden^[In RStudio kann `%>%` mit der Tastenkombination `Strg + Umschalt + m` (\keys{Strg + \shift + m}) eingefügt werden.], können wir das etwas vereinfachen und nacheinander schreiben:
 
 ```{r}
-na.omit(a) %>% mean
+na.omit(a) %>% mean()
 ```
 
 Oder sogar
 
 ```{r}
-a %>% na.omit %>% mean
+a %>% na.omit() %>% mean()
 ```
 
 #### `r exercise("Pipes \u0060%>%\u0060")`
@@ -2146,19 +2183,21 @@ dat %>% group_by(gebiet) %>% summarise(n = n(), bhd = mean(bhd)) %>% head()
 
 ## 'long' and 'wide' Datenformate
 
-@Wickham2014 propagiert das Prinzip von *tidy* Data. Nach
+Unter anderem @Wickham2014 empfielt das Prinzip von *tidy* Data. Nach
 diesem Prinzip sollten Daten wie folgt organisiert sein:
 
--   Jede Zeile ist ein Merkmalsträger/Subjekt/Objekt (z.B. eine Person,
+-   Jede Zeile ist ein Merkmalsträger/Subjekt/Objekt (z. B. eine Person oder
     ein Baum).
--   Jede Spalte ist eine Variable (=Merkmal) die den Merkmalsträger
+-   Jede Spalte ist eine Variable (ein Merkmal), die den Merkmalsträger
     beschreibt.
--   Jede Zelle ist genau ein Wert (=Mermalausprägung), nämlich der Wert,
+-   In jeder Zelle ist genau ein Wert (Mermalausprägung), nämlich der Wert,
     der Variable für den Merkmalsträger.
 
 Zum Beispiel enthalten Spaltennamen oft Informationen, die eigentlich in
 einer Variable gespeichert werden sollten. Folgendes Beispiel gibt die
-BHD Messung von 3 Bäumen in 3 Jahren wieder.
+BHD Messung von 3 Bäumen in 3 Jahren wieder. Der Vorteil von *tidy* Daten ist, dass viele
+Funktionen diese Form der Datenoganisation erwarten. Somit müssen sie Ihre Daten nur ein Mal
+organisieren und können fast alle Analysen durchführen
 
 ```{r}
 dat <- tibble(
@@ -2169,16 +2208,18 @@ dat <- tibble(
 )
 ```
 
-Diese Daten sind jetzt im `wide`-Format gespeichert und nicht optimal, weil Information über die Daten (nämlich das Jahr der Aufnahme in den Spaltennamen gespeichert sind).
+Der `tibble` aus dem Paket `tibble` ist ein moderner Data Frame, der sich in seinen Funktionen in das `tidy` Universum einfügt. Wir können auch einfach das Paket `tidyverse` laden, um alle Pakete, die Teil des `tidy` Universums sind gleichzeitig zu laden. Der `tibble` beinhaltet alle Funktionen, die der Data Frame auch beinhaltet und kann auch für genau die gleichen Zwecke verwendet werden. Der `tibble` hat u. A. eine modernere Darstellung im Konsolenoutput.
+
+Diese Daten sind jetzt im `wide`-Format gespeichert und nicht *tidy*, weil Information über die Daten (nämlich das Jahr der Aufnahme in den Spaltennamen gespeichert sind).
 Besser wäre eine Struktur mit nur drei Spalten: `id`, `jahr` und `bhd`. Um die Daten in so eine Struktur zu bringen, gibt es die Funktion `pivot_longer()` aus dem Paket `tidyr`.
 
 ```{r}
 library(tidyr)
-dat1 <- pivot_longer(dat, cols = bhd2015:bhd2017)
+dat1 <- pivot_longer(dat, cols = bhd2015 : bhd2017)
 dat1
 ```
 
-Wenn wir die Spalten für die Variable und den Wert sinnvoll benennen möchten, können wir das über die Argumente `names_to` und `value_to` machen.
+Wenn wir die Spalten für die Variable und den Wert gleich sinnvoll benennen möchten, können wir das über die Argumente `names_to` und `value_to` machen.
 
 
 ```{r}
@@ -3696,5 +3737,4 @@ plot(dat3$dist_fluss, dat3$n)
 
 # Literatur 
 
-Ein guter Überblick über viele der angeschnittenen Themen gibt es in dem [R for data science](https://r4ds.had.co.nz/), das online frei zugänglich ist.
-
+Ein guter Überblick über viele der angeschnittenen Themen gibt es in dem [R for data science](https://r4ds.had.co.nz/), das online frei zugänglich ist. Das on-line Buch [Hands-On Programming with R]{https://rstudio-education.github.io/hopr/index.html} ist eine nicht-Programmierer freundliche Einführung in R.
