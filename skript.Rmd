@@ -2196,8 +2196,8 @@ diesem Prinzip sollten Daten wie folgt organisiert sein:
 Zum Beispiel enthalten Spaltennamen oft Informationen, die eigentlich in
 einer Variable gespeichert werden sollten. Folgendes Beispiel gibt die
 BHD Messung von 3 Bäumen in 3 Jahren wieder. Der Vorteil von *tidy* Daten ist, dass viele
-Funktionen diese Form der Datenoganisation erwarten. Somit müssen sie Ihre Daten nur ein Mal
-organisieren und können fast alle Analysen durchführen
+Funktionen diese Form erwarten. Somit müssen sie Ihre Daten nur ein Mal
+organisieren und können fast alle Analysen durchführen.
 
 ```{r}
 dat <- tibble(
@@ -2210,8 +2210,8 @@ dat <- tibble(
 
 Der `tibble` aus dem Paket `tibble` ist ein moderner Data Frame, der sich in seinen Funktionen in das `tidy` Universum einfügt. Wir können auch einfach das Paket `tidyverse` laden, um alle Pakete, die Teil des `tidy` Universums sind gleichzeitig zu laden. Der `tibble` beinhaltet alle Funktionen, die der Data Frame auch beinhaltet und kann auch für genau die gleichen Zwecke verwendet werden. Der `tibble` hat u. A. eine modernere Darstellung im Konsolenoutput.
 
-Diese Daten sind jetzt im `wide`-Format gespeichert und nicht *tidy*, weil Information über die Daten (nämlich das Jahr der Aufnahme in den Spaltennamen gespeichert sind).
-Besser wäre eine Struktur mit nur drei Spalten: `id`, `jahr` und `bhd`. Um die Daten in so eine Struktur zu bringen, gibt es die Funktion `pivot_longer()` aus dem Paket `tidyr`.
+Diese Daten sind jetzt im `wide`-Format gespeichert und folglich nicht *tidy*, weil Information über die Daten (nämlich das Jahr der Aufnahme in den Spaltennamen gespeichert sind).
+Besser wäre eine Struktur mit nur drei Spalten: `id`, `jahr` und `bhd`. Um die Daten in so eine Struktur zu bringen, gibt es die Funktion `pivot_longer()` aus dem Paket `tidyr`, die ebenfalls Teil des `tidyverse` ist.
 
 ```{r}
 library(tidyr)
@@ -2223,7 +2223,7 @@ Wenn wir die Spalten für die Variable und den Wert gleich sinnvoll benennen mö
 
 
 ```{r}
-dat1 <- pivot_longer(dat, cols = bhd2015:bhd2017, names_to = "jahr", values_to = "bhd")
+dat1 <- pivot_longer(dat, cols = bhd2015 : bhd2017, names_to = "jahr", values_to = "bhd")
 dat1
 ```
 
@@ -2262,15 +2262,15 @@ pivot_longer(bhd, -zeitpunkt) %>%
 
 ## Auswählen von Variablen
 
-Sobald die Datensätze etwas umfangreicher werden (d.h. es gibt mehrere Spalten in einem `data.frame`), können innerhalb vieler `dplyr`-Funktionen spezielle Funktionen verwendet werden, um Variablen auszuwählen.
+Sobald die Datensätze etwas umfangreicher werden (d. h., es gibt mehrere Spalten in einem `data.frame`), können innerhalb vieler `dplyr`-Funktionen spezielle Funktionen verwendet werden, um Variablen auszuwählen.
 
 Wenn die genaue Position der Spalten bekannt ist, kann man mit dem `:`-Operator und der Position Spalten auswählen: 
 
 ```{r}
-iris %>% select(1:3) %>% head(3)
+iris %>% select(1 : 3) %>% head(3)
 ```
 
-Diese Vorgehensweise kann gehährlich sein, da sich manchmal Spalten verschieben und sich somit die Positionen ändern. Eist besser Spalten immer explizit anzusprechen. 
+Diese Vorgehensweise kann gehährlich sein, da sich manchmal Spalten verschieben und sich somit die Positionen ändern. Est besser Spalten immer explizit mit Namen statt mit Nummern anzusprechen. 
 
 ```{r}
 iris %>% select(Sepal.Length, Sepal.Width, Petal.Length) %>% head(3)
@@ -2281,6 +2281,7 @@ iris %>% select(Sepal.Length, Sepal.Width, Petal.Length) %>% head(3)
 ```{r}
 iris %>% select(Sepal.Length:Petal.Length) %>% head(3)
 ```
+
 Es gibt auch einige spezielle Funktionen, um Spalten innerhalb eines `select()`-Aufrufs auszuführen:
 
 - `starts_with()`: Hier kann man ein Muster angeben, mit dem ein Text anfangen muss. 
@@ -2340,11 +2341,13 @@ slice(iris, c(1, 9, 18))
 Davon gibt es drei nützliche Varianten: 1) `slice_head()` und `slice_tail()`; 2) `slice_max()` und `slice_min()`; 3) `slice_random()`. 
 
 `slice_head()` und `slice_tail()` sind analog zu `head()` und `tail()`, aber mit dem entscheidenden Unterschied, dass Gruppierungen berücksichtigt werden. Wenn keine Gruppierung in den Daten vorhanden ist, gibt es keinen Unterschied.
+
 ```{r}
 iris %>% head(n = 2)
 iris %>% slice_head(n = 2)
 ```
-Sobald jedoch eine gruppierende Variable eingeführt wird, gibt `slice_head()` die ersten `n` Beobachtungen für jede Gruppe zurück und `head()` für den gesamten Datensatz. 
+Sobald jedoch eine gruppierende Variable eingeführt wird, gibt `slice_head()` die ersten `n` Beobachtungen für jede Gruppe zurück und `head()` für den gesamten Datensatz.
+
 ```{r}
 # base head
 iris %>% group_by(Species) %>% 
@@ -2417,7 +2420,7 @@ dat <- tibble(
 )
 ```
 
-In der Spalte `beobachtung` sind zwei Informationen gespeichert: Die Distanz zur Beobachtung und die Art. Das ist ungünstig, weil wir so weder nach Tierart noch nach distanz filtern können. Mit der Funktion `seperate()`, können wir Beobachtungen einer Spalte in mehrere Spalten trennen. Dafür muss der Spaltennamen (Argument `col`), die neuen Sapltennamen (Argument `into`) und das Trennzeichen (Argument `sep`) angegeben werden. 
+In der Spalte `beobachtung` sind zwei Informationen gespeichert: Die Distanz zur Beobachtung und die Art. Das ist ungünstig, weil wir so weder nach Tierart noch nach distanz filtern können (nicht *tidy*). Mit der Funktion `seperate()`, können wir Beobachtungen einer Spalte in mehrere Spalten trennen. Dafür muss der Spaltennamen (Argument `col`), die neuen Sapltennamen (Argument `into`) und das Trennzeichen (Argument `sep`) angegeben werden. 
 
 
 ```{r}
@@ -2469,7 +2472,7 @@ z <- "30"
 ```
 
 Wichtig ist hier zu sehen, dass `z` nicht als Zahl sondern, als Text
-interpretiert wird.
+interpretiert wird (siehe Datentypen).
 
 ```{r, error = TRUE, cache=FALSE}
 z + 1
@@ -2557,9 +2560,7 @@ txt[nchar(txt) == max(nchar(txt))]
 
 sum(substr(txt, 1, 1) == "S") / length(txt) * 100
 
-paste(1:length(txt), txt, sep = ". ")
-
-
+paste(1 : length(txt), txt, sep = ". ")
 ```
     
 
@@ -2612,7 +2613,7 @@ mit einem `ä` ersetzt.
 gsub("ae", "ä", txt)
 ```
 
-Oft ist der genaue Ausdruck den man finden möchte jedoch Variable.
+Oft ist der genaue Ausdruck den man finden möchte jedoch Variabel.
 Beispielsweise möchte man alle Wörter mit einem Umlaut oder Zahlen
 finden möchte, kann man das oft abkürzen. Dafür gibt es reguläre
 Ausdrücke. Wir werden hier nur ein paar beispielhafte Anwendungen
@@ -2622,8 +2623,8 @@ Sowohl in den Funktionen `grep()` als auch `(g)sub()` kann mit anstatt
 dem Muster (immer das erste Argument) aus ein regulärer Ausdruck
 angegeben werden. Mit `[1-9]` sind alle Zahlen von 1 bis 9 gemeint.
 
-Das Ziel ist es jetzt alle Straßen zu finden, die auch einen
-Straßennummer haben:
+Das Ziel ist es jetzt alle Straßen zu finden, die auch eine
+Hausnummer haben:
 
 ```{r}
 txt <- c("Büsgenweg 1", "Berliner Strasse", "Kurze Strasse 13")
@@ -2658,7 +2659,6 @@ txt <- c("Versicherung", "Methoden", "Fluss", "Rudel",
 ```{r}
 grep("au", txt)
 gsub("au", "_ _", txt)
-
 ```
 
 
