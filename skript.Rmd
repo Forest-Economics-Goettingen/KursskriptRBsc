@@ -3638,213 +3638,213 @@ Mit der Funktion `read_excel()` aus dem Paket `readxl` können Exceldateien dire
 
 \newpage
 
-# Zusätzliche Aufgaben
+<!-- # Zusätzliche Aufgaben -->
 
-#### `r exercise("Standardisierung")`
+<!-- #### `r exercise("Standardisierung")` -->
 
-Unter Standardisierung (oder auch z-Transformation) versteht man die Transformation einer Variable, so dass sie den Mittelwert 0 und die Varianz 1 hat. Die Formel für die Standardisierung ist
+<!-- Unter Standardisierung (oder auch z-Transformation) versteht man die Transformation einer Variable, so dass sie den Mittelwert 0 und die Varianz 1 hat. Die Formel für die Standardisierung ist -->
 
-$$
-x_s =  \frac{x -   \mu_x}{\sigma_x}
-$$
+<!-- $$ -->
+<!-- x_s =  \frac{x -   \mu_x}{\sigma_x} -->
+<!-- $$ -->
 
-wobei $x$ die Variable ist, $\mu_x$ ist der Mittelwert von $x$ und $\sigma_x$ ist die Standardabweichung von $x$.
+<!-- wobei $x$ die Variable ist, $\mu_x$ ist der Mittelwert von $x$ und $\sigma_x$ ist die Standardabweichung von $x$. -->
 
-Standardisieren Sie folgenden Vektor:
+<!-- Standardisieren Sie folgenden Vektor: -->
 
-```{r}
-h <- c(0, 2, 3, 1, 0, 8, 3.4, 9, 6.8, 2.1)
-```
+<!-- ```{r} -->
+<!-- h <- c(0, 2, 3, 1, 0, 8, 3.4, 9, 6.8, 2.1) -->
+<!-- ``` -->
 
-Und speichern Sie das Ergebnis in `h_s`. Vergewissern Sie sich, dass die Standardisierung geklappt hat und berechnen Sie den Mittelwert und Standardabweichung von `h_s`.
+<!-- Und speichern Sie das Ergebnis in `h_s`. Vergewissern Sie sich, dass die Standardisierung geklappt hat und berechnen Sie den Mittelwert und Standardabweichung von `h_s`. -->
 
-#### `r exercise("Arbeiten mit logischen Werten")`
+<!-- #### `r exercise("Arbeiten mit logischen Werten")` -->
 
-Verwenden Sie nochmals den Vektor mit der Anzahl Rehe, die an unterschiedlichen Fotofallenstandorten fotografiert wurden.
+<!-- Verwenden Sie nochmals den Vektor mit der Anzahl Rehe, die an unterschiedlichen Fotofallenstandorten fotografiert wurden. -->
 
-```{r}
-anzahl_rehe <- c(132, 79, 129, 91, 138, 144, 55, 103, 139, 105, 96, 146, 95,  118, 1007)
-```
+<!-- ```{r} -->
+<!-- anzahl_rehe <- c(132, 79, 129, 91, 138, 144, 55, 103, 139, 105, 96, 146, 95,  118, 1007) -->
+<!-- ``` -->
 
-Für wie viele Standort trifft die Aussage zu $90 \le x < 120$, wobei $x$ für die Anzahl Fotos an einem Standort steht.  
+<!-- Für wie viele Standort trifft die Aussage zu $90 \le x < 120$, wobei $x$ für die Anzahl Fotos an einem Standort steht.   -->
 
-#### `r exercise("Auswählen von Elementen in einem Vektor")`
+<!-- #### `r exercise("Auswählen von Elementen in einem Vektor")` -->
 
-Lesen Sie die Datei `bhd_1.txt` ein. Und bearbeiten Sie folgende
-Aufgaben mit dieser Datei:
+<!-- Lesen Sie die Datei `bhd_1.txt` ein. Und bearbeiten Sie folgende -->
+<!-- Aufgaben mit dieser Datei: -->
 
--   Finden Sie den mittleren BHD aller Eichen.
--   Wie viele Beobachtungen haben Sie für Eichen, Fichten und Buchen?
--   Finden Sie alle Bäume, die 10, 20, 21, 23, 30, 37, 78, 79, 90, 91,
-    92 Jahre alt sind.
+<!-- -   Finden Sie den mittleren BHD aller Eichen. -->
+<!-- -   Wie viele Beobachtungen haben Sie für Eichen, Fichten und Buchen? -->
+<!-- -   Finden Sie alle Bäume, die 10, 20, 21, 23, 30, 37, 78, 79, 90, 91, -->
+<!--     92 Jahre alt sind. -->
 
-#### `r exercise("Arbeiten mit Daten")` 
+<!-- #### `r exercise("Arbeiten mit Daten")`  -->
 
-@Wang2019 haben in einer Fotofallenstudie das Verhalten und die Habitatselektion von Ozeloten im brasilianischen Amazonas untersucht. Ziel dieser Übung ist es mit dem Datensatz etwas vertraut zu werden, wir werden noch keine ökologischen Analysen durchführen. Mehr zu dem Datensatz erfahren Sie [hier](https://datadryad.org/stash/dataset/doi:10.5061/dryad.p7410jm). Eine etwas angepasste Version des Datensatzes können Sie aus dem StudIP Ordner `daten` (die Datei heißt `ozelote.zip`) herunterladen. Speichern Sie die Datei in ihrem RStudio Projekt und entzippen Sie sie. Der Ordner enthält zwei Dateien, für diese Übung brauchen wir lediglich die Datei `ozelote_standorte.csv`, die für jeden Fotofallen Standort einige Kovariaten angibt.
+<!-- @Wang2019 haben in einer Fotofallenstudie das Verhalten und die Habitatselektion von Ozeloten im brasilianischen Amazonas untersucht. Ziel dieser Übung ist es mit dem Datensatz etwas vertraut zu werden, wir werden noch keine ökologischen Analysen durchführen. Mehr zu dem Datensatz erfahren Sie [hier](https://datadryad.org/stash/dataset/doi:10.5061/dryad.p7410jm). Eine etwas angepasste Version des Datensatzes können Sie aus dem StudIP Ordner `daten` (die Datei heißt `ozelote.zip`) herunterladen. Speichern Sie die Datei in ihrem RStudio Projekt und entzippen Sie sie. Der Ordner enthält zwei Dateien, für diese Übung brauchen wir lediglich die Datei `ozelote_standorte.csv`, die für jeden Fotofallen Standort einige Kovariaten angibt. -->
 
-Bearbeiten Sie folgende Aufgaben: 
+<!-- Bearbeiten Sie folgende Aufgaben:  -->
 
-1. Lesen Sie die Datei `ozelote_standorte.csv` in R und speichern Sie das Ergebnis in eine Variable `standorte`. 
-2. Wie viele Fotofallenstandorte gab es in der Studie?
-3. Welcher Standort ist am Höchsten gelegen? Die Spalte `seehoehe` enthält die mittlere Seehöhe.
-4. Finden Sie alle Standorte, die in unmittelbarer Nähe zu Flüssen sind. Eine Distanz von < 5\ m kann als Schwellenwert angenommen werden. Die Spalte `dist_fluss` gibt die Distanz zu Flüssen an. 
-5. Der Datensatz besteht aus verschiedenen Kameras, die jeweils für einen Zeitraum von 12 Tagen in einer Region aufgestellt wurden (Spalte `Region`). Erstellen Sie einen Plot, der den Zusammenhang zwischen der Region und Seehöhe darstellt. 
+<!-- 1. Lesen Sie die Datei `ozelote_standorte.csv` in R und speichern Sie das Ergebnis in eine Variable `standorte`.  -->
+<!-- 2. Wie viele Fotofallenstandorte gab es in der Studie? -->
+<!-- 3. Welcher Standort ist am Höchsten gelegen? Die Spalte `seehoehe` enthält die mittlere Seehöhe. -->
+<!-- 4. Finden Sie alle Standorte, die in unmittelbarer Nähe zu Flüssen sind. Eine Distanz von < 5\ m kann als Schwellenwert angenommen werden. Die Spalte `dist_fluss` gibt die Distanz zu Flüssen an.  -->
+<!-- 5. Der Datensatz besteht aus verschiedenen Kameras, die jeweils für einen Zeitraum von 12 Tagen in einer Region aufgestellt wurden (Spalte `Region`). Erstellen Sie einen Plot, der den Zusammenhang zwischen der Region und Seehöhe darstellt.  -->
 
-```{r, include = params$inc_sol}
-# 1 
-standorte <- read.csv(here("data/ocelot/all_site_cov.csv"))
+<!-- ```{r, include = params$inc_sol} -->
+<!-- # 1  -->
+<!-- standorte <- read.csv(here("data/ocelot/all_site_cov.csv")) -->
 
-# 2
-nrow(standorte)
+<!-- # 2 -->
+<!-- nrow(standorte) -->
 
-# 3
-standorte[which.max(standorte$elevmean), ]
+<!-- # 3 -->
+<!-- standorte[which.max(standorte$elevmean), ] -->
 
-# 4
-head(standorte[standorte$d.river < 6, ])
+<!-- # 4 -->
+<!-- head(standorte[standorte$d.river < 6, ]) -->
 
-# 5
-boxplot(elevmean ~ Site, data = standorte)
+<!-- # 5 -->
+<!-- boxplot(elevmean ~ Site, data = standorte) -->
 
-```
+<!-- ``` -->
 
 
-#### `r exercise("Base Plots")`
+<!-- #### `r exercise("Base Plots")` -->
 
-Erstellen Sie die folgende Beispielabbildung Schritt für Schritt selbst
-über Low-Level Funktionen. Die Rohdaten finden Sie in den Dateien
-`abbBeispiel.R` und `ertragstafeldaten.csv`.
+<!-- Erstellen Sie die folgende Beispielabbildung Schritt für Schritt selbst -->
+<!-- über Low-Level Funktionen. Die Rohdaten finden Sie in den Dateien -->
+<!-- `abbBeispiel.R` und `ertragstafeldaten.csv`. -->
 
-- Die Wachstumskurve der Region 1 (blau) lautet $41.45752 (1 - \exp(-0.02168  x)^{1.61787}$
-- Die Wachstumskurve der Region 2 (rot lautet) $51.11203  (1 - \exp(-0.009129 x)^{1.202401}$
+<!-- - Die Wachstumskurve der Region 1 (blau) lautet $41.45752 (1 - \exp(-0.02168  x)^{1.61787}$ -->
+<!-- - Die Wachstumskurve der Region 2 (rot lautet) $51.11203  (1 - \exp(-0.009129 x)^{1.202401}$ -->
 
-wobei $x$ das Baumalter in Jahren angegeben ist. Die 3 schwarzen Linien sind auf der
-Ertragstafel abgelesen. Die Beschriftungen der 3 Ertragstafelkurven,
-sowie des Ausreißers, sind Zusatzaufgaben.
+<!-- wobei $x$ das Baumalter in Jahren angegeben ist. Die 3 schwarzen Linien sind auf der -->
+<!-- Ertragstafel abgelesen. Die Beschriftungen der 3 Ertragstafelkurven, -->
+<!-- sowie des Ausreißers, sind Zusatzaufgaben. -->
 
-#### `r exercise("ggplot2 Aufgabe")`
+<!-- #### `r exercise("ggplot2 Aufgabe")` -->
 
-1.  Laden Sie den Datensatz `daten/bhd_1.txt`
-2. Erstellen Sie ein Streudiagramm. Bilden Sie dabei den BHD gegen das Alter ab, wobei dies als Subplot für jedes Affnahmegebiet dargestellt werden sollte.
-3.  Verwenden Sie für jede Baumart eine eigene Farbe.
-4.  Erstellen Sie für jede Baumart einen Boxplot des BHDs.
-5.  Teilen Sie die Boxplots aus 4) auf jeweils einen Subplot pro
-    Aufnahmegebiet auf.
+<!-- 1.  Laden Sie den Datensatz `daten/bhd_1.txt` -->
+<!-- 2. Erstellen Sie ein Streudiagramm. Bilden Sie dabei den BHD gegen das Alter ab, wobei dies als Subplot für jedes Affnahmegebiet dargestellt werden sollte. -->
+<!-- 3.  Verwenden Sie für jede Baumart eine eigene Farbe. -->
+<!-- 4.  Erstellen Sie für jede Baumart einen Boxplot des BHDs. -->
+<!-- 5.  Teilen Sie die Boxplots aus 4) auf jeweils einen Subplot pro -->
+<!--     Aufnahmegebiet auf. -->
 
 
 
-#### `r exercise("Anwendungsbeispiel kontrollierter Programmabläufe")`
-- Öffnen Sie ein neues, leeres R Skript.
-- Laden Sie die Datei "stichprobe.csv" in eine Variable.
-```{r, eval = FALSE}
-stpr <- read.csv("data/stichprobe.csv", fileEncoding = "UTF-8")
-```
-- Filtern Sie den Data Frame so, dass er nur noch die Baumart "Eiche" enthält. Speichern Sie
-den gefilterten Data Frame in einer NEUEN Variable ab.
-- Berechnen Sie die deskriptiven Statistiken `mean()`, `sd()`, `median()`, `min()` und `max()` des Kapitels "Deskriptive Statistik" für den BHD (des gefilterten Data Frames).
-- Erstellen Sie ein Histogramm des BHD (ebenfalls mit dem gefilterten Data Frame), zeichnen Sie
-den arithmetischen Mittelwert als horizontale Linie in das Histogramm ein.
+<!-- #### `r exercise("Anwendungsbeispiel kontrollierter Programmabläufe")` -->
+<!-- - Öffnen Sie ein neues, leeres R Skript. -->
+<!-- - Laden Sie die Datei "stichprobe.csv" in eine Variable. -->
+<!-- ```{r, eval = FALSE} -->
+<!-- stpr <- read.csv("data/stichprobe.csv", fileEncoding = "UTF-8") -->
+<!-- ``` -->
+<!-- - Filtern Sie den Data Frame so, dass er nur noch die Baumart "Eiche" enthält. Speichern Sie -->
+<!-- den gefilterten Data Frame in einer NEUEN Variable ab. -->
+<!-- - Berechnen Sie die deskriptiven Statistiken `mean()`, `sd()`, `median()`, `min()` und `max()` des Kapitels "Deskriptive Statistik" für den BHD (des gefilterten Data Frames). -->
+<!-- - Erstellen Sie ein Histogramm des BHD (ebenfalls mit dem gefilterten Data Frame), zeichnen Sie -->
+<!-- den arithmetischen Mittelwert als horizontale Linie in das Histogramm ein. -->
 
-- Speichern Sie den R Code und kopieren Sie ihn in ein neues R Skript.
-- Erstellen Sie nun eine Schleife, die alle Statistiken und auch die Abbildung für jede Baumart berechnet. Lassen Sie die Statistiken mit `print()` in die Konsole ausgeben.
-- ZUSATZ: Exportieren Sie die Histogramme (bspw. als PDF). TIPP: Verwenden Sie `paste()` um sinnvolle Namen für die Dateien zu erstellen. Machen Sie sich selbst mit der Funktion vertraut.
-- ZUSATZ: Sie wollen Fehlermeldungen vermeiden. Deshalb programmieren Sie eine bedingte Ausführung, um die gesamten statistischen Berechnungen und auch die Abbildung. Führen Sie Ihren gesamten Code nur unter der Bedingung aus, dass die Baumart `"Ei"`, `"Bu"`, `"Fi"`,`"Kie"` oder `"Dou"` ist. TIPP: Sie können den `%in%` Operator verwenden.
+<!-- - Speichern Sie den R Code und kopieren Sie ihn in ein neues R Skript. -->
+<!-- - Erstellen Sie nun eine Schleife, die alle Statistiken und auch die Abbildung für jede Baumart berechnet. Lassen Sie die Statistiken mit `print()` in die Konsole ausgeben. -->
+<!-- - ZUSATZ: Exportieren Sie die Histogramme (bspw. als PDF). TIPP: Verwenden Sie `paste()` um sinnvolle Namen für die Dateien zu erstellen. Machen Sie sich selbst mit der Funktion vertraut. -->
+<!-- - ZUSATZ: Sie wollen Fehlermeldungen vermeiden. Deshalb programmieren Sie eine bedingte Ausführung, um die gesamten statistischen Berechnungen und auch die Abbildung. Führen Sie Ihren gesamten Code nur unter der Bedingung aus, dass die Baumart `"Ei"`, `"Bu"`, `"Fi"`,`"Kie"` oder `"Dou"` ist. TIPP: Sie können den `%in%` Operator verwenden. -->
 
-## Arbeiten mit Daten
+<!-- ## Arbeiten mit Daten -->
 
-Verwenden Sie erneut die Datensätz von @Wang2019 zu Ozeloten in Brasilien für die nachfolgenden Übungen.
+<!-- Verwenden Sie erneut die Datensätz von @Wang2019 zu Ozeloten in Brasilien für die nachfolgenden Übungen. -->
 
-#### `r exercise("Datenzusammenfassen")`
+<!-- #### `r exercise("Datenzusammenfassen")` -->
 
-1. Laden Sie die Datei `ozelote_standorte.csv` in R und speichern Sie das Ergebnis in eine Variable `standorte`.
-2. Berechnen Sie die Anzahl an Fotofallen für jede Region. Welche Region weißt die meisten Fotofallen auf?
-3. In welcher Region ist die größte Variabilität der Seehöhe zu finden?
-4. In welchen Region beträgt der Anteil an Fotofallen, die < 5m vom nächsten Fluss entfernt sind, mindestens 20%?
+<!-- 1. Laden Sie die Datei `ozelote_standorte.csv` in R und speichern Sie das Ergebnis in eine Variable `standorte`. -->
+<!-- 2. Berechnen Sie die Anzahl an Fotofallen für jede Region. Welche Region weißt die meisten Fotofallen auf? -->
+<!-- 3. In welcher Region ist die größte Variabilität der Seehöhe zu finden? -->
+<!-- 4. In welchen Region beträgt der Anteil an Fotofallen, die < 5m vom nächsten Fluss entfernt sind, mindestens 20%? -->
 
 
-```{r, include = params$inc_sol}
-library(dplyr)
+<!-- ```{r, include = params$inc_sol} -->
+<!-- library(dplyr) -->
 
-# 1
-dat <- read.csv(here("data/ozelote_standorte.csv"))
+<!-- # 1 -->
+<!-- dat <- read.csv(here("data/ozelote_standorte.csv")) -->
 
-# 2
-dat %>% group_by(region) %>%
-   summarise(n = n()) %>% arrange(-n)
+<!-- # 2 -->
+<!-- dat %>% group_by(region) %>% -->
+<!--    summarise(n = n()) %>% arrange(-n) -->
 
-# 3
-dat %>% group_by(region) %>%
-   summarise(v = var(seehoehe)) %>% arrange(-v)
+<!-- # 3 -->
+<!-- dat %>% group_by(region) %>% -->
+<!--    summarise(v = var(seehoehe)) %>% arrange(-v) -->
 
-# 4
-dat %>% group_by(region) %>%
-   summarize(n = n(), n_w5 = sum(dist_fluss < 5)) %>%
-   mutate(anteil = n_w5 /n) %>% filter(anteil >= 0.2)
+<!-- # 4 -->
+<!-- dat %>% group_by(region) %>% -->
+<!--    summarize(n = n(), n_w5 = sum(dist_fluss < 5)) %>% -->
+<!--    mutate(anteil = n_w5 /n) %>% filter(anteil >= 0.2) -->
 
 
-```
+<!-- ``` -->
 
-#### `r exercise("Datenmanipulation 1")`
+<!-- #### `r exercise("Datenmanipulation 1")` -->
 
-1. Laden Sie nun zusätzlich die Datei `ozelote_fanghistorien.csv` und speichern Sie diese in die Variable (`fh`). In diesem `data.frame` gibt es für jede Session eine Spalte (`V1` bis `V10`). Eine `1` bedeutet, dass mindestens ein Ozelot fotografiert wurde und eine 0 bedeutet, dass kein Ozelot in diesem Zeitraum fotografiert wurde. `NA` heißt, dass die Kamera nicht aktiv war.
-2. Wählen Sie nur das 3. Fangereignis (das ist die Spalte `V3`).
-3. Wie viele Kameras waren beim 3. Fangereignis aktiv?
-4. Vergleichen Sie anhand einer Abbildung, ob sich die Distanz zum Fluss (Spalte `dist_fluss`) zwischen Standorten mit Fotos (`V3 == 1`) und Standorten ohne Fotos (`V3 == 0`) unterscheidet.
+<!-- 1. Laden Sie nun zusätzlich die Datei `ozelote_fanghistorien.csv` und speichern Sie diese in die Variable (`fh`). In diesem `data.frame` gibt es für jede Session eine Spalte (`V1` bis `V10`). Eine `1` bedeutet, dass mindestens ein Ozelot fotografiert wurde und eine 0 bedeutet, dass kein Ozelot in diesem Zeitraum fotografiert wurde. `NA` heißt, dass die Kamera nicht aktiv war. -->
+<!-- 2. Wählen Sie nur das 3. Fangereignis (das ist die Spalte `V3`). -->
+<!-- 3. Wie viele Kameras waren beim 3. Fangereignis aktiv? -->
+<!-- 4. Vergleichen Sie anhand einer Abbildung, ob sich die Distanz zum Fluss (Spalte `dist_fluss`) zwischen Standorten mit Fotos (`V3 == 1`) und Standorten ohne Fotos (`V3 == 0`) unterscheidet. -->
 
-```{r, include = params$inc_sol}
-library(ggplot2)
+<!-- ```{r, include = params$inc_sol} -->
+<!-- library(ggplot2) -->
 
-# 1
-det <- read.csv(here::here("data/ozelote_fanghistorien.csv"))
+<!-- # 1 -->
+<!-- det <- read.csv(here::here("data/ozelote_fanghistorien.csv")) -->
 
-# 2
-det1 <- select(det, Kamera, region, V3)
+<!-- # 2 -->
+<!-- det1 <- select(det, Kamera, region, V3) -->
 
-# 3
-head(det1$V3)
-sum(!is.na(det1$V3))
+<!-- # 3 -->
+<!-- head(det1$V3) -->
+<!-- sum(!is.na(det1$V3)) -->
 
-# 4
-head(dat)
-left_join(dat, det, by = c("kamera" = "Kamera", "region" = "region")) %>%
-   select(V3, dist_fluss) %>%
-   ggplot(aes(x = factor(V3), y =dist_fluss)) + geom_boxplot()
+<!-- # 4 -->
+<!-- head(dat) -->
+<!-- left_join(dat, det, by = c("kamera" = "Kamera", "region" = "region")) %>% -->
+<!--    select(V3, dist_fluss) %>% -->
+<!--    ggplot(aes(x = factor(V3), y =dist_fluss)) + geom_boxplot() -->
 
-```
+<!-- ``` -->
 
 
 
-#### `r exercise("Datenmanipulation 2 (etwas knifflig)")`
+<!-- #### `r exercise("Datenmanipulation 2 (etwas knifflig)")` -->
 
-1. Verwenden Sie erneut die Daten zu den Fotofallenstandorten und Fanghistorien der Ozelote.
-2. Finden Sie alle Fotofallenstandorte an denen $\ge 3$ Ozelote fotografiert wurden?
-3. Gibt es einen Zusammenhang zwischen der Häufigkeit an Ozelotfotos (pro Fotofallenstandort) und der Distanz zum nächsten Fluss (Spalte `dist_fluss`)? Eine Abbildung ist ausreichend.
+<!-- 1. Verwenden Sie erneut die Daten zu den Fotofallenstandorten und Fanghistorien der Ozelote. -->
+<!-- 2. Finden Sie alle Fotofallenstandorte an denen $\ge 3$ Ozelote fotografiert wurden? -->
+<!-- 3. Gibt es einen Zusammenhang zwischen der Häufigkeit an Ozelotfotos (pro Fotofallenstandort) und der Distanz zum nächsten Fluss (Spalte `dist_fluss`)? Eine Abbildung ist ausreichend. -->
 
 
-```{r, include = params$inc_sol}
-library(tidyverse)
-# 1
-det <- read.csv(here("data/ozelote_fanghistorien.csv"))
+<!-- ```{r, include = params$inc_sol} -->
+<!-- library(tidyverse) -->
+<!-- # 1 -->
+<!-- det <- read.csv(here("data/ozelote_fanghistorien.csv")) -->
 
-# 2
-det1 <- det %>% select(region, Kamera, V1:V10) %>%
-   pivot_longer(cols = -c(region, Kamera)) %>%
-   group_by(region, Kamera) %>%
-   summarise(n = sum(value == 1, na.rm = TRUE))
+<!-- # 2 -->
+<!-- det1 <- det %>% select(region, Kamera, V1:V10) %>% -->
+<!--    pivot_longer(cols = -c(region, Kamera)) %>% -->
+<!--    group_by(region, Kamera) %>% -->
+<!--    summarise(n = sum(value == 1, na.rm = TRUE)) -->
 
-det1 %>% filter(n >= 3)
+<!-- det1 %>% filter(n >= 3) -->
 
-# 3
-sto <- read.csv(here("data/ozelote_standorte.csv"))
+<!-- # 3 -->
+<!-- sto <- read.csv(here("data/ozelote_standorte.csv")) -->
 
-dat3 <- left_join(det1, sto, by = c("region" = "region", "Kamera" = "kamera"))
+<!-- dat3 <- left_join(det1, sto, by = c("region" = "region", "Kamera" = "kamera")) -->
 
-plot(dat3$dist_fluss, dat3$n)
+<!-- plot(dat3$dist_fluss, dat3$n) -->
 
-```
+<!-- ``` -->
 
 
-\newpage
+<!-- \newpage -->
 
 
 # Literatur 
