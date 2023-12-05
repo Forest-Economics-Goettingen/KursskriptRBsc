@@ -2784,7 +2784,7 @@ die Länge des Intervalls berechnen
 int_length(int) # in Sekunden
 ```
 
-oder testen ob ein Datum innerhalb des Intervalls liegt.
+oder testen, ob ein Datum innerhalb des Intervalls liegt.
 
 ```{r}
 ymd("2020-07-1") %within% int
@@ -2813,8 +2813,8 @@ termine %within% ostern
 termine %within% pfingsten
 ```
 
-Diese Funktion wird oft benutzt, um den Zeitbedarf von längeren
-Berechnungen einzuschätzen.
+Der Zeit-Datentyp wird auch oft benutzt, um den Zeitbedarf von längeren
+Berechnungen zu messen.
 
 ```{r}
 t1 <- now()
@@ -2852,7 +2852,101 @@ v1 <- c(
 )
 ```
 
-In der Forstbranche haben wir oft mit Zeitreihen zu tun.
+## Zeitreihen
+
+In der Forstbranche haben wir oft mit Zeitreihen zu tun. Zeitreihen sind Variablen, die in zeitlichen
+Intervallen vorliegen. In der Regel monatlich, vierteljährig oder jährlich, wobei die Intervalle zwischen
+den Messungen immer gleich lang sind. Wiederholungsmessungen von Forstinventuren (Forsteinrichtungen, 
+Betriebsinventuren, die meisten forstl. Experimente, die BWI, ...) sind also in der
+Regel keine Zeitreihen in engeren Sinne, turnusmäßig vermessene Versuchsflächen, wie sie z. B. die
+Versuchsanstalten unterhalten oder jährlich gemeldete Holzpreise jedoch schon.
+
+Statistisch gesehen haben Zeitreihen Besonderheiten gegenüber anderen Variablen, da Sie in
+erster Linie von Ihrer eigenen Vergangenheit abhängen (autokorreliert sind) und auch die 
+Abhängigkeit anderer Variablen in der Regel nur sinnvoll ist, wenn deren Vergangenheit 
+mitberücksichtigt wird (cross-correlation). Konventionelle Statistik ist oft nicht ausreichend,
+um Zeitreihen zu analysieren. Angefangen mit der Datendarstellung gibt es spezifische 
+Zeitreihen-Funktionen, welche auch alle in R integriert sind. Aus diesem Grund sollten Sie
+Zeitreihen als solche speichern. Viele Funktionen erkennen den Datentyp und führen entsprechend
+spezifische Operationen durch. Laden wir z. B. die Holzpreise für Fichte 2b (das sog. 
+Leitsortiment), das Holzaufkommen dieses Sortiments und
+die Preise für Nadelschnittholz vom statistischen Bundesamt^[Sie können sich die Daten auch 
+selbst über die Website laden oder das Paket wiesbaden verwenden, um die Daten direkt in R 
+zu laden. Jedoch müssen Sie sich zuächst registrieren]. Wir laden die Daten zunächst als
+csv:
+
+```{r}
+zr <- read_csv2("data/zeitreihen_halbwaren-preis_holzpreis_holzaufkommen.csv")
+```
+
+Mit der Funktion `ts` werden die Daten in ein Zeitreihenobjekt überführt (geparst). Die 
+Spalte mit den Jahren
+ist dann nicht mehr nötig, da die Informationen zur Zeit keine eigene Variable mehr sind,
+sondern zu Metainformationen werden. Die Spalten sollen nur noch Daten enthalten.
+
+```{r, cache=FALSE}
+zr <- read_csv2("data/zeitreihen_halbwaren-preis_holzpreis_holzaufkommen.csv")
+
+zr <- ts(data = zr %>% select(-Jahr), start = zr$Jahr[1])
+
+typeof(zr) # Zeitreihen sind sog. S3 Objekte. Das heißt, Zeitreihen gehören nicht zu den 
+           # Basis Datentypen (siehe Kapitel Variablen, Funktionen und Datentypen),
+           # sondern sind eine Kategorie innerhalb des Datentyps "Liste".
+```
+
+Die wichtigsten Argumente sind
+  - `data` Vektor oder Matrix, der nur die Daten enthält
+  - `start` Startzeitpunkt
+  - `frequency` Anzahl der Beobachtungen pro Zeiteinheit, also z. B . 12 bei monatlichen oder 4 bei quartalsweisen Erhebungen
+
+```{r}
+plot(zr) # Die base Plot Funktion erkennt, dass es sich um Zeitreihen handelt.
+```
+
+Wir können low-level Layer hinzufügen. Die meisten base plot Funktionen funktionieren auch 
+für Zeitreihen
+
+```{r}
+plot(zr, ann = FALSE, yax.flip = TRUE)
+mtext(side = 3, cex = 1.5, font = 2, "Holzmarktentwicklung seit 1998", line = 2)
+mtext(side = 1, cex = 1, line = 2.5, "Jahr")
+```
+
+Das Paket `forecast` ermöglicht automatisierte Zeitreihenplots im `ggplot2` Stil. Damit ist 
+auch das Problem der y-Achsenbeschriftungen gelöst. 
+
+```{r}
+autoplot(zr, facets = TRUE)
+```
+
+
+Wir können die Abbildung im `ggplot2` Stil ändern. Hier nur ein Minimalbeispiel zur 
+Veranschaulichung. Siehe Kapitel 8.4 `ggplot2`: Eine Alternative für Abbildungen für mehr 
+Details.
+
+```{r}
+zr_autoplot <- autoplot(zr, facets = TRUE, colour = TRUE) + 
+  ylab("") + # Keine y-Achsenbeschriftung
+  xlab("Jahr") +
+  guides(colour = "none") # Keine Legende
+
+zr_autoplot + theme_minimal() 
+
+z2 <- zr_autoplot + geom_vline(xintercept = c(2007, 2018))
+
+z2 + annotate(x = 2007, y = +Inf, label = "Kyrill", vjust = 1, geom = "label") +
+  annotate(x = 2018, y = +Inf, label = "Friederike", vjust = 1, geom = "label")
+```
+
+Eine Trendlinie macht hier (sowie generell in Zeitreihendaten) offensichtlich keinen Sinn.
+Daher verwenden wir den sog. Loess-Glätter, um einen Trend in die Daten zu legen. Der 
+Loess-Glätter ist ein sehr flexible Kurve.
+
+```{r}
+zr_autoplot + geom_smooth() + 
+  guides(colour = "none") # Nochmals nötig, da geom_smooth() wieder eine Legende erzeugt
+```
+
 
 \newpage
 
@@ -2860,10 +2954,10 @@ In der Forstbranche haben wir oft mit Zeitreihen zu tun.
 
 Um einfache Programme zu schreiben, müssen Sie den Ablauf der Programmcodes
 kontrollieren können. Kontrollieren bedeutet in diesem Zusammenhang, dass Codeabschnitte
-nur unter definierten Bedingungen ablaufen. Sie programmieren also zwei Sachen. 1) den Code selbst und 29) die Bedingungen die erfüllt sein müssen, damit der Code ausgeführt wird.
+nur unter definierten Bedingungen ablaufen. Sie programmieren also zwei Sachen. 1) den Code selbst und 2), die Bedingungen die erfüllt sein müssen, damit der Code ausgeführt wird. Der Code muss do generisch geschrieben sein, dass er komplett durchläuft, auch wenn unterschiedliche Dateneingaben gemacht werden.
 Diese Kontrollbedingungen ermöglichen es Ihnen generisch zu programmieren.
 Sie schreiben Ihren Code also nicht speziell maßgeschneidert für ein Problem, sondern so generell, dass er für mehrere Auswertungen funktioniert. 
-Um dies zu gewährleisten müssen Sie bestimmte Situationen vorhersehen und abfangen. Hierbei helfen Ihnen Kontrollstrukturen (`Control Flow`). 
+Um dies zu gewährleisten, müssen Sie bestimmte Situationen vorhersehen und abfangen. Hierbei helfen Ihnen Kontrollstrukturen (`Control Flow`). 
 Grundsätzlich  gibt es `Control Flow` Funktionen zur Wiederholung von Codeblöcken (Schleifen) und logische Bedingungen (bedingte Anweisung).
 
 ## Schleifen
@@ -2890,7 +2984,9 @@ Wiederhole den Code im "Schleifenrumpf" so lange die logische Bedingung erfüllt
 
 - `break()`
 
-Brich die Schleife ab.
+Brich die Schleife ab. `break()` muss im Schleifenrumpf an der richtigne Stelle ausgeführt werden. 
+Gute Praxis ist jedoch, die for oder while Bedingungen, dass kein `break()`nötig ist, da `break()`
+anfällig für Programmierfehler ist.
 
 ### Wiederholen von Befehlen mit `for()`.
 
@@ -3034,7 +3130,7 @@ der geschweiften Klammern ausgeführt, ansonsten wird der Klammerinhalt ignorier
 
 ```{r}
 # Würfelwurf simulieren
-x <- sample(1:6, 1)
+x <- sample(1 : 6, 1)
 # if-Konstrukt zur passgenauen Gratulation
 if (x == 6) {
   print("Glückwunsch, eine Sechs!")
@@ -3048,11 +3144,11 @@ Bedingung steht.
 
 ```{r}
 # Würfelwurf simulieren
-x <- sample(1:6, 1)
+x <- sample(1 : 6, 1)
 # if-else-Konstrukt: Gratulation oder Ermutigung
-if(x == 6){
+if(x == 6) {
   print("Glückwunsch, eine Sechs!")
-} else{
+} else {
   print("Beim nächsten Wurf klappt's bestimmt.")
 }
 
@@ -3252,7 +3348,7 @@ han <- st_point(x = c(9.7320, 52.3759))
 ber <- st_point(x = c(13.405, 52.5200))
 ```
 
-Daraus könne wir jetzt eine Geometriespalte für einen `data.frame` erstellen
+Daraus können wir jetzt eine Geometriespalte für einen `data.frame` erstellen
 
 ```{r}
 geom <- st_sfc(list(goe, han, ber), crs = 4326)
@@ -3347,7 +3443,7 @@ Wenn wir den Raster `dem` auf ein Gebiet zuschneiden wollen (z.B. Göttingen), m
 goe <- st_read(here::here("data/goettingen/stadt_goettingen.shp"))
 ```
 
-Dann müssen wir sicher stellen, dass sowohl der Raster `dem` als auch das `sf`-Objekt `goe` im selben KBS sind. 
+Dann müssen wir sicherstellen, dass sowohl der Raster `dem` als auch das `sf`-Objekt `goe` im selben KBS sind. 
 Es bietet es sich in der Regel an, das KBS des Vektors zu transformieren. Mit der Funktion `projectRaster()` kann das KBS eines Raster transformiert werden.
 
 ```{r}
@@ -3419,10 +3515,6 @@ Das sind erst einmal viele `NA`-Werte für die ganzen Zellen, die außerhalb von
 h <- dem3[]
 sum(h, na.rm = TRUE) / sum(!is.na(h))
 ```
-
-
-
-
 
 #### `r exercise("Arbeiten mit Rastern")`
 

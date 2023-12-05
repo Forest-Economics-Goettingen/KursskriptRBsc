@@ -11,6 +11,7 @@ library(lubridate)
 library(tidyverse)
 library(patchwork)
 library(ThemePark) #remotes::install_github("MatthewBJane/ThemePark")
+library(forecast) # Für die Zeitreihen-Plots
 
 ex_no <- 1
 exs <- tibble(no = NULL, id = NULL)
