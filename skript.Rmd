@@ -2670,11 +2670,14 @@ Für den Computer bzw. R ist ein Datum erst einmal nichts anderes als ein
 Text. Für uns ist es sofort klar, dass der `"13.2.2021"` der 13. Februar
 2021 ist, für den Computer nicht. Wir müssen R also irgendwie sagen,
 dass die `13` der Tag ist, die `2` der Monat und `2021` das Jahr. Dass
-der Computer die einzelnen Komponenten erkennt, nennt man *parsen*[^4].
+der Computer die einzelnen Komponenten erkennt, und in einen Datentyp eigens für
+Zeitformate überführt, nennt man *parsen*[^4].
 Das Arbeiten mit Datum und Zeit kann kann anfangs sehr mühsam sein,
 aber sobald man einige Grundfertigkeiten erworben hat, kann man viele
-Aufgaben deutlich schneller und effizienter erledigen. Der erste Schritt
-ist immer ein Datum zu *parsen*. Wir verwenden dafür Funktionen aus dem
+Aufgaben deutlich schneller und effizienter erledigen. Starten Sie am besten
+gleich mit "echten" Zeit-Datentypen und versuchen Sie nicht, sich irgendwie mit Text
+und numerischen Danentypen selbst etwas zu basteln. Der erste Schritt ist immer 
+ein Datum zu *parsen*. Wir verwenden dafür Funktionen aus dem
 Paket `lubridate`. Als erstes müssen wir wieder Paket `lubridate` laden
 mit:
 
@@ -2682,6 +2685,8 @@ mit:
 
 ```{r}
 library(lubridate)
+# lubridate ist Teil des Tidyverse und kann auch so geladen werden: 
+# library(tidyverse)
 ```
 
 `lubridate` bietet eine Vielzahl von Funktionen zum *parsen* von Datum
@@ -2757,6 +2762,8 @@ verwenden[^5].
 [^5]: Alternativ zur Funktion `interval()` kann auch der `%--%`-Operator
  verwendet werden. Man könnte `int` auch so erstellen `int <- anfang %--% ende`.
 
+
+
 ```{r}
 anfang <- ymd("2020-03-18")
 ende <- anfang + years(1)
@@ -2805,6 +2812,17 @@ termine %within% ostern
 # Pfingsten
 termine %within% pfingsten
 ```
+
+Diese Funktion wird oft benutzt, um den Zeitbedarf von längeren
+Berechnungen einzuschätzen.
+
+```{r}
+t1 <- now()
+mean(runif(1e7))
+t2 <- now()
+int_length(interval(t1, t2))
+```
+
 ## Formatieren von Zeit
 
 Für die Ausgabe in Berichten oder Grafiken soll das Datum oft in einer
@@ -2833,6 +2851,8 @@ v1 <- c(
   "2021-03-03", "2021-03-08", "2021-03-10", "2021-03-07", "2021-03-10"
 )
 ```
+
+In der Forstbranche haben wir oft mit Zeitreihen zu tun.
 
 \newpage
 
