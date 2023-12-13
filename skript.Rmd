@@ -809,11 +809,9 @@ LETTERS[LETTERS %in% c("A", "E", "I", "O", "U")]
 
 # Faktoren (`factors`)
 
-<<<<<<< HEAD
 R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von kategorialen Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen (engl. look-up table) der Werte gespeichert [siehe dazu auch @mcnamara2018]. 
 =======
 R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von diskreten Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen der Werte gespeichert [siehe dazu auch @mcnamara2018]. Faktoren haben im Gegensazu zu Zeichenketten zusätzliche Eigenschaften. Man kann sie z. B. sortieren.
->>>>>>> 629c903f27f5c5db526dfd1588596c4a4b00635b
 
 Mit der Funktion `factor()` kann ein Faktor erstellt werden. Im einfachsten Fall wird nur ein Vektor übergeben. 
 
@@ -822,11 +820,7 @@ a <- c("FI", "BU", "FI", "EI", "EI", "FI", "FI")
 factor(a)
 ```
 
-<<<<<<< HEAD
 Ohne weitere Spezifikation werden für die *Levels* die Werte alphabetisch übernommen (das kann später z.B. beim Erstellen von Abbildungen wichtig sein). Für eine benutzerdefinierte Anordungs der Leverls, kann das Argument `levels` verwendet werden. 
-=======
-Ohne weitere Spezifikation werden die Werte *Levels* alphabetisch angeordnet (das kann später z. B. beim Erstellen von Abbildungen wichtig sein), dies kann jedoch durch die Verwendung des Arguments `levels` gesteuert werden. 
->>>>>>> 629c903f27f5c5db526dfd1588596c4a4b00635b
 
 ```{r}
 factor(a, levels = c("FI", "BU", "EI"))
@@ -942,6 +936,8 @@ eine zufällige Sortierung.
 ```{r}
 fct_shuffle(f1)
 ```
+
+
 
 
 \newpage
