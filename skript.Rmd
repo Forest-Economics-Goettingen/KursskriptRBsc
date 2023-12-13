@@ -740,11 +740,11 @@ Verwenden Sie nochmals den Vektor mit den Anzahl Rehen die an unterschiedlichen 
 anzahl_rehe <- c(132, 79, 129, 91, 138, 144, 55, 103, 139, 105, 96, 146, 95,  118, 107)
 ```
 
-1. Wählen Sie alle Standorte aus für die Aussage zu $90 \le x < 120$ zu trifft (wobei $x$ für die Anzahl Fotos an einem Standort steht).
+1. Wählen Sie alle Standorte aus für die Aussage $90 \le x < 120$ zu trifft (wobei $x$ für die Anzahl Fotos an einem Standort steht).
 2. Berechnen Sie die mittlere Anzahl Fotos für alle in 1) ausgewählten Standorte.
 
 ```{r, include = params$inc_sol}
-anzahl_rehe[anzahl_rehe > 90 & anzahl_rehe < 120]
+anzahl_rehe[anzahl_rehe >= 90 & anzahl_rehe < 120]
 
 mean(anzahl_rehe[anzahl_rehe > 90 & anzahl_rehe < 120])
 ```
@@ -809,8 +809,6 @@ LETTERS[LETTERS %in% c("A", "E", "I", "O", "U")]
 
 # Faktoren (`factors`)
 
-R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von kategorialen Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen (engl. look-up table) der Werte gespeichert [siehe dazu auch @mcnamara2018]. 
-=======
 R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von diskreten Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen der Werte gespeichert [siehe dazu auch @mcnamara2018]. Faktoren haben im Gegensazu zu Zeichenketten zusätzliche Eigenschaften. Man kann sie z. B. sortieren.
 
 Mit der Funktion `factor()` kann ein Faktor erstellt werden. Im einfachsten Fall wird nur ein Vektor übergeben. 
