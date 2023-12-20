@@ -466,9 +466,8 @@ Es liegen jeweils zwei BHD-Messungen von vier Bäumen vor:
 bhd <- c(32, 33, 23, 21, 21, 27, 18, 12)
 ```
 
-Diese wurden immer abwechselnd mit zwei unterschiedlichen Messgeräten durchgeführt wurden. 
+Sie haben jeden Baum je ein Mal mit dem Messgerät `G1`, dann mit dem Messgerät `G2` gemessen. Erstellen Sie einen Vektor von der Länge 8, in dem Sie angeben, welches Messgerät Sie verwendet haben.
 
-Erstellen Sie einen Vektor von der Länge 8 mit den Einträgen, die immer abwechselnd `G1` und `G2` sind und für die zwei Geräte stehen. 
 ```{r, include=params$inc_sol}
 bhd <- c(32, 33, 23, 21, 21, 27, 18, 12)
 rep(c("G1", "G2"), 4)
