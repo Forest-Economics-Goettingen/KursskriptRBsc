@@ -1583,9 +1583,8 @@ boxplot(
 -   Wie viele BHD-Messungen gibt es für jedes Gebiet?
 -   Erstellen Sie für jedes Gebiet einen Plot
 
-Erstellen Sie einen Plot mit 3 Subplots, jeweils mit einem Boxplot
-    für die ersten drei Studiengebiete, in dem der BHD für jede Baumart
-    dargestellt wird.
+Erstellen Sie Boxplots für jedes Gebiet und innerhalb der Gebiete für jede Art.
+
 
 ```{r, include = params$inc_sol}
 # A
