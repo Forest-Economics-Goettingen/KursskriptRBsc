@@ -2637,13 +2637,10 @@ gsub("au", "_ _", txt)
 
 Für den Computer bzw. R ist ein Datum erst einmal nichts anderes als ein
 Text. Für uns ist es sofort klar, dass der `"13.2.2021"` der 13. Februar
-2021 ist, für den Computer nicht. Wir müssen R also irgendwie sagen,
+2021 ist, für den Computer zunächst nicht. Wir müssen `R` also irgendwie sagen,
 dass die `13` der Tag ist, die `2` der Monat und `2021` das Jahr. Dass
 der Computer die einzelnen Komponenten erkennt, und in einen Datentyp eigens für
-Zeitformate überführt, nennt man *parsen*[^4].
-Das Arbeiten mit Datum und Zeit kann kann anfangs sehr mühsam sein,
-aber sobald man einige Grundfertigkeiten erworben hat, kann man viele
-Aufgaben deutlich schneller und effizienter erledigen. Starten Sie am besten
+Zeitformate überführt, nennt man *parsen*[^4]. Durch das *parsen* wird die Variable in den Datentyp `Date` überführt. Das Arbeiten mit Datum und Zeit kann kann anfangs sehr mühsam sein und viele Zeit-spezifischen Datenkoperationen lassen sich auch mit den Basis-Datentypen durchführen. Sobald man einige Grundfertigkeiten erworben hat, stellt man jedoch fest, dass die Arbeit mit dem Zeitformat-Datentyp schneller und effizienter funktioniert. Starten Sie am besten
 gleich mit "echten" Zeit-Datentypen und versuchen Sie nicht, sich irgendwie mit Text
 und numerischen Danentypen selbst etwas zu basteln. Der erste Schritt ist immer 
 ein Datum zu *parsen*. Wir verwenden dafür Funktionen aus dem
@@ -2787,7 +2784,7 @@ Berechnungen zu messen.
 
 ```{r}
 t1 <- now()
-mean(runif(1e7))
+mean(runif(1e7)) #Beispielhaft für eine Rechenoperation
 t2 <- now()
 int_length(interval(t1, t2))
 ```
@@ -2823,35 +2820,33 @@ v1 <- c(
 
 ## Zeitreihen
 
-In der Forstbranche haben wir oft mit Zeitreihen zu tun. Zeitreihen sind Variablen, die in zeitlichen
-Intervallen vorliegen. In der Regel monatlich, vierteljährig oder jährlich, wobei die Intervalle zwischen
-den Messungen immer gleich lang sind. Wiederholungsmessungen von Forstinventuren (Forsteinrichtungen, 
+In der Forstbranche haben wir oft mit Zeitreihen zu tun. Zeitreihen sind Variablen, für die in zeitlichen
+Intervallen Daten vorliegen. In der Regel monatlich, vierteljährig oder jährlich, wobei die Intervalle zwischen
+den Messungen bei Zeitreihen immer gleich lang sind. Wiederholungsmessungen von Forstinventuren (Forsteinrichtungen, 
 Betriebsinventuren, die meisten forstl. Experimente, die BWI, ...) sind also in der
-Regel keine Zeitreihen in engeren Sinne, turnusmäßig vermessene Versuchsflächen, wie sie z. B. die
+Regel keine Zeitreihen in engeren Sinne. Turnusmäßig vermessene Versuchsflächen, wie sie z. B. die
 Versuchsanstalten unterhalten oder jährlich gemeldete Holzpreise jedoch schon.
 
-Statistisch gesehen haben Zeitreihen Besonderheiten gegenüber anderen Variablen, da Sie in
-erster Linie von Ihrer eigenen Vergangenheit abhängen (autokorreliert sind) und auch die 
+Zeitreihen unterscheiden sich nicht nur technisch, sondern auch inhaltlich fundamental von den uns schon bekannten Daten. Statistisch gesehen haben Zeitreihen Besonderheiten gegenüber anderen Variablen, da Sie von Ihrer eigenen Vergangenheit abhängen (autokorreliert sind) und auch die 
 Abhängigkeit anderer Variablen in der Regel nur sinnvoll ist, wenn deren Vergangenheit 
-mitberücksichtigt wird (cross-correlation). Konventionelle Statistik ist oft nicht ausreichend,
-um Zeitreihen zu analysieren. Angefangen mit der Datendarstellung gibt es spezifische 
-Zeitreihen-Funktionen, welche auch alle in R integriert sind. Aus diesem Grund sollten Sie
+mitberücksichtigt wird (cross-correlation). Konventionelle Statistik ist oft nicht möglich,
+um Zeitreihen zu analysieren. Selbst ein ordinärer arithmetischer Mittelwert ist schon nicht mehr geeignet, um Zeitreihen statistisch zu beschreiben. Angefangen mit der Datendarstellung gibt es in `R` deshalb spezifische 
+Zeitreihen-Funktionen. Aus diesem Grund sollten Sie
 Zeitreihen als solche speichern. Viele Funktionen erkennen den Datentyp und führen entsprechend
-spezifische Operationen durch. Laden wir z. B. die Holzpreise für Fichte 2b (das sog. 
-Leitsortiment), das Holzaufkommen dieses Sortiments und
+spezifische Zeitreihen-Operationen durch, wenn ihnen Daten vom Typ "Zeitreihe" übergeben werden. Laden wir z. B. die Holzpreise für Fichte 2b (das sog. Leitsortiment, Fichenholz mit einem Mittendurchmesser von 20 bis 25 cm), das Holzaufkommen dieses Sortiments (Einschlagsvolumen) und
 die Preise für Nadelschnittholz vom statistischen Bundesamt^[Sie können sich die Daten auch 
-selbst über die Website laden oder das Paket wiesbaden verwenden, um die Daten direkt in R 
+selbst über die Website laden oder das Paket `wiesbaden` verwenden, um die Daten direkt in den R Workspace herunterzuladen 
 zu laden. Jedoch müssen Sie sich zuächst registrieren]. Wir laden die Daten zunächst als
-csv:
+csv ein:
 
 ```{r}
 zr <- read_csv2("data/zeitreihen_halbwaren-preis_holzpreis_holzaufkommen.csv")
 ```
 
-Mit der Funktion `ts` werden die Daten in ein Zeitreihenobjekt überführt (geparst). Die 
+Diese 3 Zeitreihen bilden zusammen ein klassisches Marktmodell mit dem Preis eines homogenen Gutes (Leitsortimentspreis), dem Angebot (Holzeinschlag) und der Nachfrage (Schnittholzpreis). Mit der Funktion `ts` werden die Daten in ein Zeitreihenobjekt überführt (*pasrse*). Die 
 Spalte mit den Jahren
 ist dann nicht mehr nötig, da die Informationen zur Zeit keine eigene Variable mehr sind,
-sondern zu Metainformationen werden. Die Spalten sollen nur noch Daten enthalten.
+sondern als sog. Metainformationen in dem Objekt gespeichert wird. Die Spalten sollten nur noch Daten enthalten.
 
 ```{r, cache=FALSE}
 zr <- read_csv2("data/zeitreihen_halbwaren-preis_holzpreis_holzaufkommen.csv")
@@ -2860,7 +2855,7 @@ zr <- ts(data = zr %>% select(-Jahr), start = zr$Jahr[1])
 
 typeof(zr) # Zeitreihen sind sog. S3 Objekte. Das heißt, Zeitreihen gehören nicht zu den 
            # Basis Datentypen (siehe Kapitel Variablen, Funktionen und Datentypen),
-           # sondern sind eine Kategorie innerhalb des Datentyps "Liste".
+           # sondern sind eine Unterkategorie des Datentyps "Liste".
 ```
 
 Die wichtigsten Argumente sind
@@ -2881,8 +2876,7 @@ mtext(side = 3, cex = 1.5, font = 2, "Holzmarktentwicklung seit 1998", line = 2)
 mtext(side = 1, cex = 1, line = 2.5, "Jahr")
 ```
 
-Das Paket `forecast` ermöglicht automatisierte Zeitreihenplots im `ggplot2` Stil. Damit ist 
-auch das Problem der y-Achsenbeschriftungen gelöst. 
+Beide Plot-Philosophiebn haben eine Zeitreihen-Funktion. Das Paket `ggfortify` ermöglicht automatisierte Zeitreihenplots im `ggplot2` Stil. Damit ist auch das Problem der y-Achsenbeschriftungen gelöst. 
 
 ```{r}
 autoplot(zr, facets = TRUE)
@@ -2891,7 +2885,7 @@ autoplot(zr, facets = TRUE)
 
 Wir können die Abbildung im `ggplot2` Stil ändern. Hier nur ein Minimalbeispiel zur 
 Veranschaulichung. Siehe Kapitel 8.4 `ggplot2`: Eine Alternative für Abbildungen für mehr 
-Details.
+Möglichkeiten.
 
 ```{r}
 zr_autoplot <- autoplot(zr, facets = TRUE, colour = TRUE) + 
@@ -2901,21 +2895,25 @@ zr_autoplot <- autoplot(zr, facets = TRUE, colour = TRUE) +
 
 zr_autoplot + theme_minimal() 
 
-z2 <- zr_autoplot + geom_vline(xintercept = c(2007, 2018))
+z2 <- zr_autoplot + geom_vline(xintercept = c(2000, 2007, 2018))
 
-z2 + annotate(x = 2007, y = +Inf, label = "Kyrill", vjust = 1, geom = "label") +
+z2 + annotate(x = 2000, y = +Inf, label = "Lothar", vjust = 1, geom = "label") + 
+  annotate(x = 2007, y = +Inf, label = "Kyrill", vjust = 1, geom = "label") +
   annotate(x = 2018, y = +Inf, label = "Friederike", vjust = 1, geom = "label")
 ```
 
-Eine Trendlinie macht hier (sowie generell in Zeitreihendaten) offensichtlich keinen Sinn.
-Daher verwenden wir den sog. Loess-Glätter, um einen Trend in die Daten zu legen. Der 
-Loess-Glätter ist ein sehr flexible Kurve.
+Eine Trendlinie macht hier offensichtlich keinen Sinn. Die Trendlinie ist eine lineare Regression, also eine ordinäre Statistik, die wie eingangs erwähnt für Zeitreihen ungeeignet ist. Daher verwenden wir den sog. Loess-Glätter, um einen Trend in die Daten zu legen. Der 
+Loess-Glätter ist ein sehr flexible Kurve. Wir sehen hier beispielsweise, dass der Leitholzpreis träge oder gar nicht auf das Angebot reagiert. Die Nachfrage jedoch zumindest in der einen Periode, in der sie stark steigt, den Holzpreis jedoch mit zeitlichem Verzug stark ansteigen lässt. Dieser visuelle Eindruck lässt sich durch spezifische Zeitreihen-Regressionen schätzen. 
 
 ```{r}
-zr_autoplot + geom_smooth() + 
-  guides(colour = "none") # Nochmals nötig, da geom_smooth() wieder eine Legende erzeugt
-```
+zr_autoplot + geom_smooth(method = "lm") + 
+  guides(colour = "none") # Nochmals nötig, da die geom_smooth() Funktion wieder eine
+                          # Legende erzeugt hat.
 
+zr_autoplot + geom_smooth(method = "loess") + 
+  guides(colour = "none") # Nochmals nötig, da die geom_smooth() Funktion wieder eine
+                          # Legende erzeugt hat.
+```
 
 \newpage
 
