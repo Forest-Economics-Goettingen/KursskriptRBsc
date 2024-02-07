@@ -2879,6 +2879,7 @@ mtext(side = 1, cex = 1, line = 2.5, "Jahr")
 Beide Plot-Philosophiebn haben eine Zeitreihen-Funktion. Das Paket `ggfortify` ermöglicht automatisierte Zeitreihenplots im `ggplot2` Stil. Damit ist auch das Problem der y-Achsenbeschriftungen gelöst. 
 
 ```{r}
+library(ggfortify)
 autoplot(zr, facets = TRUE)
 ```
 
@@ -2887,15 +2888,16 @@ Wir können die Abbildung im `ggplot2` Stil ändern. Hier nur ein Minimalbeispie
 Veranschaulichung. Siehe Kapitel 8.4 `ggplot2`: Eine Alternative für Abbildungen für mehr 
 Möglichkeiten.
 
-```{r}
+```{r, eval = FALSE}
 zr_autoplot <- autoplot(zr, facets = TRUE, colour = TRUE) + 
   ylab("") + # Keine y-Achsenbeschriftung
   xlab("Jahr") +
   guides(colour = "none") # Keine Legende
 
-zr_autoplot + theme_minimal() 
+ zr_autoplot + theme_minimal() 
 
 z2 <- zr_autoplot + geom_vline(xintercept = c(2000, 2007, 2018))
+z2
 
 z2 + annotate(x = 2000, y = +Inf, label = "Lothar", vjust = 1, geom = "label") + 
   annotate(x = 2007, y = +Inf, label = "Kyrill", vjust = 1, geom = "label") +
@@ -2905,7 +2907,7 @@ z2 + annotate(x = 2000, y = +Inf, label = "Lothar", vjust = 1, geom = "label") +
 Eine Trendlinie macht hier offensichtlich keinen Sinn. Die Trendlinie ist eine lineare Regression, also eine ordinäre Statistik, die wie eingangs erwähnt für Zeitreihen ungeeignet ist. Daher verwenden wir den sog. Loess-Glätter, um einen Trend in die Daten zu legen. Der 
 Loess-Glätter ist ein sehr flexible Kurve. Wir sehen hier beispielsweise, dass der Leitholzpreis träge oder gar nicht auf das Angebot reagiert. Die Nachfrage jedoch zumindest in der einen Periode, in der sie stark steigt, den Holzpreis jedoch mit zeitlichem Verzug stark ansteigen lässt. Dieser visuelle Eindruck lässt sich durch spezifische Zeitreihen-Regressionen schätzen. 
 
-```{r}
+```{r, eval = FALSE}
 zr_autoplot + geom_smooth(method = "lm") + 
   guides(colour = "none") # Nochmals nötig, da die geom_smooth() Funktion wieder eine
                           # Legende erzeugt hat.
@@ -3383,13 +3385,13 @@ Normalerweise lesen wir Daten von externen Datenquellen (z.B. ESRI Shapefiles). 
 
 ## Rasterdaten in R
 
-Für Rasterdaten gibt es das R-Paket `raster`. Auch hier wollen wir uns wieder auf einige Grundfunktionalitäten konzentrieren. Diese umfassen das Einlesen, Zuschneiden, Rechnen und Abfragen von Rastern.
+Für Rasterdaten gibt es das R-Paket `terra`. Auch hier wollen wir uns wieder auf einige Grundfunktionalitäten konzentrieren. Diese umfassen das Einlesen, Zuschneiden, Rechnen und Abfragen von Rastern.
 
-Mit der Funktion `raster()` kann ein Raster in R eingelesen werden.
+Mit der Funktion `rast()` kann ein Raster in R eingelesen werden.
 
 ```{r}
-library(raster)
-dem <- raster(here::here("data/dem_3035.tif"))
+library(terra)
+dem <- rast(here::here("data/dem_3035.tif"))
 ```
 
 `dem` steht für *Digital Elevation Model* und ist ein Raster mit den Seehöhen in Niedersachsen mit einer 500-m-Auflösung. Wir können diese mit der Funktion `res()`^[kurz für *resolution* also Auflösung.] abfragen.
@@ -3432,7 +3434,7 @@ plot(dem2)
 ```
 
 
-Wenn wir an bestimmten Punkten den Wert des Rasters abfragen wollen (z.B. an `cities`) von vorhin, dann gibt es dafür die Funktion `extract`.  Dann müssen wir erst sicherstellen, dass `staedte` und `dem` gleichen KBS zu grunde liegt. Dafür transformieren wir einfach `staedte` in das KBS von `dem`. Mit der Funktion `projection()` erhalten wir das KBS des Rasters.
+Wenn wir an bestimmten Punkten den Wert des Rasters abfragen wollen (z.B. an `cities`) von vorhin, dann gibt es dafür die Funktion `extract`.  Dann müssen wir erst sicherstellen, dass `staedte` und `dem` gleichen KBS zu grunde liegt. Dafür transformieren wir einfach `staedte` in das KBS von `dem`. Mit der Funktion `crs()` erhalten wir das KBS des Rasters.
 
 ```{r}
 s1 <- st_transform(staedte, 3035)
@@ -3441,18 +3443,17 @@ s1 <- st_transform(staedte, 3035)
 Wenn wir das KBS eines Objektes nicht kennen, können wir auch einfach das KBS übergeben. Der folgende Code-Block macht genau das Gleiche mit dem Vorteil, dass wir keinen EPSG-Code angeben müssen.
 
 ```{r}
-s1 <- st_transform(staedte, projection(dem))
-
+s1 <- st_transform(staedte, crs(dem))
 ```
 
 
 Dann können wir für jede Stadt die Seehöhe abfragen:
 
 ```{r}
-raster::extract(dem, s1)
+terra::extract(dem, s1)
 ```
 
-Mit `raster::extract()` rufen wir *eindeutig* die Funktion `extract()` aus dem Paket `raster` auf. Wir müssen das so machen, weil es im Paket `dplyr` auch eine Funktion `extract()` gibt, die wir hier nicht anwenden möchten, da sie einen Fehler verursachen würde.
+Mit `terra::extract()` rufen wir *eindeutig* die Funktion `extract()` aus dem Paket `terra` auf. Wir müssen das so machen, weil es im Paket `dplyr` auch eine Funktion `extract()` gibt, die wir hier nicht anwenden möchten, da sie einen Fehler verursachen würde.
 
 Ein analoges Vorgehen ist auch für Linien und Polygone möglich.
 
@@ -3490,8 +3491,8 @@ Verwenden Sie den Raster `wald.tif`, der auf einer 10\ m Auflösung den Waldante
 ```{r, include = params$inc_sol}
 goe <- st_read(here("data/goettingen/stadt_goettingen.shp"))
 goe <- goe[goe$GEN == "Göttingen", ]
-wld <- raster(here("data/goettingen/wald.tif"))
-goe <- st_transform(goe, projection(wld))
+wld <- rast(here("data/goettingen/wald.tif"))
+goe <- st_transform(goe, crs(wld))
 
 wld1 <- mask(crop(wld, goe), goe)
 plot(wld1)
