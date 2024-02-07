@@ -2758,6 +2758,14 @@ ymd("2020-07-1") %within% int
 ymd("2021-07-1") %within% int
 ```
 
+Intervalle können auch zum Selektieren von Daten verwendet werden. Z. B. im `dplyr` Stil.
+
+```{r}
+d <- tibble(a  =c(ymd("2021-07-1"), ymd("2020-07-1")))
+d |> filter(a %within% int)
+```
+
+
 `%within%` funktioniert genauso mit Vekotren oder mit mehren
 Intervallen. Wir könnten also zwei Intervalle definieren (z.B. Ostern
 und Pfingsten).
@@ -2879,7 +2887,7 @@ mtext(side = 1, cex = 1, line = 2.5, "Jahr")
 Beide Plot-Philosophiebn haben eine Zeitreihen-Funktion. Das Paket `ggfortify` ermöglicht automatisierte Zeitreihenplots im `ggplot2` Stil. Damit ist auch das Problem der y-Achsenbeschriftungen gelöst. 
 
 ```{r}
-library(ggfortify)
+library(forecast)
 autoplot(zr, facets = TRUE)
 ```
 
@@ -2888,7 +2896,7 @@ Wir können die Abbildung im `ggplot2` Stil ändern. Hier nur ein Minimalbeispie
 Veranschaulichung. Siehe Kapitel 8.4 `ggplot2`: Eine Alternative für Abbildungen für mehr 
 Möglichkeiten.
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 zr_autoplot <- autoplot(zr, facets = TRUE, colour = TRUE) + 
   ylab("") + # Keine y-Achsenbeschriftung
   xlab("Jahr") +
@@ -2897,7 +2905,6 @@ zr_autoplot <- autoplot(zr, facets = TRUE, colour = TRUE) +
  zr_autoplot + theme_minimal() 
 
 z2 <- zr_autoplot + geom_vline(xintercept = c(2000, 2007, 2018))
-z2
 
 z2 + annotate(x = 2000, y = +Inf, label = "Lothar", vjust = 1, geom = "label") + 
   annotate(x = 2007, y = +Inf, label = "Kyrill", vjust = 1, geom = "label") +
@@ -2907,14 +2914,11 @@ z2 + annotate(x = 2000, y = +Inf, label = "Lothar", vjust = 1, geom = "label") +
 Eine Trendlinie macht hier offensichtlich keinen Sinn. Die Trendlinie ist eine lineare Regression, also eine ordinäre Statistik, die wie eingangs erwähnt für Zeitreihen ungeeignet ist. Daher verwenden wir den sog. Loess-Glätter, um einen Trend in die Daten zu legen. Der 
 Loess-Glätter ist ein sehr flexible Kurve. Wir sehen hier beispielsweise, dass der Leitholzpreis träge oder gar nicht auf das Angebot reagiert. Die Nachfrage jedoch zumindest in der einen Periode, in der sie stark steigt, den Holzpreis jedoch mit zeitlichem Verzug stark ansteigen lässt. Dieser visuelle Eindruck lässt sich durch spezifische Zeitreihen-Regressionen schätzen. 
 
-```{r, eval = FALSE}
-zr_autoplot + geom_smooth(method = "lm") + 
-  guides(colour = "none") # Nochmals nötig, da die geom_smooth() Funktion wieder eine
-                          # Legende erzeugt hat.
+```{r, eval = TRUE}
+zr_autoplot + geom_smooth(method = "lm")
 
 zr_autoplot + geom_smooth(method = "loess") + 
-  guides(colour = "none") # Nochmals nötig, da die geom_smooth() Funktion wieder eine
-                          # Legende erzeugt hat.
+  guides(colour = "none")
 ```
 
 \newpage
