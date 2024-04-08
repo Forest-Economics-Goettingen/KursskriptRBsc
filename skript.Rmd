@@ -131,6 +131,42 @@ sqrt(20)
 
 Führen Sie nun alle Zeilen aus.
 
+## RStudio Projekte
+
+Projekte in RStudio bieten eine einfache Möglichkeit Workflows zu vereinfachen. Dabei wird eine lokale Umgebung erstellt und alle Pfadnamen beziehen sich auf das Verzeichnis des Projekts und sie müsse keine absoluten Pfade angeben. Das hat zwei Vorteile:
+
+Sie können Ihre R-Session direkt in dem Projekt starten.
+R-Projekte können zwischen unterschiedlichen Rechnern geöffnet werden, ohne dass der Pfad angepasst werden muss. 
+
+### Erstellen eines Projektes
+Zum Erstellen eines Projektes müssen einige Schritte durchlaufen werden, diese sind in Abbildung 3 zusammengefasst. 
+
+1. Gehen Sie zu \menu{File > New Project ...}
+2. Wählen Sie `New Project`.
+3. Geben Sie einen Namen für das Projekt ein (z.B. den Namen einer Lehrveranstaltung) und ein neuer Ordner mit dem Projektnamen wird erstellt.
+4. Drücken Sie auf `Create Project`.
+
+(ref:rproj1cap) Worklfow zum Erstellen eines Projekts.
+```{r rpoj1, echo=FALSE, fig.align="center", out.width="80%", fig.cap="(ref:rproj1cap)"}
+knitr::include_graphics(here("img/rstudio_projekt.pdf"))
+```
+
+Sobald ein Projekt einmal erstellt wurde, können Sie einfach wieder auf das Projekt-Icon klicken und das Projekt wieder öffnen (Abbildung 4)
+
+```{r rproj2, echo = FALSE, out.height="3cm", fig.align="center", fig.cap="Öffnen eines RStudio Projekts."}
+knitr::include_graphics(here::here("img/open_proj.PNG"))
+```
+
+
+Alternativ kann über \menu{File > Open Project} in RStudio oder durch Auswählen des Projektnamens (siehe folgende Abbildung) geöffnet werden (Abbildung 5).
+
+(ref:rproj3) Öffnen von Projekten.
+```{r, echo = FALSE, out.height="1cm", fig.align="center", fig.cap= "(ref:rproj3)"}
+knitr::include_graphics(here::here("img/open_proj2.PNG"))
+```
+
+
+
 \newpage
 
 # Variablen, Funktionen und Datentypen
