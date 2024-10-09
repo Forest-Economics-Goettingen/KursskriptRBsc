@@ -54,7 +54,8 @@ IDE (=Integrated Development Environment) genannt.], die das Arbeiten mit
 R vereinfachen soll.
 
 Sie können also mit R arbeiten ohne RStudio (was unüblich ist), aber nicht mit 
-RStudio ohne R.
+RStudio ohne R. RStudio wird unter anderem verwendet, um R Code komfortabler zu schreiben und zu
+verwalten.
 
 Gehen Sie für die Installation von R, auf die Website https://cloud.r-project.org/ und laden Sie die für ihren Computer passende R-Version herunter und folgen Sie den Installationsanweisungen. In Linux können Sie R über die Kommandozeile installieren.
 
@@ -1795,7 +1796,7 @@ Oder auch den ganzen Plot anpassen. Dafür gibt es *themes*. Es gibt eine Reihe 
 p1 + theme_light()
 ```
 
-Weitere *themes* sind: `theme_bw()`, `theme_linedraw()` oder `theme_dark()`. Es gibt extra Pakete die viele zusätzliche weitere *themes* anbieten. Dazu gehört z.B. das Paket [`ggthemes`](https://cran.r-project.org/web/packages/ggthemes/index.html) oder [`ThemePark`](https://github.com/MatthewBJane/ThemePark). Während `ggthemes` hauptsächlich durchdachte Grafikkonzepte liefert, sind die Themes aus `ThemePark` eher Popkultur und nicht 100 \%ig ernst gemeint.
+Weitere *themes* sind: `theme_bw()`, `theme_linedraw()` oder `theme_dark()`. Es gibt extra Pakete die viele zusätzliche weitere *themes* anbieten. Dazu gehört z.B. das Paket [`ggthemes`](https://cran.r-project.org/web/packages/ggthemes/index.html) oder [`ThemePark`](https://github.com/MatthewBJane/ThemePark). Während `ggthemes` hauptsächlich durchdachte Grafikkonzepte liefert, sind die Themes aus `ThemePark` eher Popkultur und nicht 100 \%ig ernst gemeint. `ThemePark` muss zunächst aus GitHub installiert werden. Die Installation wird auf der GitHub erläutert.
 
 ```{r}
 p1 + ThemePark::theme_gameofthrones()
