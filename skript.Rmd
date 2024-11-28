@@ -18,7 +18,7 @@ header-includes:
    - \usepackage{titletoc}
    - \usepackage{menukeys}
    - \pagestyle{fancy}
-   - \fancyfoot[C]{Einführung in die Datenanalyse mit R (WS 2023/2024)}
+   - \fancyfoot[C]{Einführung in die Datenanalyse mit R (WS 2024/2025)}
    - \fancyfoot[R]{\thepage}
 output:
     bookdown::pdf_document2:
@@ -51,13 +51,13 @@ unterscheiden, dass R und RStudio zwei unterschiedliche Programme sind. R ist di
 eigentliche Programmiersprache mit der wir arbeiten. 
 RStudio hingegen ist eine sogenannte Entwicklungsumgebung ^[Oder auch 
 IDE (=Integrated Development Environment) genannt.], die das Arbeiten mit 
-R vereinfachen soll.
+R vereinfacht.
 
 Sie können also mit R arbeiten ohne RStudio (was unüblich ist), aber nicht mit 
 RStudio ohne R. RStudio wird unter anderem verwendet, um R Code komfortabler zu schreiben und zu
-verwalten.
+verwalten. Es werden Ihnen für das Prgrammieren relevante Informationen bereitgestellt.
 
-Gehen Sie für die Installation von R, auf die Website https://cloud.r-project.org/ und laden Sie die für ihren Computer passende R-Version herunter und folgen Sie den Installationsanweisungen. In Linux können Sie R über die Kommandozeile installieren.
+Gehen Sie für die Installation von R, auf die Website https://cloud.r-project.org/, laden Sie die für ihren Computer passende R-Version herunter und folgen Sie den Installationsanweisungen. In Linux können Sie R über die Kommandozeile installieren.
 
 Für die Installation von RStudio  gehen Sie zu der Website https://posit.co/download/rstudio-desktop/#download und laden die richtige Version für Ihr Betriebssystem herunter und folgen Sie den Installationsanweisungen.
 
@@ -71,14 +71,14 @@ knitr::include_graphics(here("img/rstudio.png"))
 ```
 
 
-RStudio besteht nun aus vier sogenannten **Panes** oder Ausschnitten (siehe auch Abbildung \@ref(fig:rstudio)). Die Ausschnitte sind wie folgt gegliedert: 
+RStudio besteht nun aus vier sogenannten **Panes** oder Ausschnitten (siehe auch Abbildung \@ref(fig:rstudio)). Die Ausschnitte sind in der Standardkonfiguration wie folgt gegliedert: 
 
 1. Hier werden Skripte anzeigt, d.h., hier wird meist R Code geschrieben und dokumentiert. Der Code wird beim Schreiben noch nicht ausgeführt (siehe Punkt 3), dennoch sollten Sie Code immer so schreiben, dass er Zeile für Zeile abgeschickt werden kann. Sie sollten nie Code schreiben, bei dem Sie zwischen den Zeilen hin und her springen müssen.
-2. Der zweite Ausschnitt erteilt Auskunft über den *Workspace*. Im Workspace werden alle verfügbaren Objekte angezeigt. 
-3. Die eigentliche R-Konsole wird in Ausschnitt 3 dargestellt. Hier wird in der Regel wenig Code eingegeben. Der normale Workflow ist vom Skript Code an die Konsole zu schicken. Erst durch das Abschicken in die Konsole wird der Code (bzw. die Teile des Codes, die Sie abschicken) ausgeführt.
-4. Der vierte Ausschnitt enthält mehrere Reiter. Der Reiter *Files* zeigt den Verzeichnisbaum an. Im Reiter *Plots* werden Plots angezeigt, wenn diese im Code aufgerufen werden. Hilfeseiten zu Funktionen werden im Reiter *Help* angezeigt.
+2. Der zweite Ausschnitt enthält Informationen über den *Workspace*. Im Workspace werden alle verfügbaren Objekte angezeigt. 
+3. Die eigentliche R-Konsole ist in Ausschnitt 3. Hier wird in der Regel wenig Code eingegeben. Der normale Workflow ist vom Skript Code an die Konsole zu schicken. Erst durch das Abschicken in die Konsole wird der Code (bzw. die Teile des Codes, die Sie abschicken) ausgeführt. Das Ergebnis des Codes wird in der Konsole angezeigt, falls ihr Code ein Ergebnis erzeugt.
+4. Der vierte Ausschnitt enthält mehrere Reiter. Der Reiter *Files* zeigt den Verzeichnisbaum an, in dem sie arbeiten. Im Reiter *Plots* werden Abbildungen angezeigt, die Sie in der Konsole erzeugt haben. Hilfeseiten zu Funktionen werden im Reiter *Help* angezeigt.
 
-Einfache Rechenoperationen können auch direkt in der R-Konsole durchgeführt werden. Prinzipiell könnten Sie alle Operationen direkt in die Konsole tippen. Der Nachteil und der Grund, warum dies keine gute Praxis ist, ist, dass der Code zwar ausgeführt jedoch nicht gespeichert wird. Code der nicht als Skript gespeichert wird, ist also nicht dokumentiert. Tippen Sie die folgenden Operationen in die Konsole.
+Einfache Rechenoperationen können auch direkt in der R-Konsole durchgeführt werden. Prinzipiell könnten Sie alle Operationen direkt in die Konsole tippen. Der Nachteil und der Grund, warum dies keine gute Praxis ist, ist, dass der Code zwar ausgeführt jedoch nicht gespeichert wird. Code der nicht als Skript gespeichert wird, ist also nicht reproduzierbar. Tippen Sie die folgenden Operationen in die Konsole.
 
 ```{r}
 10 + 5
@@ -91,14 +91,14 @@ Sie sehen Ihren Code in rot und das Ergebnis dieser Operation in weiß darunter.
 
 Weitere häufig verwendete Operationen sind `^` für eine beliebige Potenz, z.B. $2^3$ = `2^3` = `r 2^3`. Analog dazu gibt es die Funktion `sqrt()` zum berechnen von Wurzeln und viele weitere Funktionen. Wenn Sie einen code abschicken, der nicht funktioniertm bekommen Sie statt des Ergebnisses eine Fehlermeldung, welche bestenfalls einen Hinweis zur Korrektur enthält.
 
-Meist verwenden wir jedoch **Skripte**, um den R-Code zu schreiben und ihn dann an die Konsole "zu schicken". Dies hat den Vorteil, dass alle Schritte nachvollziehbar bleiben und Analysen beliebig oft wiederholt werden können. Nach der Ausführung bleibt der Code erhalten und Sie dokumentieren Ihre Berechnungen automatisch mit. Stellen Sie sich den Code im R-Skript wie ein Kochbuch vor. Wenn wir R-Code in einem R-Skript geschrieben haben gibt es mehrere Möglichkeiten diesen Code abzuschicken/ auszuführen. Wir können eine Zeile abschicken, indem wir entweder auf *Run* klicken (Abbildung \@ref(fig:rstudio-run)) oder die Tastenkombination *Strg + Enter* (\keys{Strg + \return}) tippen. Mehrere Zeilen abzuschicken und nacheinander ausführen zu lassen ist möglich, indem diese Zeilen markiert werden bevor Sie *Run* klicken oder die Tastenkombination tippen. Ein Klick auf *Source* bzw. die Tastenkombination *Strg + Umschalt + Enter* (\keys{Strg + \shift + \return}).
+Meist verwenden wir jedoch **Skripte**, um den R-Code zu schreiben und ihn dann an die Konsole zu schicken. Dies hat den Vorteil, dass alle Schritte nachvollziehbar bleiben und Analysen beliebig oft wiederholt werden können. Nach der Ausführung bleibt der Code erhalten und Sie dokumentieren Ihre Berechnungen automatisch mit. Stellen Sie sich den Code im R-Skript wie ein Kochbuch vor. Wenn wir R-Code in einem R-Skript geschrieben haben gibt es mehrere Möglichkeiten diesen Code abzuschicken/ auszuführen. Wir können eine Zeile abschicken, indem wir entweder auf *Run* klicken (Abbildung \@ref(fig:rstudio-run)) oder die Tastenkombination *Strg + Enter* (\keys{Strg + \return}) tippen. Mehrere Zeilen abzuschicken und nacheinander ausführen zu lassen ist möglich, indem diese Zeilen markiert werden bevor Sie *Run* klicken oder die Tastenkombination tippen. Ein Klick auf *Source* bzw. die Tastenkombination *Strg + Umschalt + Enter* (\keys{Strg + \shift + \return}).
 
 ```{r rstudio-run, fig.align='center', fig.cap="Zeilenweises Ausführen von Code in RStudio.", echo = FALSE}
 knitr::include_graphics(here("img/rstudio_run.png"))
 
 ```
 
-Wenn Sie die Codezeile abgeschickt haben, sehen Sie diese Zeile in der Konsole und direkt darunter das Ergebnis sowie die Dimension des Ergebnisses, also genauso, als hätten Sie den Code direkt in die Konsole getippt. Die Konsole erkennt, wenn Sie einen unvollständigen Code abschicken. In der Konsole sehen Sie in diesem Fall kein Ergebnis, sondern ein `+` unter der abgeschickten Zeile. Sie können nun eine weitere Zeile zur vervollständigung abschicken oder in der Konsole *Escape* (\keys{Esc}) drücken, um abzubrechen.
+Wenn Sie die Codezeile abgeschickt haben, sehen Sie diese Zeile in der Konsole und direkt darunter das Ergebnis sowie die Dimension des Ergebnisses, also genauso, als hätten Sie den Code direkt in die Konsole getippt. Die Konsole erkennt, wenn Sie einen unvollständigen Code abschicken. In der Konsole sehen Sie in diesem Fall kein Ergebnis, sondern ein `+` unter der abgeschickten Zeile. Sie können nun eine weitere Zeile zur vervollständigung abschicken oder in der Konsole *Escape* (\keys{Esc}) drücken, um abzubrechen. Sehr lange Befehle können Sie im Skript somit über mehrere Zeilen aufteilen. Nutzen Sie diese Eigenschaft, um übersichtliche Codes zu schreiben. 
 
 
 ## Gute Praxis bei der Programmierung
