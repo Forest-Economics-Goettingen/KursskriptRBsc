@@ -42,6 +42,16 @@ params:
 
 \newpage
 
+# Einleitung
+
+## Data Science mit R
+
+Ein Data Science Projekt besteht laut Wickham et al. (https://r4ds.hadley.nz/) aus 4 Stufen.
+
+\includegraphics{img/data_science_steps.png}
+
+Wir werden in diesem Kurs zwar alle Stufen besprechen, jedoch in unterschiedlicher Intensität. Jedes Data Science Projekt beginnt mit dem Datenimport. Dies sind in der Regel Tabellen mit Erhebungsdaten, die je nach Experiment sehr unterschiedlich aufgebaut sein können und auch sehr unterschiedlich relevante Informationen enthalten können. Aus diesem Grund liegt ein Fokus dieses Kurses auf der Datenvorbereitung (\textit{Tidy} Data). \textit{Tidying} bedeutet, die Daten so herzustellen, dass sie konsistent und passend zu der Datenphilosophie von R sind. Bei \textit{Tidy} Data enthalten die Zeilen die Beobachtungen und die Spalten die Variablen. Alle weiteren Informationen, wie z. B. Metadaten, Zusammenfassungen oder Erläuterungen, werden in separaten Tabellen gespeichert. Überführen Sie Ihre Daten in das \textit{Tidy} Format, um den Überblick zu behalten und bei den folgenden Arbeiten Zeit zu sparen. \textit{Transform} ist der Arbeitsschritt, in dem die relevanten Daten aus den \textit{Tidy} Daten für spezifische Modelle oder Abbildungen erzeugt werden. Dies kann z. B. das filtern von Teilmengen, falls nur bestimmte Beobachtungen analysiert werden sollen, oder das Erzeugen von zusätzlichen Variablen (z. B. H/D-Wert aus Höhe und BHD) sein. Abbildungen (\textit{Visualization}) sind eine effiziente Möglichkeit Ihre Daten zu beschreiben und zu kommunizieren. Abbildungen können auch über die reine Wiedergabe hinausgehende Informationen enthalten und lassen sich mit Modellierungsergebnissen verbinden. Gute Abbildungen zu erzeugen ist eine wichtige Aufgabe bei den meisten Data Science Anwendungen. Wir werden uns im Kurs intensiv mit Abbildungen beschäftigen. (Statistische) Modellierung \textit{Model} ist zwar für das wissenschaftliche Arbeiten ebenfalls relevant und R ist hier sehr mächtig (R versteht sich als statistische Programmiersprache, obwohl R für Data Science Anwendungen aller Art geeignet ist), wird in diesem Kurs jedoch nur exemplarisch am Rande behandelt. Die große Zahl statistischer Modelle, welche je nach Anwendung sehr spezifisch sind, können im Rahmen des Kurses nicht abgedeckt werden. Diese können Sie im Masterstudium in einer großen Zahl von Modulen vertiefen (z. B. Statistical Data Analysis with R (M.FES.115) oder Advanced Data Analysis with R(M.FES.121)). Kommunikation \textit{Communicate} funktioniert nur, wenn Modelle und Abbildungen auch nachvollziehbar sind. Wir werden im Kurs zeigen, wie Sie ein PDF Dokument (oder Word, Power Point, ...) aus Ihren Ergebnissen und Abbildungen erstellen (dieses Dokument ist eine aus R erstellte PDF Datei).
+
 # R und RStudio
 
 ## Installation von R und RStudio
@@ -103,9 +113,9 @@ Wenn Sie die Codezeile abgeschickt haben, sehen Sie diese Zeile in der Konsole u
 
 ## Gute Praxis bei der Programmierung
 
-Es gibt eine gute Praxis, wie der Stil der Codes sein sollte. Die sog. *Style Guides* sind eine Art generelle Vereinbarung bei der Programmierung. Style Guides sind selbstverständlich optional und wer viel programmiert, wird mit der Zeit evtl. einen eigenen Stil entwickeln. Dennoch bieten Style Guides gerade beim Einstieg in die Programmierung eine gute Orientierungshilfe und erleichtern vor allem das Arbeiten im Team. Der wichtigste und umfangreichste Style Guide für R ist  https://style.tidyverse.org/index.html. Wir empfehlen, die Kapitel `Welcome`, `Files` und  `Syntax` zu lesen, bevor Sie mit dem Programmieren beginnen. Ein weiterer berühmter Syle Guide ist von Google https://google.github.io/styleguide/.
+Es gibt eine gute Praxis, wie der Stil der Codes sein sollte. Die sog. *Style Guides* sind eine Art generelle Vereinbarung bei der Programmierung. Style Guides sind selbstverständlich optional und wer viel programmiert, wird mit der Zeit einen eigenen Stil entwickeln. Dennoch bieten Style Guides gerade beim Einstieg in die Programmierung eine gute Orientierungshilfe und erleichtern vor allem das Arbeiten im Team. Der wichtigste und umfangreichste Style Guide für R ist  https://style.tidyverse.org/index.html. Wir empfehlen, die Kapitel `Welcome`, `Files` und  `Syntax` zu lesen, bevor Sie mit dem Programmieren beginnen. Ein weiterer berühmter Syle Guide ist von Google https://google.github.io/styleguide/.
 
-Vielleicht die wichtigste Praxis beim Programmieren ist das Kommentieren. **Kommentare** sind ein wichtiger Bestandteil der Skripte in R und allen anderen Skript- und Programmiersprachen. Sie werden lernen, dass die Kommentarfunktion ein wesentlicher Vorteil gegenüber Klickprogrammen darstellt. Ein Kommentar ist Text in einem (R-)Code, der der Dokumentation dient und von der R Konsole ignoriert wird. Sämtliche Zeilen, die mit dem Zeichen `#` beginnen, werden nicht ausgeführt, wenn Sie an die Konsole gesendet werden. Seien Sie nicht sparsam mit Kommentaren, sondern benutzen Sie sie um Ihren Code zu strukturieren, ihre Berechnungen zu für sich selbst und andere zu erläutern und, um Ergebnisse zu beschreiben oder zu interpretieren.
+Vielleicht die wichtigste Praxis beim Programmieren ist das Kommentieren. **Kommentare** sind ein wichtiger Bestandteil der Skripte in R und allen anderen Skript- und Programmiersprachen. Sie werden lernen, dass die Kommentarfunktion ein wesentlicher Vorteil gegenüber Klickprogrammen darstellt. Ein Kommentar ist Text in einem (R-)Code, welcher nur der Dokumentation dient und von der R Konsole nicht ausgeführt wird. Sämtliche Zeilen, die mit dem Zeichen `#` beginnen, werden nicht ausgeführt, wenn Sie an die Konsole gesendet werden. Seien Sie nicht sparsam mit Kommentaren, sondern benutzen Sie sie, um Ihren Code zu strukturieren, ihre Berechnungen zu für sich selbst und andere zu erläutern und, um Ergebnisse zu beschreiben oder zu interpretieren.
 
 ```{r}
 # sqrt(a)
@@ -117,7 +127,7 @@ Sie können Kommentare auch verwenden, um Code, den sie später vielleicht wiede
 
 #### `r exercise("Ausführen von Quellcodes")`
 
-Öffnen Sie RStudio, erstellen Sie ein neues Skript und speichern Sie dieses unter dem Namen `skript1.R` ab. 
+Öffnen Sie RStudio, erstellen Sie ein neues Skript und speichern Sie dieses unter dem Namen `skript1.R` ab.
 
 Tippen oder kopieren Sie folgenden Code in das Skript:
 
@@ -134,13 +144,14 @@ Führen Sie nun alle Zeilen aus.
 
 ## RStudio Projekte
 
-Projekte in RStudio bieten eine einfache Möglichkeit Workflows zu vereinfachen. Dabei wird eine lokale Umgebung erstellt und alle Pfadnamen beziehen sich auf das Verzeichnis des Projekts und sie müsse keine absoluten Pfade angeben. Das hat zwei Vorteile:
+Projekte in RStudio bieten eine einfache Möglichkeit Workflows zu vereinfachen. Dabei wird eine lokale Umgebung erstellt und alle Pfadnamen beziehen sich auf das Verzeichnis des Projekts und sie müsse keine absoluten Pfade angeben. Das hat unter anderem zwei Vorteile:
 
-Sie können Ihre R-Session direkt in dem Projekt starten.
-R-Projekte können zwischen unterschiedlichen Rechnern geöffnet werden, ohne dass der Pfad angepasst werden muss. 
+1. Sie können Ihre R-Session direkt in dem Projekt starten.
+2. R-Projekte können zwischen unterschiedlichen Rechnern geöffnet werden, ohne dass der Pfad angepasst werden muss. 
 
 ### Erstellen eines Projektes
-Zum Erstellen eines Projektes müssen einige Schritte durchlaufen werden, diese sind in Abbildung 3 zusammengefasst. 
+
+Zum Erstellen eines Projektes müssen folgende Schritte durchlaufen werden, diese sind in Abbildung 3 zusammengefasst. 
 
 1. Gehen Sie zu \menu{File > New Project ...}
 2. Wählen Sie `New Project`.
@@ -175,7 +186,7 @@ knitr::include_graphics(here::here("img/open_proj2.PNG"))
 
 ## Variablen beim Programmieren
 
-Ergebnisse aus Berechnungen (wie oben angeführt), aber auch z. B. aus komplexeren Operationen, werden in Variablen abgespeichert. Man kann sich eine Variable wie eine Hülle (oder bildlich gesprochen wie eine Schachtel) vorstellen, in die man etwas hinein legen kann und darauf zu einem späteren Zeitpunkt wieder zugreifen kann. Z. B. weist der folgende Ausdruck der Variable `alter` den Wert `102` zu.
+Ergebnisse aus Berechnungen (wie oben angeführt), aber auch z. B. aus komplexeren Operationen, werden in Variablen abgespeichert. Man kann sich eine Variable wie eine Hülle (oder Schachtel) vorstellen, in die man etwas hinein legen kann und darauf zu einem späteren Zeitpunkt wieder zugreifen kann. Z. B. weist der folgende Ausdruck der Variable `alter` den Wert `102` zu.
 
 ```{r}
 alter <- 102
@@ -190,7 +201,7 @@ a <- 10
 a
 ```
 
-Man kann mit `=` oder `<-` einer Variable einen Wert zuweisen. Der Unterschied ist in den meisten Fällen vernachlässigbar, es wird aber allgemein empfohlen `<-` (`=` ist schlechter Stil) zu verwenden.
+Man kann mit `=` oder `<-` einer Variable einen Wert zuweisen. In dem meisten Fällen (alle, die wir abdecken) funktioniert beides gleich, es wird aber empfohlen `<-` (`=` ist schlechter Stil) zu verwenden.
 
 Wir können beliebige Variablen erstellen, z.B.
 
@@ -200,10 +211,10 @@ name <- "Johannes"
 ```
 
 
-Variablennamen dürfen nicht mit einer Zahl beginnen und müssen aus einem Wort bestehen. Die Variablen erscheinen nach der Definition im *Environment* Zab in Pane 2.
+Variablennamen dürfen nicht mit einer Zahl beginnen und müssen aus einem Wort ohne Leerzeichen bestehen. Die Variablen erscheinen nach der Definition im *Environment* Tab in Pane 2.
 
 - `a_123 <- 10` ist ok
-- `123_a <- 10` erzeugt einen Fehler
+- `123_a <- 10` ist nicht ok
 
 Vorsicht: Groß- und Kleinschreibung muss beachtet werden.
 
@@ -212,7 +223,7 @@ name <- "Johannes"
 name
 ```
 
-Das Aufrufen der Variable
+Das Aufrufen der Variablen
 
 ```{r, eval = FALSE}
 Name
@@ -242,7 +253,7 @@ ergebnis2 <- ergebnis * 2
 ergebnis2
 ```
 
-Mit der Funktion `rm()` können Variablen, können nicht mehr benötigte Variablen, wieder gelöscht werden. Alternativ können Variablen auch überschrieben werden. Es gibt keine Möglichkeit gelöschte oder überschriebene Variablen wiederherzustellen. Sie müssen ggf. neu berechnet werden.
+Mit der Funktion `rm()` können Variablen, können nicht mehr benötigte Variablen, wieder gelöscht werden. Alternativ können Variablen auch überschrieben werden. Es gibt keine Möglichkeit gelöschte oder überschriebene Variablen wiederherzustellen. Sie müssten ggf. neu berechnet werden.
 
 ```{r}
 var1 <- "irgendwas"
@@ -259,8 +270,7 @@ Ein zweiter wesentlicher Bestandteil beim Arbeiten mit R sind Funktionen. Währe
 sqrt(a)
 ```
 
-Funktionen sind in R in der Regel daran zu erkennen, dass sie immer mit dem Funktionsnamen, gefolgt von 
-runden Klammern (`()`), aufgerufen werden. Im vorherigen Beispiel wurde die Funkion mit dem Namen `sqrt()` aufgerufen. Das Objekt `a` haben wir bereits vorhin definiert (zur Erinnerung `a <- 10`). Die Funktion `sqrt()` arbeitet jetzt mit dem Objekt `a`, das in diesem Zusammenhang auch **Argument** genannt wird. 
+Funktionen sind in R daran zu erkennen, dass dem Funktionsnamen runde Klammern (`()`) folgen. Im vorherigen Beispiel wurde die Funkion mit dem Namen `sqrt()` aufgerufen. Das Objekt `a` haben wir bereits vorhin definiert (zur Erinnerung `a <- 10`). Die Funktion `sqrt()` arbeitet jetzt mit dem Objekt `a`, das in diesem Zusammenhang auch **Argument** genannt wird. 
 
 Argumente von Funktionen haben Namen, diese müssen jedoch nicht angegeben werden, wenn die Reihenfolge der Argumente berücksichtigt wird. Im vorherigen Beispiel, haben wir einfach die Funktion `sqrt(a)` aufgerufen und keinen Argumentnamen angegeben. Aus den Hilfeseiten für die Funktion `sqrt()` (siehe auch nachfolgender Abschnitt) ist zu entnehmen, dass die Funktion `sqrt()`  ein Argument mit dem Namen `x` hat. Das heißt, der vollständige Aufruf der Funktion `x` wäre.
 
@@ -268,26 +278,25 @@ Argumente von Funktionen haben Namen, diese müssen jedoch nicht angegeben werde
 sqrt(x = a)
 ```
 
-Um mehr über eine Funktion zu erfahren (z.B. die Bedeutung von Argumenten zu verstehen oder herauszufinden, was eine Funktion zurück gibt), können wir die Hilfeseiten konsultieren. Es gibt unterschiedliche Wege, um zu einer Hilfeseite zu gelangen. 
+Um mehr über eine Funktion zu erfahren (z. B. die Bedeutung von Argumenten zu verstehen oder herauszufinden, was eine Funktion zurück gibt), können wir die Hilfeseiten konsultieren. Es gibt unterschiedliche Wege, um zu einer Hilfeseite zu gelangen. 
 
 1. In die Konsole `?<Name der Funktion>` tippen. Also, wenn wir Hilfe für die Funktion `mean()` möchten, könnten wir einfach `?mean` in die Konsole tippen.
 2. Analog zu 1), können wir mit der Funktion `help` die Hilfeseite für eine andere Funktion aufrufen (z.B. wenn wir wieder die Hilfe für die Funktion `mean()` lesen möchten, dann könnten wir auch `help(mean)` in die Konsole tippen).
 3. In RStudio kann man auch auf das `Help`-Panel klicken und dann einfach eine Funktion suchen (siehe Abbildung 1). 
 4. Wenn der Cursor in RStudio auf einer Funktion ist, kann man mit der Taste F1 die dazugehörige Hilfeseite aufrufen.
 
+Alle R Funktionen haben eine Hilfeseite. Diese Seite ist immer gleich aufgebaut und enthält die Kapitel `Description`, `Usage`, `Arguments`, `Details`, `Value`, `Authors`, und `Examples`.
 
 ## Datentypen
 
-Es wurde bereits erwähnt, dass Daten in Variablen gespeichert werden können. Die Variablen, in denen die Daten (oder auch Berechnungen oder ganze Funktionen) gespreichert werden, heißen in R Objekte. Wenn Sie beispielsweise Messwerte einer Fotofalle speichern möchten, dann hat diese Fotofalle einen Namen (z.B. `Kamera1`) und nach einiger Zeit im Wald wurden hoffentlich auch einige Fotos aufgenommen. Wir nehmen einmal an, dass nach drei Wochen 132 Fotos von Rehen gemacht wurden.
-
-Wir können jetzt sowohl den Namen der Fotofalle, als auch die Anzahl Fotos die aufgenommen wurden, in zwei Variablen abspeichern.
+Es wurde bereits erwähnt, dass Daten in Variablen gespeichert werden können. Diese Variablen, in denen die Daten (oder auch Berechnungen oder ganze Funktionen) gespeichert werden, heißen in R Objekte. Wenn Sie beispielsweise Messwerte einer Fotofalle speichern möchten, dann hätte diese Fotofalle einen Namen (z.B. `Kamera1`) und hoffentlich auch einige Fotos. Wir nehmen einmal an, dass nach drei Wochen 132 Fotos von Rehen gemacht wurden. Wir können jetzt sowohl den Namen der Fotofalle, als auch die Anzahl Fotos die aufgenommen wurden, in zwei Variablen abspeichern.
 
 ```{r}
 kamera_name <- "Kamera_1"
 anzahl_rehe <- 132
 ```
 
-In den zwei vorherigen Zeilen Code haben wir zwei Objekte (im Sinne von R) erstellt. Das erste Objekt heißt `kamera_name` und das zweite Objekt heißt `anzahl_rehe`. In dem Beipiel handelt es sich also um zwei sehr einfache Objekte, in denen jeweils ein Wert gespeichert ist. Auffällig ist, dass beide Objekte unterschiedliche Datentypen haben. `kamera_name`  ist vom Typ `character` (also Text). Das zweite Objekt, `anzahl_rehe`, ist vom Typ `numeric` (also eine Zahl, wir unterscheiden hier nicht weiter^[Für Interessierte, man unterscheidet weiter zwischen Ganzzahlen (`int`) und Gleitkommazahlen (`double`) unterscheiden.]). Zusätzlich zu diesen zwei Typen (`character` und `numeric`), gibt es noch einen weiteren wichtigen Typ: nämlich das logische Wahr oder Falsch (in R: `TRUE` und `FALSE`) und noch weitere Datentypne auf die wir zunächst nicht eingehen (tippen Sie `?typeof` für eine Übersicht aller Datentypen). Zurückkommend auf das Beispiel mit den Fotofallen, könnte eine mögliche Fragestellung sein, ob auf einem der Fotos ein Fuchs gesehen wurde oder nicht. Dazu würden wir eine neue Variable `fuchs_gesehen` anlegen und diese auf `TRUE` setzen, da ein Fuchs gesehen wurde.
+In den zwei vorherigen Zeilen Code haben wir zwei R Objekte erstellt. Das erste Objekt heißt `kamera_name` und das zweite Objekt heißt `anzahl_rehe`. In dem Beispiel handelt es sich also um zwei sehr einfache Objekte, in denen jeweils ein Wert gespeichert ist. Auffällig ist, dass beide Objekte unterschiedliche Datentypen haben. `kamera_name`  ist vom Typ `character` (also Text). Das zweite Objekt, `anzahl_rehe`, ist vom Typ `numeric` (also eine Zahl, wir unterscheiden hier nicht weiter^[Für Interessierte, man unterscheidet weiter zwischen Ganzzahlen (`int`) und Gleitkommazahlen (`double`). Dieser Unterschied ist in R jedoch selten wichtig.]). Zusätzlich zu diesen zwei Typen (`character` und `numeric`), gibt es noch einen weiteren wichtigen Typen, nämlich das logische Wahr oder Falsch (in R: `TRUE` und `FALSE`) und noch weitere Datentypen auf die wir zunächst nicht eingehen (tippen Sie `?typeof` für eine Übersicht aller Datentypen). Zurückkommend auf das Beispiel mit den Fotofallen, könnte eine mögliche Fragestellung sein, ob auf einem der Fotos ein Fuchs gesehen wurde oder nicht. Dazu würden wir eine neue Variable `fuchs_gesehen` anlegen und diese auf `TRUE` setzen, da ein Fuchs gesehen wurde.
 
 ```{r}
 fuchs_gesehen <- TRUE
@@ -298,7 +307,7 @@ Wenn Sie sich nicht sicher, um welchen Typen es sich handelt, können sie ihn mi
 typeof(fuchs_gesehen)
 ```
 
-`TRUE` wird intern als `1` gespeichert und `FALSE` als `0`. Es ist möglich mit `TRUE`s und `FALSE`s zu rechnen. 
+`TRUE` wird im PC als `1` gespeichert und `FALSE` als `0`. Es ist möglich mit `TRUE` und `FALSE` zu rechnen.
 
 ```{r}
 TRUE + TRUE
@@ -314,7 +323,7 @@ set.seed(123)
 npics <- c(132, round(runif(14, 50, 150)))
 ```
 
-Verfolgen wir das Beispiel mit den Fotofallen etwas weiter. Es handelt sich um ein systematisches Monitoring. D. h., es wurde nicht nur eine Fotofalle ausgebracht, sondern insgesamt 15 Stück. Dieser Umstand erfordert komplexere Objekte. Nachfolgend sind die Anzahl Rehfotos für jede der 15 Fotofallen aufgeführt: `r npics`.
+Verfolgen wir das Beispiel mit den Fotofallen etwas weiter. Es handelt sich um ein systematisches Monitoring. D. h., es wurde nicht nur eine Fotofalle ausgebracht, sondern insgesamt 15 Fotofallen. Diese Erweiterung erfordert komplexere Objekte. Nachfolgend sind die Anzahl Rehfotos für jede der 15 Fotofallen aufgeführt: `r npics`.
 
 Die Frage, die sich jetzt stellt, ist: Wie kann man diese Daten sinnvoll organisieren? Zusätzlich zur Anzahl der fotografierten Rehe soll jede Fotofalle eine eindeutige ID haben (`Kamera_1`, ..., `Kamera 15`) und wir wissen, dass jeweils 5 Fotofallen in drei unterschiedlichen Revieren aufgestellt waren (Fotofalle 1 bis 5 in Revier A, Fotofalle 6 bis 10 in Revier B und Fotofalle 11 bis 15 in Revier C). Wir könnten für jede Kamera und jeden Wert ein einzelnes Objekt mit je einem Wert erstellen. Dass das zu Aufwändig wäre, leuchtet unmittelbar ein:
 
@@ -322,19 +331,19 @@ Die Frage, die sich jetzt stellt, ist: Wie kann man diese Daten sinnvoll organis
 # 1. Kamera
 name1 <- "Kamera_1"
 anzahl_rehe1 <- 132
-revier_1 <- "Revier A"
+revier1 <- "Revier A"
 
 # 2. Kamera
 name2 <- "Kamera_2"
 anzahl_rehe2 <- 79
-revier_2 <- "Revier A"
+revier2 <- "Revier A"
 
 # usw.
 ```
 
-Wenn wir so vorgehen würden, hätten wir 45 Objekte mit je einem Eintrag. Dieser Ansatz und führt schnell zu einem unübersichtlichen *Workspace*^[Als *Workspace* werden alle Objekte bezeichnet, die in einer R-Session zur Verfügung stehen. Siehe Liste im *Environment* in Pane 2.]. Wir werden im Verlauf sinnvollere Objekte (Vektoren oder Data Frames) für diesen Zweck kennenlernen.
+Wenn wir so vorgehen würden, hätten wir 45 Objekte mit je einem Eintrag. Dieser Ansatz und führt schnell zu einem unübersichtlichen *Workspace*^[Erinnerung: Als *Workspace* werden alle Objekte bezeichnet, die in einer R-Session zur Verfügung stehen. Siehe Liste im *Environment* in Pane 2.]. Wir werden im Verlauf sinnvollere Objekte (Vektoren oder Data Frames) für diesen Zweck kennenlernen.
 
-#### `r exercise("Variabeln")`
+#### `r exercise("Variablen")`
 
 Verwenden Sie die folgenden Daten
 
