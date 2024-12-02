@@ -97,7 +97,7 @@ Einfache Rechenoperationen können auch direkt in der R-Konsole durchgeführt we
 100 / 19
 ```
 
-Sie sehen Ihren Code in rot und das Ergebnis dieser Operation in weiß darunter. Die Zahl in `[]` gibt die Dimension des Ergebnisses an. Hier also `[1]` für eine Angabe. Dieses Skript wurde in R Markdown geschrieben (siehe Vorwort). R Markdown verbindet Text und Code. Die Ergebnisse des Codes werden unter dem grau hinterlegten *Codechunk* dargestellt. Darstellung und Farbe des Codes und der Ergebnisse sind jedoch nicht immer exakt so wie sie es in der R Konsole wären.
+Sie sehen Ihren Code in rot und das Ergebnis dieser Operation in weiß darunter. Die Zahl in `[]` gibt die Position der Einträge wider Hier also `[1]`, da es sich nur um einen Wert handelt, der demnach an erster Position steht. Dieses Skript wurde in R Markdown geschrieben (siehe Vorwort). R Markdown verbindet Text und Code. Die Ergebnisse des Codes werden unter dem grau hinterlegten *Codechunk* dargestellt. Darstellung und Farbe des Codes und der Ergebnisse sind jedoch nicht immer exakt so wie sie es in der R Konsole wären.
 
 Weitere häufig verwendete Operationen sind `^` für eine beliebige Potenz, z.B. $2^3$ = `2^3` = `r 2^3`. Analog dazu gibt es die Funktion `sqrt()` zum berechnen von Wurzeln und viele weitere Funktionen. Wenn Sie einen code abschicken, der nicht funktioniertm bekommen Sie statt des Ergebnisses eine Fehlermeldung, welche bestenfalls einen Hinweis zur Korrektur enthält.
 
@@ -373,7 +373,7 @@ a + p
 
 # Vektoren
 
-Die gute Nachricht zuerst. Sie haben bereits Vektoren erstellt in R (und dies wahrscheinlich nicht bewusst wahrgenommen). Wenn Sie nämlich eine Objekt mit einem Element erstellen (z.B., `a <- 10`), wird ein Vektor der Länge eins erstellt. Das heißt, der Vektor enthält genau ein Element (einen Eintrag). Vektoren sind also kein neues Objekt für Sie, sondern Sie lernen jetzt, dass die Ihnen schon bekannten Objekte Vektoren heißen und sie auch mehrere Elemente in eine mObjekt speichern können.
+Die gute Nachricht zuerst. Sie haben bereits Vektoren erstellt in R (und dies wahrscheinlich nicht bewusst wahrgenommen). Wenn Sie nämlich eine Objekt mit einem Element erstellen (z.B., `a <- 10`), wird ein Vektor der Länge eins erstellt. Das heißt, der Vektor enthält genau ein Element (einen Eintrag). Vektoren sind also kein neues Objekt für Sie, sondern Sie lernen jetzt, dass die Ihnen schon bekannten Objekte Vektoren heißen und sie auch mehrere Elemente in einem Objekt speichern können.
 
 ```{r fig1, out.width = "350px", echo = FALSE, fig.cap="Schematische Darstellung eines Vektors in R.", fig.align="center"}
 include_graphics(here("img/vectors.jpg"))
@@ -381,7 +381,7 @@ include_graphics(here("img/vectors.jpg"))
 
 Sie können sich Vektoren wie einen Schubladenschrank vorstellen (siehe auch Abbildung \@ref(fig:fig1)). Wichtig ist dabei, dass man in jede Schublade immer nur ein Element verstauen kann und alle Elemente im Schublagenschrank den gleichen Datentyp haben müssen. Etwas allgemeiner gesprochen heißt das, dass alle Elemente eines Vektors vom gleichen Datentyp sein müssen.
  
-Es gibt zahlreiche Funktionen zum Erstellen von Vektoren (einige davon werden wir im weiteren Verlauf des Moduls kennenlernen). Die wohl wichtigste Funktion ist `c()`. Dabei steht `c` für *combine* oder *concatenate*. Die Funktion `c()` fügt einzelne Elemente in einen Vektor zusammen (und zwar genau in der Reihenfolge wie diese Elemente an `c()` übergeben werden). `c()` ist sozusagen die Funktion, die für Sie mehrere Elemente zu einem Vektor zusammensetzt. `c()` erwartet folglich nur Elemente als Argumente.
+Es gibt zahlreiche Funktionen zum Erstellen von Vektoren (einige davon werden wir im weiteren Verlauf des Moduls kennenlernen). Die wichtigste Funktion ist `c()`. Dabei steht `c` für *combine* oder *concatenate*. Die Funktion `c()` fügt einzelne Elemente in einen Vektor zusammen (und zwar in der Reihenfolge wie diese Elemente an `c()` übergeben werden). `c()` ist sozusagen die Funktion, die für Sie mehrere Elemente zu einem Vektor zusammensetzt. `c()` erwartet folglich nur Elemente als Argumente.
  
 Gehen wir nochmals zurück zu Abbildung \@ref(fig:fig1), in der schematisch dargestellt wird, wie ein Vektor `s` mit 7 Elementen (in diesem Fall Zahlen) erstellt wird.
 
@@ -410,7 +410,7 @@ oder `s` mit sich selbst multiplizieren. Zu beachten ist also, dass es sich bei 
 s * s
 ```
 
-Neben der Funktion `c()` gibt es zahlreiche weitere Funktionen, um Vektoren zu erstellen. Sehr häufig braucht man Vektoren von Zahlenfolgen. Solche Vektoren können mit der Funktion `seq()` erstellt werden. Im einfachsten Fall benötigt `seq()` zwei Argumente: `from` und `to`^[Weil solche Vektoren so häufig vorkommen gibt es hier eine Abkürzung. Man kann `seq(from, to, by = 1)` mit `from:to` abkürzen. Also `1:10` würde auch alle Zahlen von 1 bis 10 zurückgeben.].
+Neben der Funktion `c()` gibt es zahlreiche weitere Funktionen, um Vektoren zu erstellen. Sehr häufig braucht man Vektoren von Zahlenfolgen. Solche Vektoren können mit der Funktion `seq()` erstellt werden. Im einfachsten Fall benötigt `seq()` zwei Argumente: `from` und `to`^[Weil solche Vektoren so häufig vorkommen gibt es hier eine Abkürzung. Man kann `seq(from, to, by = 1)` mit `from:to` abkürzen. Also `1:10` würde auch alle Zahlen von 1 bis 10 in Einerschritten zurückgeben.].
 
 ```{r}
 seq(from = 1, to = 10)
@@ -522,7 +522,7 @@ rep(c("G1", "G2"), 4)
 
 ## Statistische Funktionen
 
-Zahlreiche statistische Funktionen können auf Vektoren angewendet werden, hier sind nur die wichtigsten aufgeführt: `mean()` berechnet den Mittelwert, `median()` berechnet den Median und `sd()` die Standardabweichung.
+Zahlreiche statistische Funktionen können auf Vektoren angewendet werden, hier sind nur drei Beispiele aufgeführt: `mean()` berechnet den Mittelwert, `median()` berechnet den Median und `sd()` die Standardabweichung.
 
 ```{r}
 mean(s)
@@ -557,6 +557,7 @@ ids <- c("Kamera_1", "Kamera_2", "Kamera_3", "Kamera_4", "Kamera_5",
          "Kamera_11", "Kamera_12", "Kamera_13", "Kamera_14", "Kamera_15"
 )
 ```
+
 Dieser Ansatz ist unbefriedigend, da wir 15 mal das Wort "Kamera" tippen müssen. Wir können das Problem in zwei kleinere Probleme zerlegen: 1) 15 mal das Wort Kamera erstellen und die Zahlen 1 bis 15 erstellen, 2) die zwei Vektoren aus 1) "zusammenkleben".
 
 Ein Vektor kann mit der Funktion `rep` wiederholt werden, das heißt wir können ganz einfach 15 mal das Wort "Kamera" erstellen und speichern das Zwischenergebnis in einem Vektor `v1`.
@@ -584,7 +585,7 @@ Mehr Funktionen zum Umgang mit Zeichenketten folgen in Kapitel "Arbeiten mit Tex
 rep(c("Revier A", "Revier B", "Revier C"), 5)
 ```
 
-Das Ergebnis stimmt noch nicht ganz, da wir 5 mal `Revier A` usw. brauchen. Mit dem zusätzlichen Argument `each = 5` können wir genau zu diesem Ergebnis kommen.
+Das Ergebnis stimmt noch nicht ganz, da wir 5 mal `Revier A` u.s.w. brauchen. Mit dem zusätzlichen Argument `each = 5` können wir genau zu diesem Ergebnis kommen.
 
 
 ```{r}
