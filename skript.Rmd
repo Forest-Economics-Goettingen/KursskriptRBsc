@@ -623,13 +623,13 @@ Dabei werden die folgenden Operationen am häufigsten verwendet.
 
 Das Ergebnis von logischen Operatoren ist immer `TRUE` oder `FALSE`. 
 
-Bei Vektoren kommt es immer zu einer elementweisen Anwendung. Wir können beispielsweise abfragen, an welchen Fotofallenstandorten mehr als 100 Rehe fotografiert wurden:
+Bei Vektoren kommt es immer (unabhängig von den Datentypen) zu einer elementweisen Anwendung. Wir können beispielsweise abfragen, an welchen Fotofallenstandorten mehr als 100 Rehe fotografiert wurden:
 
 ```{r}
 anzahl_rehe > 100
 ```
 
-Das Ergebnis ist ein Vektor vom Datentyp `logi` in der selben länge wie `anzahl_rehe`. 
+Das Ergebnis ist ein Vektor vom Datentyp `logi` in der selben Länge wie `anzahl_rehe`. 
 
 Wir können z. B. abfragen, welche Fotofallenstandorte sich in Revier B befinden.
 
@@ -646,7 +646,7 @@ anzahl_rehe > 100 & reviere == "Revier B"
 ```
 
 
-Das war jetzt eine Abfrage mit einem logischen Und. Würden wir ein logisches Oder verwenden, dann bekommen wir für alle Elemente ein `TRUE`, die entweder in Gebiet B stehen oder mehr als 100 Rehfotos aufgezeichnet haben.
+Das war eine Abfrage mit einem logischen Und. Würden wir ein logisches Oder verwenden, dann bekommen wir für alle Elemente ein `TRUE`, die entweder in Gebiet B stehen oder mehr als 100 Rehfotos aufgezeichnet haben.
 
 
 ```{r}
@@ -657,7 +657,7 @@ Das Arbeiten mit logischen Werten kann fürs Erste etwas abstrakt erscheinen, ab
 
 #### `r exercise("Arbeiten mit logischen Werten")`
 
-Überlegen Sie für jede Aufgabe erst was das richtige Ergebnis ist und Überprüfen Sie dieses dann mit R.
+Überlegen Sie zunächst selbst, was das richtige Ergebnis ist und Überprüfen Sie dieses dann mit R.
 
 1. `TRUE | FALSE`
 2. `FALSE & TRUE`
@@ -683,7 +683,7 @@ sum(c(TRUE, TRUE, FALSE, FALSE))
 
 Sehr oft wollen wir auf bestimmte Werte in einer Datenstruktur zugreifen. Beispielsweise könnte es uns interessieren, wie viele Rehe im Mittel auf allen Fotofallen aus Revier A gesehen wurden. Das Zugreifen auf Elemente mit bestimmten Eigenschaften ist die häufigste Anwendung für logische Operationen in R. Aus diesem Grund ist das Unterkapitel "Arbeiten mit logischen Werten" auch Teil des Kapitels "Vektoren".
 
-Bei Vektoren kann auf die einzelnen Elemente mit eckigen Klammern (`[ ]`, diese werden auch Indizierungsklammern genannt) zugegriffen werden. Der Ausdruck `anzahl_rehe[2]` gibt die Anzahl an fotografierten Rehen für die zweite Fotofalle zurück, also die zweite Stelle des Vektors`anzahl_rehe`. Es gibt zwei Möglichkeiten, was in die eckigen Klammern geschrieben werden kann: 1.) die Positionen der Elemente die man zurückhaben möchte, wie eben beschrieben. Ist es mehr als ein Element, dann muss ein Vektor mit den Positionen übergeben werde. Die 2.) Möglichkeit der Indizierung ist also ein logischer Vektor in der gleichen Länge des Vektors, den ich indiozieren möchte. Es werden alle Elemente zurückgegeben, bei denen in dem logischen Vektor `TRUE` eingetragen ist.
+Bei Vektoren kann auf die einzelnen Elemente mit eckigen Klammern (`[ ]`, diese werden auch Indizierungsklammern genannt) zugegriffen werden. Der Ausdruck `anzahl_rehe[2]` gibt die Anzahl an fotografierten Rehen für die zweite Fotofalle zurück, also die zweite Stelle des Vektors`anzahl_rehe`. Es gibt zwei Möglichkeiten, was in die eckigen Klammern geschrieben werden kann: 1.) die Positionen der Elemente die indiziert werden sollen. Ist es mehr als ein Element, dann muss ein Vektor mit den Positionen übergeben werden, also z. B. `anzahl_rehe[c(1, 2)]`. Die 2.) Möglichkeit der Indizierung ist ein logischer Vektor in der gleichen Länge des Vektors. Es werden alle Elemente zurückgegeben, bei denen in dem logischen Vektor `TRUE` eingetragen ist.
 
 1.) Abfragen des zweiten Elements in dem Vektor `anzahl_rehe`: 
 
@@ -698,10 +698,10 @@ ist_a <- reviere == "Revier A"
 anzahl_rehe[ist_a] 
 
 # oder alternativ mit Methode 1.)
-anzahl_rehe[1:5]  # da `1:5` einen Vektor mit allen Zahlen von 1 bis 5 erstellt.
+anzahl_rehe[1 : 5]  # da `1:5` einen Vektor mit allen Zahlen von 1 bis 5 erstellt.
 ```
 
-Hier ist nochmals hervorzuheben, dass innerhalb der eckigen Klammer mit dem Befehl `c(1, 2, 3, 4, 5)` bzw. `1:5` ein Vektor erstellt wird, der die Position der Elemente angibt, die zurückgegeben werden sollen.
+Hier ist nochmals hervorzuheben, dass innerhalb der eckigen Klammer mit dem Befehl `c(1, 2, 3, 4, 5)` bzw. `1 : 5` ein Vektor erstellt wird, der die Position der Elemente angibt, die zurückgegeben werden sollen.
 
 #### `r exercise("Zugreifen auf Vektorelemente")`
 
@@ -736,7 +736,7 @@ sub <- c(TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE,
 anzahl_rehe[sub]
 ```
 
-Das Erstellen des `sub`-Vektors ist mühsam und wenig zielführend. Wenn wir auf die Erkenntnisse aus dem vorherigen Kapitel zurückgreifen, kann dies leicht automatisiert werden, indem wir einfach abfragen, welche Elemente in Revier zu `Revier A` gehören.
+Das Erstellen des `sub`-Vektors ist mühsam und wenig zielführend. Wenn wir auf die Erkenntnisse aus dem vorherigen Kapitel zurückgreifen, kann dies leicht automatisiert werden, indem wir einfach abfragen, welche Elemente in Revier zu `Revier A` gehören. Diese Verbindung von logischen Operatoren und Indizierung ist sehr relevant. Es ist eine der wichtigsten Tätigkeiten beim Programmieren mit R.
 
 ```{r}
 sub <- reviere == "Revier A"
@@ -832,7 +832,7 @@ LETTERS[LETTERS %in% c("A", "E", "I", "O", "U")]
 
 # Faktoren (`factors`)
 
-R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von diskreten Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Dabei wird jeder eindeutiger Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen der Werte gespeichert [siehe dazu auch @mcnamara2018]. Faktoren haben im Gegensazu zu Zeichenketten zusätzliche Eigenschaften. Man kann sie z. B. sortieren.
+R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von diskreten Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Denn im Gegensatz zu `character` enthalten Faktoren mehr Funktionalitäten, die bei der Datenverarbeitung aber auch bei der statistischen Datenanalyse hilfreich sind. Die Unterscheidung von Faktoren und reinem Text ist auf die historische Entwicklung von R als statistischer Programmiersprache zurückzuführen. Faktoren sind Text, der statistische Informationen enthält. Fließtext, der z. B. ein Experiment beschreibt oder Kommentare aus dem Aufnahmebogen enthält, sollte in R besser als `character` gespeichert werden, wohingegen relevante statistisch Informationen, wie z. B. *Kontrollgruppe* oder auch unsere *Fotofalle* besser als `factor` vorliegen sollten. In Faktoren wird jeder eindeutige Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen der Werte gespeichert [siehe dazu auch @mcnamara2018]. Faktoren haben im Gegensatz zu Zeichenketten zusätzliche Eigenschaften. Man kann sie z. B. sortieren.
 
 Mit der Funktion `factor()` kann ein Faktor erstellt werden. Im einfachsten Fall wird nur ein Vektor übergeben. 
 
@@ -841,13 +841,13 @@ a <- c("FI", "BU", "FI", "EI", "EI", "FI", "FI")
 factor(a)
 ```
 
-Ohne weitere Spezifikation werden für die *Levels* die Werte alphabetisch übernommen (das kann später z.B. beim Erstellen von Abbildungen wichtig sein). Für eine benutzerdefinierte Anordungs der Leverls, kann das Argument `levels` verwendet werden. 
+Ohne weitere Spezifikation werden für die *Levels* die Werte alphabetisch sortiert (das kann später z. B. beim Erstellen von Abbildungen wichtig sein). Für eine benutzerdefinierte Anordung der Leverls, kann das Argument `levels` verwendet werden. 
 
 ```{r}
 factor(a, levels = c("FI", "BU", "EI"))
 ```
 
-Es ist auch möglich, die Beschriftung (= labels) der unterschiedlichen Levels anzugeben mit dem Argument `labels`.
+Es ist auch möglich, die Beschriftung (= labels) der unterschiedlichen Levels anzugeben mit dem Argument `labels`. Das macht z. B. Sinn, wenn sie lange Beschriftungen haben, die Sie beim Programmieren nicht ständig vollständig abtippen möchten.
 
 ```{r}
 af <- factor(a, levels = c("FI", "BU", "EI"), 
@@ -863,7 +863,7 @@ levels(af) <- c("Fi", "Bu", "Ei")
 af
 ```
 
-Schlussendlich kann man mit der Funktion `relevel()` die Referenzkategorie eines Faktors (der erste Level) angepasst werden. Das ist kann z. B. für lineare Modelle wichtig sein.
+Schlussendlich kann man mit der Funktion `relevel()` die Referenzkategorie eines Faktors (der erste Level) angepasst werden. Das ist kann z. B. für lineare Regressionsmodelle wichtig sein.
 
 ```{r}
 af
@@ -876,17 +876,17 @@ Mit der Funktion `as.character()` kann ein Faktor wieder als Variable vom Typ `c
 as.character(af)
 ```
 
-Achtung mit der Funktion `as.numeric()` erhält man die interne Kodierung von Faktoren. 
+Ebenso funktioniert `as.factor()`. Mit der Funktion `as.numeric()` erhält man die interne Kodierung von Faktoren. 
 ```{r}
 af
 as.numeric(af)
 ```
 
-Fichte ist das erste Level des Faktors, deshalb erhalten alle Fichteneinträge den Wert 1. Bucheinträge erhalten den Wert 2 und 3 für Eichen.
+Fichte ist das erste Level des Faktors, deshalb erhalten alle Fichteneinträge den Wert 1. Bucheinträge erhalten den Wert 2 und Eichen 3.
 
 #### `r exercise("Faktoren")`
 
-Verwenden Sie den Vektor `staedte` und erstellen Sie einen Vektor mit der Anordung der `levels` in umgekehrter alphabetischer Reihenfolge.
+Verwenden Sie den Vektor `staedte` und erstellen Sie einen Vektor mit der Anordnung der `levels` in umgekehrter alphabetischer Reihenfolge.
 
 ```{r}
 staedte <- c("Berlin", "Aachen", "Berlin", "Ulm", "Aachen", 
@@ -911,7 +911,9 @@ s3
 
 ## Das Paket `forcats`
 
-Mit dem Paket aus **forcats** werden einige Operationen mit Faktoren erleichtert. Wir schauen uns hier Funktion an, die es erleichtern: 
+Sie müssen das Paket `forcats` installieren und laden. Wir kommen später noch auf Pakete zurück.
+
+Mit dem Paket aus **forcats** werden einige Operationen mit Faktoren erleichtert. Wir schauen uns hier Funktion an, die es erleichtern:
 
 1. Die Anordnung von Levels anzupassen.
 2. Levels zusammenzufassen oder zu entfernen. 
@@ -920,7 +922,7 @@ Mit dem Paket aus **forcats** werden einige Operationen mit Faktoren erleichtert
 
 ### Anpassen der Anordnung von Faktoren
 
-Wir verwenden nochmals den `a` Vektor mit unterschiedichen Baumarten: 
+Wir verwenden nochmals den `a` Vektor mit unterschiedlichen Baumarten: 
 
 ```{r}
 a <- c("FI", "BU", "FI", "EI", "EI", "FI", "FI")
@@ -939,7 +941,7 @@ f1 <- fct(a)
 f1
 ```
 
-**forcats** stellt Funktionen zur Verfügung, um die Reihenfolge umzukeheren, 
+**forcats** stellt u. a. Funktionen zur Verfügung, um die Reihenfolge umzukehren, 
 
 ```{r}
 fct_rev(f1)
@@ -952,13 +954,11 @@ fct_infreq(f1)
 ```
 
 
-eine zufällige Sortierung. 
+zufällig zu sortieren. 
 
 ```{r}
 fct_shuffle(f1)
 ```
-
-
 
 
 \newpage
@@ -972,13 +972,13 @@ In vielen Fällen werden spezielle Einträge benötigt, bspw. bei
 - undefinierten Einträgen `NaN` (Not a Number) oder
 - unendlichen Zahlen (`Inf`).
 
-Spezielle Einträge sind reservierte Namen. Sie können nicht überspeichert werden.
+Spezielle Einträge sind reservierte Namen. Sie können nicht überspeichert werden. Z. B. `NA <- 1` geht also nicht.
 
 ## `NA`
 
 R verfügt über einen speziellen Wert für fehlende Einträge. Auch wenn in
 Vektoren eigentlich nur ein Datentyp erlaubt ist, sind `NA` zwischen den
-anderen Einträgen erlaubt. Der Datentyp des Vektors wird durch NA
+anderen Einträgen möglich. Der Datentyp des Vektors wird durch NA
 Einträge nicht verändert.
 
 ```{r na1}
@@ -988,7 +988,7 @@ na2 <- c(3, 6, NA)
 str(na2)
 ```
 
-Der logische Opertator zum Test auf fehlende Wert ist `is.na()`. Dieser
+Der logische Operator zum Test auf fehlende Wert ist `is.na()`. Dieser
 kann genauso wie die bereits bekannten logischen Operatoren bspw. zum
 Filtern verwendet werden. Die `na.omit()` Funktion entfernt `NA` aus dem
 Datensatz.
@@ -1041,7 +1041,7 @@ werden als unendlich gespeichert und verarbeitet.
 ```
 
 Infinity kann mit `is.infinite` und `is.finite` getestet werden.
-Relationäre Operatoren funktionieren erwartungsgemäß.
+Relationäre Operatoren (`<`, `>`) funktionieren erwartungsgemäß.
 
 ```{r}
 inf1 <- c(Inf, 0, 3, -Inf, 10)
@@ -1082,9 +1082,9 @@ Berechnen Sie den arithmetischen Mittelwert von `foo`.
 
 # `data.frame`s oder Tabellen
 
-Im vorherigen Teilabschnitt haben wir gesehen, wie mehrere Elemente des gleichen Datentyps in einem Vektor zusammengefasst werden können. Abschließend wurde anhand des Fotofallenbeispiels gezeigt, wie Vektoren eingesetzt werden können, um andere Vektoren zu indizieren. Wir erstellten drei Vektoren, die jeweils die Merkmalsausprägungen eines Merkmals aller Fotofallenstandorte speichern. In statistischer Sprache, sind die Fotofallen die Beobachtungen (oder auch Merkmalsträger genannt) und die Informationen zu den Fotofallen (also ID, Anzahl Rehe und das Revier) die Merkmale. Jeder beobachtete Wert (z.B. die 132 fotografierten Rehe von Kamera 1) ist dann eine Merkmalsausprägung. 
+Im vorherigen Teilabschnitt haben wir gesehen, wie mehrere Elemente des gleichen Datentyps in einem Vektor zusammengefasst werden können. Abschließend wurde anhand des Fotofallenbeispiels gezeigt, wie Vektoren eingesetzt werden können, um auch andere Vektoren zu indizieren. Wir erstellten drei Vektoren, die jeweils die Merkmalsausprägungen eines Merkmals aller Fotofallenstandorte speichern und dementsprechend gleich lang sind. In statistischer Sprache, sind die Fotofallen die Beobachtungen (oder auch Merkmalsträger genannt) und die Informationen zu den Fotofallen (also ID, Anzahl Rehe und das Revier) die Merkmale. Jeder beobachtete Wert (z.B. die 132 fotografierten Rehe von Kamera 1) ist dann eine Merkmalsausprägung. Dieser Datenaufbau ist für R typisch (man sagt auch *Tidy Data* zu diesem Datenformat). Ihre Daten sollten genau so vorliegen. Sie haben sich vermutlich schon gedacht, dass die Daten jedoch nicht als einzelne Vektoren, sondern als eine Tabelle vorliegen. In R ist diese Tabelle der `Data Frame`.
 
-Sie können sich ein `data.frame` wie eine Tabelle aus einem Tabellenkalkulationsprogramm vorstellen. Es gibt Zeilen in denen die Beobachtungen gespeichert sind und Spalten, die die Merkmale speichern. In unserem Fall gäbe es 15 Zeilen (eine Zeile für jede Fotofalle) und drei Spalten (jeweils eine Spalte für ID, Anzahl Rehe und Revier). Der Befehl zum Erstellen eines `data.frame`s aus Vektoren in R  ist `data.frame()`. Für unser Beispiel wäre es:
+Sie können sich einen `data.frame` wie eine Tabelle aus einem Tabellenkalkulationsprogramm vorstellen. Es gibt Zeilen in denen die Beobachtungen gespeichert sind und Spalten, die die Merkmale speichern. In unserem Fall gäbe es 15 Zeilen (eine Zeile für jede Fotofalle) und drei Spalten (jeweils eine Spalte für ID, Anzahl Rehe und Revier). Der Befehl zum Erstellen eines `data.frame`s aus Vektoren in R  ist `data.frame()`. Für unser Beispiel wäre es:
 
 ```{r}
 monitoring <- data.frame(
@@ -1095,8 +1095,7 @@ monitoring <- data.frame(
 monitoring
 ```
 
-Auf der linken Seite der Gleichungen stehen die Spaltenname des Data Frames. Im vorhergehenden Codebeispiel wurde ein `data.frame` erstellt und in die Variable `monitoring` gespeichert.
-Die Funktion `data.frame()` nimmt als Argumente beliebig viele Paare, die immer aus einem Namen und einem Vektor mit dazugehörigen Werten bestehen. D.h., dass (wie bei den Vektoren) immer eine Spalte vom selben Typ sein muss, es aber für jede Beobachtung (=Zeile) Merkmale von unterschiedlichen Typen geben kann. Data Frames sind die Standard-Objekte zum Speichern wissenschaftlicher Daten.
+Auf der linken Seite der Gleichungen stehen die Spaltenname des Data Frames. Im vorhergehenden Codebeispiel wurde ein `data.frame` erstellt und als Variable `monitoring` gespeichert. Die Funktion `data.frame()` nimmt als Argumente beliebig viele Paare, die immer aus einem Namen und einem Vektor mit dazugehörigen Werten bestehen. D. h., dass (wie bei den Vektoren) immer eine Spalte vom selben Typ sein muss, es aber für jede Beobachtung (=Zeile) Merkmale von unterschiedlichen Typen geben kann. Data Frames sind die Standard-Objekte zum Speichern (wissenschaftlicher) Daten.
 
 ## Wichtige Funktionen zum Arbeiten mit `data.frame`s
 
@@ -1128,7 +1127,7 @@ str(monitoring)
 
 #### `r exercise("data.frame", "df1")` 
 
-Stellen Sie sich vor, Sie machen eine kleine Umfrage, in der Sie fünf Menschen nach ihrem Studienfach, Semester und Alter befragen. Erstellen Sie einen `data.frame` mit dem Namen `umfrage1` für diese Informationen und fragen Sie entweder fünf Mitstudierende oder erfinden Sie die Daten einfach. 
+Stellen Sie sich vor, Sie machen eine kleine Umfrage, in der Sie fünf Personen nach ihrem Studienfach, Semester und Alter befragen. Erstellen Sie einen `data.frame` mit dem Namen `umfrage1` für diese Informationen und fragen Sie entweder fünf Mitstudierende oder erfinden Sie die Daten einfach. 
 
 
 ```{r, include = params$inc_sol}
@@ -1145,7 +1144,7 @@ umfrage1
 
 ## Zugreifen auf Elemente eines `data.frame`
 
-Für `data.frame`s gilt genau das gleiche Prinzip. Nur dass wir jetzt zwei Dimensionen berücksichtigen müssen: nämlich die Zeilen und die Spalten. Wir können immer noch mit eckigen Klammern (`[]`) auf Elemente innerhalb eines `data.frame`s zugreifen, müssen aber jetzt die *Zeile(n)* und die *Spalte(n)* angeben, die wir haben möchten. Die Schreibweise ist immer `[Zeile(n), Spalte(n)]`. Für Zeilen und Spalten gelten genau die gleichen Regeln wie für Vektoren. Wir können entweder einen Vektor mit den Positionen für die gewünschten Zeilen und Spalten angeben oder einen logischen Vektor, der besagt welche Zeilen und Spalten wir zurückhaben möchten.
+Für `data.frame`s gilt genau das gleiche Prinzip. Nur dass wir jetzt zwei Dimensionen berücksichtigen müssen: nämlich die Zeilen und die Spalten. Wir können immer noch mit eckigen Klammern (`[]`) auf Elemente innerhalb eines `data.frame`s zugreifen, müssen aber jetzt die *Zeile(n)* und die *Spalte(n)* angeben, die wir indizieren möchten. Die Schreibweise ist immer `[Zeile(n), Spalte(n)]`. Für Zeilen und Spalten gelten genau die gleichen Regeln wie für Vektoren. Wir können entweder einen Vektor mit den Positionen für die gewünschten Zeilen und Spalten angeben oder einen logischen Vektor, der besagt welche Zeilen und Spalten wir zurückhaben möchten.
 
 Wenn wir z. B. die Anzahl Rehfotos von der vierten Fotofalle abfragen möchten, könnte man das so machen.
 
@@ -1153,7 +1152,7 @@ Wenn wir z. B. die Anzahl Rehfotos von der vierten Fotofalle abfragen möchten, 
 monitoring[4, 2]
 ```
 
-Alternativ, kann man den Spaltennamen auch einfach Ausschreiben. Dies hat beim Programmieren den Vorteil, dass der Code lauffähig bleibt, falls sich die Reihenfolge der Spalten in der Datengrundlage ändert. Nachteil ist entsprechend, dass der Code nicht mehr läuft, falls die Variablennamen sich ändern.
+Alternativ, kann man den Spaltennamen auch Ausschreiben. Dies hat beim Programmieren den Vorteil, dass der Code lauffähig bleibt, falls sich die Reihenfolge der Spalten in der Datengrundlage ändern sollte. Nachteil ist entsprechend, dass der Code nicht mehr laufen würde, falls die Variablennamen sich ändern.
 
 ```{r}
 monitoring[4, "anzahl_rehe"]
@@ -1208,7 +1207,7 @@ umfrage1[c(1, 3, 4), ]
 
 Mit dem `$`-Zeichen kann bei `data.frame`s direkt auf eine Spalte zugegriffen werden. Wenn wir z. B. für alle Fotofallen die Anzahl gesehener Rehe abfragen möchten, gibt es jetzt drei Möglichkeiten:
 
-1. über das `$`-Zeichen direkt die Spalte ansprechen. Diese Möglichkeit hat den Vorteil, dass R Studio den Spaltennamen automatisch ausfüllen kann. Beim Tippen werden mögliche Spaltennamen vorgeschlagen. Sie wählen den Vorschlag aus, in dem Sie Tabulator (\keys{\tab}) drücken.
+1. über das `$`-Zeichen direkt die Spalte ansprechen. Diese Möglichkeit hat den Vorteil, dass R Studio den Spaltennamen automatisch ausfüllen kann. Beim Tippen werden mögliche Spaltennamen vorgeschlagen. Sie wählen den Vorschlag aus, in dem Sie Tabulator (\keys{\tab}) drücken. Danach können Sie diesen resultierenden Vektor wie einen einfachen Vektor behandeln und verarbeiten.
 
 ```{r}
 monitoring$anzahl_rehe
@@ -1227,7 +1226,7 @@ monitoring[, "anzahl_rehe"]
 monitoring[1 : nrow(monitoring), "anzahl_rehe"]
 ```
 
-Anmerkung zu 3), der Ausdruck `1:nrow(monitoring)` ergibt einen Vektor mit den Zahlen 1 bis 15, da `nrow(monitoring) = 15` ist. Diese Schreibweise ist zu empfehlen, wenn die Dimension des Vektors variabel ist. Merken Sie sich diese Kombination aus Befehlen. Auf ähnliche weise können Sie vom Ende oder von Anfang variable längen indizieren. Das ist z. B. nützlich, wenn Sie n - 1 Eionträge brauchen.
+Anmerkung zu 3), der Ausdruck `1:nrow(monitoring)` ergibt einen Vektor mit den Zahlen 1 bis 15, da `nrow(monitoring) = 15` ist. Diese Schreibweise ist zu empfehlen, wenn die Dimension des Vektors variabel ist. Merken Sie sich diese Kombination aus Befehlen. Auf ähnliche weise können Sie vom Ende oder von Anfang variable Längen indizieren. Das ist z. B. nützlich, wenn Sie n - 1 Einträge indizieren möchten.
 
 Schlussendlich kann man einen `data.frame` genauso mit logischen Vektoren abfragen, wie einen Vektor. Ein Beispiel wäre, wenn wir alle Fotofallen abfragen möchten, die mehr als 100 Rehfotos gemacht haben. Der erste Schritt wäre abzufragen, ob eine Fotofalle mehr als 100 Rehfotos gemacht hat.
 
