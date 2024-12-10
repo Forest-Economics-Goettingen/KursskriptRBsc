@@ -373,7 +373,7 @@ a + p
 
 # Vektoren
 
-Die gute Nachricht zuerst. Sie haben bereits Vektoren erstellt in R (und dies wahrscheinlich nicht bewusst wahrgenommen). Wenn Sie nämlich eine Objekt mit einem Element erstellen (z.B., `a <- 10`), wird ein Vektor der Länge eins erstellt. Das heißt, der Vektor enthält genau ein Element (einen Eintrag). Vektoren sind also kein neues Objekt für Sie, sondern Sie lernen jetzt, dass die Ihnen schon bekannten Objekte Vektoren heißen und sie auch mehrere Elemente in einem Objekt speichern können.
+Die gute Nachricht zuerst. Sie haben bereits Vektoren erstellt in R. Wenn Sie nämlich eine Objekt mit einem Element erstellen (z.B., `a <- 10`), wird ein Vektor der Länge eins erstellt. Das heißt, der Vektor enthält genau ein Element (einen Eintrag). Vektoren sind also kein neues Objekt für Sie, sondern Sie lernen jetzt, dass die Ihnen schon bekannten Objekte Vektoren heißen und sie auch mehrere Elemente in einem Objekt speichern können.
 
 ```{r fig1, out.width = "350px", echo = FALSE, fig.cap="Schematische Darstellung eines Vektors in R.", fig.align="center"}
 include_graphics(here("img/vectors.jpg"))
@@ -381,7 +381,7 @@ include_graphics(here("img/vectors.jpg"))
 
 Sie können sich Vektoren wie einen Schubladenschrank vorstellen (siehe auch Abbildung \@ref(fig:fig1)). Wichtig ist dabei, dass man in jede Schublade immer nur ein Element verstauen kann und alle Elemente im Schublagenschrank den gleichen Datentyp haben müssen. Etwas allgemeiner gesprochen heißt das, dass alle Elemente eines Vektors vom gleichen Datentyp sein müssen.
  
-Es gibt zahlreiche Funktionen zum Erstellen von Vektoren (einige davon werden wir im weiteren Verlauf des Moduls kennenlernen). Die wichtigste Funktion ist `c()`. Dabei steht `c` für *combine* oder *concatenate*. Die Funktion `c()` fügt einzelne Elemente in einen Vektor zusammen (und zwar in der Reihenfolge wie diese Elemente an `c()` übergeben werden). `c()` ist sozusagen die Funktion, die für Sie mehrere Elemente zu einem Vektor zusammensetzt. `c()` erwartet folglich nur Elemente als Argumente.
+Es gibt zahlreiche Funktionen zum Erstellen von Vektoren (einige davon werden wir im weiteren Verlauf des Moduls kennenlernen). Die wichtigste Funktion ist *combine* `c()` oder *concatenate* genannt. Die Funktion `c()` fügt einzelne Elemente in einen Vektor zusammen (und zwar in der Reihenfolge wie diese Elemente an `c()` übergeben werden). `c()` ist sozusagen die Funktion, die für Sie mehrere Elemente zu einem Vektor zusammensetzt. `c()` erwartet folglich nur Elemente als Argumente.
  
 Gehen wir nochmals zurück zu Abbildung \@ref(fig:fig1), in der schematisch dargestellt wird, wie ein Vektor `s` mit 7 Elementen (in diesem Fall Zahlen) erstellt wird.
 
@@ -404,13 +404,13 @@ Die Grundrechenarten (`+`, `-`, `/`, `*`) und viele andere Funktionen funktionie
 s + 10
 ```
 
-oder `s` mit sich selbst multiplizieren. Zu beachten ist also, dass es sich bei Vektorberechnungen in R zunächst nicht um Vektorrechnungen handelt, wie Sie sie aus der linearen Algebra kennen. Für die sog. Matrizenoperationen der linearen Algebra werden die Operatoren in R mit `% %` umschlossen, also bspw. `s %*% s`.
+oder `s` mit sich selbst multiplizieren. Zu beachten ist also, dass es sich bei Vektorberechnungen in R nicht um Vektorrechnungen handelt, wie Sie sie aus der linearen Algebra kennen. Für die sog. Matrizenoperationen der linearen Algebra werden die Operatoren in R mit `% %` umschlossen, also bspw. `s %*% s`.
 
 ```{r}
 s * s
 ```
 
-Neben der Funktion `c()` gibt es zahlreiche weitere Funktionen, um Vektoren zu erstellen. Sehr häufig braucht man Vektoren von Zahlenfolgen. Solche Vektoren können mit der Funktion `seq()` erstellt werden. Im einfachsten Fall benötigt `seq()` zwei Argumente: `from` und `to`^[Weil solche Vektoren so häufig vorkommen gibt es hier eine Abkürzung. Man kann `seq(from, to, by = 1)` mit `from:to` abkürzen. Also `1:10` würde auch alle Zahlen von 1 bis 10 in Einerschritten zurückgeben.].
+Neben der Funktion `c()` gibt es zahlreiche weitere Funktionen, um Vektoren zu erstellen. Wenn Sie einen Vektor mit einer systematischen Zahlenfolge erstellen wollen, können Sie zum Beispiel die Funktion *sequence* `seq()` verwenden. Im einfachsten Fall benötigt `seq()` zwei Argumente: `from` und `to`^[Weil solche Vektoren so häufig vorkommen gibt es hier eine Abkürzung. Man kann `seq(from, to, by = 1)` mit `from:to` abkürzen. Also `1:10` würde auch alle Zahlen von 1 bis 10 in Einerschritten zurückgeben.].
 
 ```{r}
 seq(from = 1, to = 10)
@@ -431,7 +431,7 @@ Sie haben den BHD (Brusthöhendurchmesser) in cm von vier Bäumen gemessen: `13,
 -   Erstellen Sie einen Vektor mit dem Namen `bhd` in dem Sie die Werte
     speichern
 -   Transformieren sie die BHD-Werte in mm.
--   Berechnen Sie die Fläche des BHD in $cm^2$ (nehmen Sie dafür an, dass ein Baum
+-   Berechnen Sie die Grundflächen der BHD in $cm^2$ (nehmen Sie dafür an, dass ein Baum
     kreisrund ist).
 
 ```{r, include=params$inc_sol}
@@ -522,9 +522,10 @@ rep(c("G1", "G2"), 4)
 
 ## Statistische Funktionen
 
-Zahlreiche statistische Funktionen können auf Vektoren angewendet werden, hier sind nur drei Beispiele aufgeführt: `mean()` berechnet den Mittelwert, `median()` berechnet den Median und `sd()` die Standardabweichung.
+Zahlreiche statistische Funktionen können auf Vektoren angewendet werden, hier sind nur Beispiele aufgeführt.
 
 ```{r}
+sum(s)
 mean(s)
 median(s)
 sd(s)
@@ -536,7 +537,8 @@ Eine weitere, sehr häufig verwendete Funktion ist `sample()`. Mit `sample()` we
 sample(s, size = 1) # 1 Element
 sample(s, size = 3) # 2 Elemente
 ```
-Wenn `size` weggelassen wird, dann bekommt man gleich viele Elemente zurück (wie der Vektor lang ist), d.h. der Vektor wird nur permutiert. 
+
+Wenn `size` weggelassen wird, dann bekommt man gleich viele Elemente zurück (wie der Vektor lang ist), d.h. der Vektor wird nur zufällig neu arrangiert (permutiert).
 
 ## Beispiel Fotofallen
 
@@ -569,7 +571,7 @@ v1 <- rep("Kamera", 15)
 Im nächsten Schritt müssen wir die Zahlen 1 bis 15 erstellen, auch dieses Zwischenergebnis speichern wir in einem neuen Vektor `v2`.
 
 ```{r}
-v2 <- 1:15
+v2 <- 1 : 15
 ```
 
 Jetzt müssen wir lediglich die Vektoren `v1` und `v2` "zusammenkleben". Dafür gibt es die Funktion `paste`, die zwei Vektoren elementweise verbindet, dabei wird das Argument `sep` als Trennzeichen verwendet. In unserem Fall wäre das also.
@@ -579,7 +581,7 @@ ids <- paste(v1, v2, sep = "_")
 ids
 ```
 
-Mehr Funktionen zum Umgang mit Zeichenketten folgen in Kapitel "Arbeiten mit Text". Dann fehlt jetzt lediglich der Vektor mit den Revieren. Hier könnten wir erneut auf die Funktion `rep` zurückgreifen.
+Mehr Funktionen zum Umgang mit Zeichenketten folgen in Kapitel "Arbeiten mit Text". Nun fehlt lediglich der Vektor mit den Revieren. Hier könnten wir erneut auf die Funktion `rep` zurückgreifen.
 
 ```{r}
 rep(c("Revier A", "Revier B", "Revier C"), 5)
@@ -597,11 +599,16 @@ reviere
 
 #### `r exercise("Statistische Funktionen")`
 
-1. Berechnen Sie den Mittelwert und Median für die Anzahl Fotos.
+1. Berechnen Sie den arithmetischen Mittelwert und Median für die Anzahl Fotos. 
+
+a) Verwenden Sie für die Berechnung des arithmetischen Mittelwerts die in R verfügbare Standardfunktion.
+b) Schreiben Sie die arithmetische Mittelwertformel $\mu=\frac{1}{n}\sum^N_{i=1}x_i$ selbst als R Code und berechnen Sie damit den arithmetischen Mittelwert der Anzahl Rehe.
 
 ```{r, include = params$inc_sol}
-mean(anzahl_rehe)
+mean(anzahl_rehe) #a)
 median(anzahl_rehe)
+
+(1 / length(anzahl_rehe)) * sum(anzahl_rehe)
 ```
 
 2. Erstellen Sie die folgende Konsolenausgabe: 
@@ -697,8 +704,11 @@ anzahl_rehe[2]
 ist_a <- reviere == "Revier A"
 anzahl_rehe[ist_a] 
 
+anzahl_rehe[reviere == "Revier A"] # Auch als Einzeiler Möglich.
+
+
 # oder alternativ mit Methode 1.)
-anzahl_rehe[1 : 5]  # da `1:5` einen Vektor mit allen Zahlen von 1 bis 5 erstellt.
+anzahl_rehe[1 : 5]  # da `1 : 5` einen Vektor mit allen Zahlen von 1 bis 5 erstellt.
 ```
 
 Hier ist nochmals hervorzuheben, dass innerhalb der eckigen Klammer mit dem Befehl `c(1, 2, 3, 4, 5)` bzw. `1 : 5` ein Vektor erstellt wird, der die Position der Elemente angibt, die zurückgegeben werden sollen.
@@ -714,14 +724,16 @@ bhd <- c(12, 32, 39, 41, 12, 30)
 - Wählen Sie aus dem Vektor `bhd` nur das 2. und 3. Element aus.
 - Wählen Sie aus dem Vektor `bhd` das letzte Element aus.
 - Wählen Sie aus dem Vektor `bhd` das letzte Element aus, ohne die Zahl 6 zu schreiben.
+- Wie viele BHDs aus dem Vektor `bhd` sind größer oder gleich 30?.
 
 ```{r, include = params$inc_sol}
-bhd[2:3]
+bhd[2 : 3]
 # Entweder
 bhd[6]
 # oder
 rev(bhd)[1]
 bhd[length(bhd)]
+length(bhd[bhd > 30])
 ```
 
 
@@ -819,6 +831,7 @@ Der Vector `LETTERS` ist in R vorhanden und enthält die Buchstaben von A bis Z.
 ```{r}
 LETTERS
 ```
+
 Wählen Sie aus `LETTERS` nur die Vokale aus.
 
 ```{r, include = params$inc_sol}
@@ -832,26 +845,26 @@ LETTERS[LETTERS %in% c("A", "E", "I", "O", "U")]
 
 # Faktoren (`factors`)
 
-R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von diskreten Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es Daten vom Typ `character` effizienter abzuspeichern. Denn im Gegensatz zu `character` enthalten Faktoren mehr Funktionalitäten, die bei der Datenverarbeitung aber auch bei der statistischen Datenanalyse hilfreich sind. Die Unterscheidung von Faktoren und reinem Text ist auf die historische Entwicklung von R als statistischer Programmiersprache zurückzuführen. Faktoren sind Text, der statistische Informationen enthält. Fließtext, der z. B. ein Experiment beschreibt oder Kommentare aus dem Aufnahmebogen enthält, sollte in R besser als `character` gespeichert werden, wohingegen relevante statistisch Informationen, wie z. B. *Kontrollgruppe* oder auch unsere *Fotofalle* besser als `factor` vorliegen sollten. In Faktoren wird jeder eindeutige Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen der Werte gespeichert [siehe dazu auch @mcnamara2018]. Faktoren haben im Gegensatz zu Zeichenketten zusätzliche Eigenschaften. Man kann sie z. B. sortieren.
+R besitzt einen besonderen Datentyp -- *Faktoren* (engl. factors) -- zum speichern von diskreten Kovariaten (z.B. Baumart, Augenfarbe oder Automarke). Faktoren erlauben es, Daten vom Typ `character` effizienter abzuspeichern. Denn im Gegensatz zu `character` enthalten Faktoren mehr Funktionalitäten, die bei der Datenverarbeitung aber auch bei der statistischen Datenanalyse hilfreich sind. Die Unterscheidung von Faktoren und reinem Text ist auf die historische Entwicklung von R als statistischer Programmiersprache zurückzuführen. Faktoren sind Text und statistische Information in einem. Fließtext, der z. B. ein Experiment beschreibt oder Kommentare aus dem Aufnahmebogen enthält, sollte in R besser als `character` gespeichert werden, wohingegen relevante statistisch Informationen, wie z. B. *Kontrollgruppe* oder auch unsere *Fotofalle* besser als `factor` vorliegen sollten. In Faktoren wird jeder eindeutige Wert (=Level) mit einer Zahl codiert und dann werden nur diese Zahlen zusammen mit einer Tabelle zum Nachschauen der Werte gespeichert [siehe dazu auch @mcnamara2018]. Faktoren haben im Gegensatz zu Zeichenketten zusätzliche Eigenschaften. Man kann sie z. B. sortieren.
 
 Mit der Funktion `factor()` kann ein Faktor erstellt werden. Im einfachsten Fall wird nur ein Vektor übergeben. 
 
 ```{r}
 a <- c("FI", "BU", "FI", "EI", "EI", "FI", "FI")
-factor(a)
 ```
 
-Ohne weitere Spezifikation werden für die *Levels* die Werte alphabetisch sortiert (das kann später z. B. beim Erstellen von Abbildungen wichtig sein). Für eine benutzerdefinierte Anordung der Leverls, kann das Argument `levels` verwendet werden. 
+Ohne weitere Spezifikation werden für die *Levels* die Werte alphabetisch sortiert (das kann später z. B. beim Erstellen von Abbildungen wichtig sein). Für eine benutzerdefinierte Anordung der Levels, kann das Argument `levels` verwendet werden. 
 
 ```{r}
 factor(a, levels = c("FI", "BU", "EI"))
+a
 ```
 
 Es ist auch möglich, die Beschriftung (= labels) der unterschiedlichen Levels anzugeben mit dem Argument `labels`. Das macht z. B. Sinn, wenn sie lange Beschriftungen haben, die Sie beim Programmieren nicht ständig vollständig abtippen möchten.
 
 ```{r}
 af <- factor(a, levels = c("FI", "BU", "EI"), 
-             labels = c("Fichte", "Buche", "Eiche"))
+             labels = c("Picea abies", "Fagus sylvatica", "Quercus spp."))
 af
 ```
 
@@ -863,7 +876,7 @@ levels(af) <- c("Fi", "Bu", "Ei")
 af
 ```
 
-Schlussendlich kann man mit der Funktion `relevel()` die Referenzkategorie eines Faktors (der erste Level) angepasst werden. Das ist kann z. B. für lineare Regressionsmodelle wichtig sein.
+Schlussendlich kann man mit der Funktion `relevel()` die Referenzkategorie eines Faktors (der erste Level) angepasst werden. Dies ist z. B. für lineare Regressionsmodelle relevant.
 
 ```{r}
 af
@@ -911,7 +924,7 @@ s3
 
 ## Das Paket `forcats`
 
-Sie müssen das Paket `forcats` installieren und laden. Wir kommen später noch auf Pakete zurück.
+Das Paket `forcats` enthält erweiterte Funktionalitäten zu Faktoren. Sie müssen das Paket installieren und laden (aktivieren). Wir kommen später noch auf Pakete zurück.
 
 Mit dem Paket aus **forcats** werden einige Operationen mit Faktoren erleichtert. Wir schauen uns hier Funktion an, die es erleichtern:
 
@@ -922,7 +935,7 @@ Mit dem Paket aus **forcats** werden einige Operationen mit Faktoren erleichtert
 
 ### Anpassen der Anordnung von Faktoren
 
-Wir verwenden nochmals den `a` Vektor mit unterschiedlichen Baumarten: 
+Wir erstellen nochmals den `a` Vektor mit unterschiedlichen Baumarten: 
 
 ```{r}
 a <- c("FI", "BU", "FI", "EI", "EI", "FI", "FI")
@@ -934,7 +947,7 @@ Die Funktion `factor()` ordnet die Levels alphanumerisch, wie wir bereits gesehe
 factor(a)
 ```
 
-Die Funktion `fct()` aus dem **forcats**-Paket übernimmt die Reihenfolge so, wie sie in den Daten erscheinen. 
+Die Funktion `fct()` aus dem **forcats**-Paket übernimmt die Reihenfolge so, wie sie in den Daten erscheinen.
 
 ```{r}
 f1 <- fct(a)
@@ -953,13 +966,30 @@ nach der Häufigkeit zu sortieren oder
 fct_infreq(f1)
 ```
 
-
 zufällig zu sortieren. 
 
 ```{r}
 fct_shuffle(f1)
 ```
 
+#### `r exercise("forcats")`
+
+Sehen Sie sich das *Cheatsheet* zum Paket `forcats`an. https://raw.githubusercontent.com/rstudio/cheatsheets/main/factors.pdf Cheatsheets sind 1- bis 2-seitige PDFs, die einen Schnellüberblick über Funktionen eines Pakets liefern. Sie folgen keinem strengen Aufbau, wie die Hilfeseiten, sondern können je Paket sehr individuell sein. Verwenden Sie nochmals den Baumartenvektor `a`.
+
+```{r}
+a <- c("FI", "BU", "FI", "EI", "EI", "FI", "FI")
+```
+
+1. Wandeln Sie `a` in einen Faktorvektor um.
+2. Fassen Sie die Faktorlevels `Bu` und `Ei` zu `Laub` zusammen und benennen Sie `Fi` in `Nadel` um.
+
+
+
+```{r, include = params$inc_sol}
+library(forcats)
+a <- factor(a)
+fct_collapse(.f = a, Laub = c("BU", "EI"), Nadel = "FI")
+```
 
 \newpage
 
