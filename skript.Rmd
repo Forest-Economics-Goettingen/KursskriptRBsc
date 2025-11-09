@@ -46,30 +46,47 @@ params:
 
 ## Data Science mit R
 
-Ein Data Science Projekt besteht laut Wickham et al. (https://r4ds.hadley.nz/) aus 4 Stufen.
+Ein Data-Science-Projekt umfasst in der Regel sech Schritte: Import, Tidy, Transform, Visualize, Model und Communicate (vgl. Wickham et al., R for Data Science 2e; https://r4ds.hadley.nz/) aus 4 Stufen. Wir werden diese Schritte alle ansprechen, jedoch in unterschiedlicher Tiefe. 
 
-\includegraphics{img/data_science_steps.png}
+```{r fig-workflow, echo=FALSE, fig.cap="Data-Science-Workflow nach Wickham et al. (R4DS 2e)", out.width="80%"}
+knitr::include_graphics("img/data_science_steps.png")
+```
 
-Wir werden in diesem Kurs zwar alle Stufen besprechen, jedoch in unterschiedlicher Intensität. Jedes Data Science Projekt beginnt mit dem Datenimport. Dies sind in der Regel Tabellen mit Erhebungsdaten, die je nach Experiment sehr unterschiedlich aufgebaut sein können und auch sehr unterschiedlich relevante Informationen enthalten können. Aus diesem Grund liegt ein Fokus dieses Kurses auf der Datenvorbereitung (\textit{Tidy} Data). \textit{Tidying} bedeutet, die Daten so herzustellen, dass sie konsistent und passend zu der Datenphilosophie von R sind. Bei \textit{Tidy} Data enthalten die Zeilen die Beobachtungen und die Spalten die Variablen. Alle weiteren Informationen, wie z. B. Metadaten, Zusammenfassungen oder Erläuterungen, werden in separaten Tabellen gespeichert. Überführen Sie Ihre Daten in das \textit{Tidy} Format, um den Überblick zu behalten und bei den folgenden Arbeiten Zeit zu sparen. \textit{Transform} ist der Arbeitsschritt, in dem die relevanten Daten aus den \textit{Tidy} Daten für spezifische Modelle oder Abbildungen erzeugt werden. Dies kann z. B. das filtern von Teilmengen, falls nur bestimmte Beobachtungen analysiert werden sollen, oder das Erzeugen von zusätzlichen Variablen (z. B. H/D-Wert aus Höhe und BHD) sein. Abbildungen (\textit{Visualization}) sind eine effiziente Möglichkeit Ihre Daten zu beschreiben und zu kommunizieren. Abbildungen können auch über die reine Wiedergabe hinausgehende Informationen enthalten und lassen sich mit Modellierungsergebnissen verbinden. Gute Abbildungen zu erzeugen ist eine wichtige Aufgabe bei den meisten Data Science Anwendungen. Wir werden uns im Kurs intensiv mit Abbildungen beschäftigen. (Statistische) Modellierung \textit{Model} ist zwar für das wissenschaftliche Arbeiten ebenfalls relevant und R ist hier sehr mächtig (R versteht sich als statistische Programmiersprache, obwohl R für Data Science Anwendungen aller Art geeignet ist), wird in diesem Kurs jedoch nur exemplarisch am Rande behandelt. Die große Zahl statistischer Modelle, welche je nach Anwendung sehr spezifisch sind, können im Rahmen des Kurses nicht abgedeckt werden. Diese können Sie im Masterstudium in einer großen Zahl von Modulen vertiefen (z. B. Statistical Data Analysis with R (M.FES.115) oder Advanced Data Analysis with R(M.FES.121)). Kommunikation \textit{Communicate} funktioniert nur, wenn Modelle und Abbildungen auch nachvollziehbar sind. Wir werden im Kurs zeigen, wie Sie ein PDF Dokument (oder Word, Power Point, ...) aus Ihren Ergebnissen und Abbildungen erstellen (dieses Dokument ist eine aus R erstellte PDF Datei).
+Jedes Projekt beginnt mit dem Datenimport. In der Forstpraxis arbeiten wir häufig mit tabellarischen Erhebungsdaten, deren Aufbau und Informationsgehalt je nach Studie stark variieren. Ein Schwerpunkt dieses Kurses liegt daher auf der Datenaufbereitung zu *tidy data*. Dabei enthält jede Zeile eine Beobachtung und jede Spalte eine Variable. Weitere Informationen wie Metadaten, Zusammenfassungen oder Erläuterungen werden in separaten Tabellen abgelegt. Durch das Überführen in *tidy data* behalten Sie den Überblick und sparen in den folgenden Schritten Zeit.
+
+Unter *Transform* verstehen wir die Ableitung der für eine konkrete Fragestellung benötigten Variablen und Teilmengen aus den *tidy data*, zum Beispiel das Filtern bestimmter Beobachtungen oder das Berechnen zusätzlicher Kenngrößen (z. B. H/D-Verhältnis aus Baumhöhe H und Brusthöhendurchmesser BHD).
+
+Visualisierung (*Visualize*) ist zentral, um Daten zu erkunden und Ergebnisse zu kommunizieren. Gute Abbildungen können über die reine Darstellung hinaus Informationen verdichten und sich mit Modellierungsergebnissen verknüpfen. Wir werden uns im Kurs intensiv mit Visualisierungen beschäftigen.
+
+Statistische Modellierung (*Model*) ist für wissenschaftliche Arbeiten ebenfalls relevant, und R ist in diesem Bereich sehr leistungsfähig. Im Rahmen dieses Einführungskurses behandeln wir Modellierung jedoch nur exemplarisch. Vertiefungen bieten entsprechende Mastermodule (z. B. Statistical Data Analysis with R, M.FES.115; Advanced Data Analysis with R, M.FES.121).
+
+Kommunikation (*Communicate*) gelingt nur, wenn Datenaufbereitung, Modelle und Abbildungen nachvollziehbar dokumentiert sind. Wir zeigen im Kurs, wie Sie aus Ihren Analysen reproduzierbare Berichte erstellen, etwa als PDF-Dokumente (oder Word/PowerPoint), generiert mit R Markdown.
+
+## Gliederung
+
+Wir haben für die einzelnen Kapitel uns folgende Lehrziele überlegt:
+
+- Kapitel 2: Verstehen des Unterschieds zwischen R und RStudio, erstellen eines Projektes und Skripten, installieren und laden von Paeketen. 
 
 # R und RStudio
 
 ## Installation von R und RStudio
 
-Als ersten Schritt müssen Sie R und RStudio installieren. Dabei ist wichtig zu
+Installieren Sie zunächst R und anschließend RStudio Desktop. R ist die Programmiersprache, RStudio die integrierte Entwicklungsumgebung (IDE), die das Arbeiten mit R deutlich erleichtert.^[IDE = Integrated Development Environment.]
+
+- R: https://cloud.r-project.org/ → passende Version für Ihr Betriebssystem herunterladen und installieren. Unter Linux verwenden Sie die Paketverwaltung (z. B. Debian/Ubuntu: `sudo apt install r-base`).
+- RStudio Desktop: https://posit.co/download/rstudio-desktop/#download → Installationsdatei für Ihr Betriebssystem herunterladen und installieren.
+
+Hinweis: Unter Windows kann für die Installation mancher Pakete später „Rtools“ nötig sein; folgen Sie dann den Hinweisen des jeweiligen Pakets.
+
+Dabei ist wichtig zu
 unterscheiden, dass R und RStudio zwei unterschiedliche Programme sind. R ist die
 eigentliche Programmiersprache mit der wir arbeiten. 
 RStudio hingegen ist eine sogenannte Entwicklungsumgebung ^[Oder auch 
 IDE (=Integrated Development Environment) genannt.], die das Arbeiten mit 
 R vereinfacht.
 
-Sie können also mit R arbeiten ohne RStudio (was unüblich ist), aber nicht mit 
-RStudio ohne R. RStudio wird unter anderem verwendet, um R Code komfortabler zu schreiben und zu
-verwalten. Es werden Ihnen für das Prgrammieren relevante Informationen bereitgestellt.
 
-Gehen Sie für die Installation von R, auf die Website https://cloud.r-project.org/, laden Sie die für ihren Computer passende R-Version herunter und folgen Sie den Installationsanweisungen. In Linux können Sie R über die Kommandozeile installieren.
-
-Für die Installation von RStudio  gehen Sie zu der Website https://posit.co/download/rstudio-desktop/#download und laden die richtige Version für Ihr Betriebssystem herunter und folgen Sie den Installationsanweisungen.
 
 ## Erste Schritte in R
 
@@ -165,7 +182,7 @@ knitr::include_graphics(here("img/rstudio_projekt.pdf"))
 
 Sobald ein Projekt einmal erstellt wurde, können Sie einfach wieder auf das Projekt-Icon klicken und das Projekt wieder öffnen (Abbildung 4)
 
-```{r rproj2, echo = FALSE, out.height="3cm", fig.align="center", fig.cap="Öffnen eines RStudio Projekts."}
+```{r rproj2, echo = FALSE, fig.align="center", fig.cap="Öffnen eines RStudio Projekts."}
 knitr::include_graphics(here::here("img/open_proj.PNG"))
 ```
 
@@ -173,7 +190,7 @@ knitr::include_graphics(here::here("img/open_proj.PNG"))
 Alternativ kann über \menu{File > Open Project} in RStudio oder durch Auswählen des Projektnamens (siehe folgende Abbildung) geöffnet werden (Abbildung 5).
 
 (ref:rproj3) Öffnen von Projekten.
-```{r, echo = FALSE, out.height="1cm", fig.align="center", fig.cap= "(ref:rproj3)"}
+```{r, echo = FALSE, fig.align="center", fig.cap= "(ref:rproj3)"}
 knitr::include_graphics(here::here("img/open_proj2.PNG"))
 ```
 
