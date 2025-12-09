@@ -62,12 +62,6 @@ Statistische Modellierung (*Model*) ist für wissenschaftliche Arbeiten ebenfall
 
 Kommunikation (*Communicate*) gelingt nur, wenn Datenaufbereitung, Modelle und Abbildungen nachvollziehbar dokumentiert sind. Wir zeigen im Kurs, wie Sie aus Ihren Analysen reproduzierbare Berichte erstellen, etwa als PDF-Dokumente (oder Word/PowerPoint), generiert mit R Markdown.
 
-## Gliederung
-
-Wir haben für die einzelnen Kapitel uns folgende Lehrziele überlegt:
-
-- Kapitel 2: Verstehen des Unterschieds zwischen R und RStudio, erstellen eines Projektes und Skripten, installieren und laden von Paeketen. 
-
 # R und RStudio
 
 ## Installation von R und RStudio
